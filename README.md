@@ -1,2 +1,2 @@
 # ungapp
-Reapp for Unginfo API
+Meteor-react app from Unginfo API
