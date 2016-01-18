@@ -17,6 +17,10 @@ body {
   font-size: 14px;
 }
 
+div.wrapper {
+  height: 100%;
+}
+
 div.container {
   max-width: 600px;
   margin: 0 auto;
@@ -24,8 +28,12 @@ div.container {
   /*background-color: white;*/
   background-image: url('/img/valmaende-300x300.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-color: #E7C5AF;
+  background-position-y:100%;
+}
+
+div.container ul {
 }
 
 div.container ul li {
