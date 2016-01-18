@@ -1,10 +1,8 @@
 Items = new Mongo.Collection("items");
 Path = new Mongo.Collection("path");
 
-Path.insert({id:0});
-
 Meteor.methods({
-  getItems() {
+  "getItems"() {
     fetch('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori').then((res) => {
       return res.text();
   }).then((text) => {
@@ -14,7 +12,7 @@ Meteor.methods({
           _parent: data[i]['parent'],
           link: data[i]['link'],
           id: data[i]['id'],
-          text: data[i]['name'],
+          text: data[i]['description'],
           createdAt: new Date()
         });
       }
@@ -22,12 +20,12 @@ Meteor.methods({
     });
   },
 
-  deleteItem(_id) {
+  "deleteItem"(_id) {
     Items.remove(_id);
   },
 
-  clearDatabase() {
-    console.log("clearDatabase()");
+  "clearItems"() {
+    console.log("clearItems()");
     var db = Items.find().fetch();
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
@@ -35,14 +33,27 @@ Meteor.methods({
         console.log("Failed removing items from db");
       }
     }
+  },
+
+  "clearPath"() {
+    console.log("clearPath()");
+    var db = Path.find().fetch();
+    for(var i=0; i<db.length; i++) {
+      console.log(db[i]);
+      if(Path.remove(db[i]._id) == 0) {
+        console.log("Failed removing items from db");
+      }
+    }
+    Path.insert({id:0});
   }
 });
 
 if (Meteor.isClient) {
   Meteor.startup(function() {
-    Meteor.call("clearDatabase", () => {
+    Meteor.call("clearPath")
+    Meteor.call("clearItems", () => {
       Meteor.call("getItems");
     });
-    ReactDOM.render(<App />, document.getElementById("render-target"));
+    ReactDOM.render(<App _id={0} />, document.getElementById("render-target"));
   });
 }

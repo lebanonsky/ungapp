@@ -20,8 +20,10 @@ App = React.createClass({
     console.log("renderMeteor()");
     path = Path.find().fetch()
     return this.data.items.map((item) => {
-      if(item._parent === path[path.length -1].id) {
+      if(item._parent == this.props._id) {
         return <Item key={item._id} item={item} />;
+      } else {
+        console.log("Element with id " + item._parent + " was not rendered, app internal id: " + this.props._id);
       }
     });
   },
