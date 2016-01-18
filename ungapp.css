@@ -1,5 +1,5 @@
 /* CSS declarations go here */
-dy {
+body {
   font-family: sans-serif;
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
@@ -17,19 +17,42 @@ dy {
   font-size: 14px;
 }
 
-.container {
+div.container {
   max-width: 600px;
   margin: 0 auto;
   min-height: 100%;
-  background: white;
+  /*background-color: white;*/
+  background-image: url('/img/valmaende-300x300.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #E7C5AF;
+}
+
+div.container ul li {
+  background-image: url('/img/transpBlack10.png');
+  text-shadow: 2px 2px beige;
+  font-size: 125%;
+
 }
 
 header {
   background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  background-image: linear-gradient(to bottom, #037595, #e1e5f0 100%);
+  background-repeat: no-repeat;
+  background-position: 0 0;
   padding: 20px 15px 15px 15px;
   position: relative;
+  width: 95%;
+  height: 25px;
 }
+
+.container header img {
+  width: 100px;
+  position: absolute;
+  top: 0 ;
+  right: 0;
+}
+
 
 #login-buttons {
   display: block;
@@ -66,7 +89,7 @@ form {
 ul {
   margin: 0;
   padding: 0;
-  background: white;
+  /*background: white;*/
 }
 
 .delete {

@@ -32,7 +32,7 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Items</h1>
+          <img src="/img/ui_logo.png" class="ui_logo" />
         </header>
 
         <ul>
