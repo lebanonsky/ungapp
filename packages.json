@@ -1,0 +1,6 @@
+{
+    "react-router": "1.0.0-beta3",
+    "browserify": "12.0.0",
+    "externalify": "0.1.0",
+    "node-fetch": "1.0.0"
+}

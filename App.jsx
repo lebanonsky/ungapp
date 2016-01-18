@@ -20,7 +20,7 @@ App = React.createClass({
     console.log("renderMeteor()");
     path = Path.find().fetch()
     return this.data.items.map((item) => {
-      if(item._parent === path[path.length -1]) {
+      if(item._parent === path[path.length -1].id) {
         return <Item key={item._id} item={item} />;
       }
     });
