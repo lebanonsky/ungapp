@@ -29,12 +29,21 @@ App = React.createClass({
       }
     })
     console.log(renderCount);
-    if(renderCount < 1) {
+    if(renderCount < 1) { // no items were loaded
       renderedObjects = this.data.tjanst.map((item) => {
         if(item._parent == this.props.slug) {
           return <Article key={item._id} item={item} />
         }
       });
+    }
+    if(renderCount < 1) { // no articles were loaded
+      renderedObjects.push(<Item item={{
+        text: "Gå tillbaka",
+        link: "back",
+        _parent: this.props._id,
+        id: 0,
+        slug: "root"
+      }} />)
     }
     return renderedObjects;
   },
