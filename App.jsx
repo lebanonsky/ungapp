@@ -12,20 +12,31 @@ App = React.createClass({
   getMeteorData() {
     console.log("getMeteorData()");
     return {
-      items: Items.find({}).fetch()
+      items: Items.find({}).fetch(),
+      tjanst: Tjanst.find({}).fetch()
     }
   },
 
   renderMeteor() {
-    console.log("renderMeteor()");
     path = Path.find().fetch()
-    return this.data.items.map((item) => {
+    let renderedObjects = []
+    let renderCount = 0
+    renderedObjects = this.data.items.map((item) => {
       if(item._parent == this.props._id) {
+        renderedObjects.push(item)
+        renderCount++
         return <Item key={item._id} item={item} />;
-      } else {
-        console.log("Element with id " + item._parent + " was not rendered, app internal id: " + this.props._id);
       }
-    });
+    })
+    console.log(renderCount);
+    if(renderCount < 1) {
+      renderedObjects = this.data.tjanst.map((item) => {
+        if(item._parent == this.props.slug) {
+          return <Article key={item._id} item={item} />
+        }
+      });
+    }
+    return renderedObjects;
   },
 
   render() {
