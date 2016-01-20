@@ -9,7 +9,6 @@ Item = React.createClass({
 
     handleClick() {
       console.log(this.props.item.id + " clicked");
-      Path.insert({id: this.props.item.id});
       FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);
     },
 
