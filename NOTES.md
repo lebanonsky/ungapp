@@ -8,6 +8,7 @@ meteor add meteorhacks:npm
 meteor add semantic:ui
 meteor add flemay:less-autoprefixer
 meteor add jquery
+meteor add http
 
 meteor –> wait –> ctrl-C
 rm client/.custom.semantic.json

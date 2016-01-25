@@ -4,10 +4,9 @@ Path = new Mongo.Collection("path");
 
 Meteor.methods({
   "getItems"() {
-    fetch('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori').then((res) => {
-      return res.text();
-    }).then((text) => {
-      let data = JSON.parse(text);
+    let api = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori', {timeout:10000});
+    if(api.statusCode == 200) {
+      let data = JSON.parse(api.content);
       for(let i=0; i<data.length; i++) {
         Items.insert({
           _parent: data[i]['parent'],
@@ -18,10 +17,9 @@ Meteor.methods({
           createdAt: new Date()
         });
         toFetch = data[i]['slug'];
-        fetch("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?filter[huvudkategori]=" + toFetch).then((res) => {
-          return res.text();
-        }).then((text) => {
-          let data = JSON.parse(text);
+        let tjanst = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?filter[huvudkategori]=" + toFetch, {timeout: 10000});
+        if(tjanst.statusCode == 200) {
+          let data = JSON.parse(tjanst.content);
           for(let i=0; i<data.length; i++) {
             Tjanst.insert({
               _parent: toFetch,
@@ -30,9 +28,11 @@ Meteor.methods({
               createdAt: new Date()
             }); 
           }
-        });
+        } else {
+          console.log("TJANST STATUS CODE INVALID");
+        }
       }
-    });
+    }
   },
 
   "deleteItem"(_id) {
