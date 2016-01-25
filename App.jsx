@@ -28,15 +28,7 @@ App = React.createClass({
         return <Item key={item._id} item={item} />;
       }
     })
-    console.log(renderCount);
     if(renderCount < 1) { // no items were loaded
-      renderedObjects = this.data.tjanst.map((item) => {
-        if(item._parent == this.props.slug) {
-          return <Article key={item._id} item={item} />
-        }
-      });
-    }
-    if(renderCount < 1) { // no articles were loaded
       renderedObjects.push(<Item item={{
         text: "Gå tillbaka",
         link: "back",
@@ -48,6 +40,14 @@ App = React.createClass({
     return renderedObjects;
   },
 
+  renderArticles() {
+    return this.data.tjanst.map((item) => {
+      if(item._parent == this.props.slug) {
+        return <Article key={item._id} item={item} />
+      }
+    });
+  },
+
   render() {
     return (
       <div className="container">
@@ -55,9 +55,14 @@ App = React.createClass({
           <img src="/img/ui_logo.png" class="ui_logo" />
         </header>
 
-        <ul className="ui list">
-          { this.renderMeteor() }
-        </ul>
+        <div className="ui">
+            { this.renderArticles() }
+        </div>
+        <div className="ui vertical buttons">
+          <ul className="list">
+            { this.renderMeteor() }
+          </ul>
+        </div>
       </div>
     );
   }

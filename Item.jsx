@@ -15,7 +15,7 @@ Item = React.createClass({
     render() {
         console.log("Item.render()");
         return (
-          <li onClick={this.handleClick}>{this.props.item.text}</li>
+          <li className="fluid ui button" onClick={this.handleClick}>{this.props.item.text}</li>
        );
     }
 });
