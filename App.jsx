@@ -55,7 +55,7 @@ App = React.createClass({
           <img src="/img/ui_logo.png" class="ui_logo" />
         </header>
 
-        <ul class="path">
+        <ul className="ui list">
           { this.renderMeteor() }
         </ul>
       </div>

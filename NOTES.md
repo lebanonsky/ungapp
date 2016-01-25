@@ -9,6 +9,10 @@ meteor add semantic:ui
 meteor add flemay:less-autoprefixer
 meteor add jquery
 
+meteor –> wait –> ctrl-C
+rm client/.custom.semantic.json
+meteor
+
 To build for iOS:
 meteor add-platform ios
 meteor run ios
