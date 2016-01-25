@@ -63,12 +63,11 @@ App = React.createClass({
       <div className="teal">
         <h2 className="ui image header teal">
         <div className="content">
-          <i className="sidebar link icon"></i>
           <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
         </h2>
 
-        <div className="ui content segments">
+        <div className="ui styled fluid accordion white">
             { this.renderArticles() }
         </div>
 
