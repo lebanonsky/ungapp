@@ -41,13 +41,12 @@ App = React.createClass({
       }} />)
     } else if(renderCount < 1) {
       renderedObjects.push(
-        <div className="ui blurring segment">
-          <div className="ui active inverted dimmer">
-            <div className="ui text loader">Laddar...</div> //*DOES NOT SHOW, WHY? 
+          <div className="ui active dimmer">
+            <div className="ui text loader">Laddar...</div>
           </div>
-        </div>
         );
     }
+    this.props.renderCount = renderCount
     return renderedObjects;
   },
 
@@ -64,7 +63,8 @@ App = React.createClass({
       <div className="teal">
         <h2 className="ui image header teal">
         <div className="content">
-          <img src="/img/ui_logo.png" class="ui_logo" />
+          <i className="sidebar link icon"></i>
+          <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
         </h2>
 
@@ -74,8 +74,8 @@ App = React.createClass({
 
         <div className="ui content segments">
           { this.renderMeteor() }
-
         </div>
+
       </div>
     );
   }

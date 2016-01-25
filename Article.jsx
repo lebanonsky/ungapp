@@ -7,7 +7,7 @@ Article = React.createClass({
     render() {
         console.log("Article.render()");
         return (
-          <div className="ui segment">{this.props.item.text}</div>
+         <div className="content" dangerouslySetInnerHTML={{__html: this.props.item.text }} />
        );
     }
 });
