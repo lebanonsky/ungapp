@@ -64,7 +64,7 @@ App = React.createClass({
       <div className="teal">
         <h2 className="ui image header teal">
         <div className="content">
-          <img src="/img/ui_logo.png" class="ui_logo" />
+          <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
         </h2>
 
