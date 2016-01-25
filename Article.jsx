@@ -7,7 +7,12 @@ Article = React.createClass({
     render() {
         console.log("Article.render()");
         return (
-          <div className="ui segment">{this.props.item.text}</div>
+        	<div>
+       	  <h2 className="title">
+       	      <i className="dropdown icon"></i>
+				{this.props.item.title}</h2>
+          <div className="content" >{this.props.item.text}</div>
+          </div>
        );
     }
 });

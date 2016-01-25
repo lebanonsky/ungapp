@@ -15,7 +15,7 @@ Item = React.createClass({
     render() {
         console.log("Item.render()");
         return (
-          <div className="ui segment" onClick={this.handleClick}>{this.props.item.text}</div>
+          <div className="ui segment" onClick={this.handleClick} >{this.props.item.text}</div>
        );
     }
 });

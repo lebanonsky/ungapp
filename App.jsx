@@ -68,7 +68,7 @@ App = React.createClass({
           </div>
         </h2>
 
-        <div className="ui content segments">
+        <div className="ui styled fluid accordion white">
             { this.renderArticles() }
         </div>
 
