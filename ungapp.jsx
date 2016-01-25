@@ -26,6 +26,7 @@ Meteor.methods({
             Tjanst.insert({
               _parent: toFetch,
               text: data[i]['content']['rendered'],
+              title: data[i]['title']['rendered'],
               createdAt: new Date()
             }); 
           }
