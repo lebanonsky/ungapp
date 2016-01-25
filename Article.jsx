@@ -7,7 +7,7 @@ Article = React.createClass({
     render() {
         console.log("Article.render()");
         return (
-          <li>{this.props.item.text}</li>
+          <div className="ui segment">{this.props.item.text}</div>
        );
     }
 });

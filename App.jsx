@@ -50,14 +50,16 @@ App = React.createClass({
 
   render() {
     return (
-      <div className="container">
-        <header>
+      <div className="teal">
+        <h2 className="ui image header teal">
+        <div className="content">
           <img src="/img/ui_logo.png" class="ui_logo" />
-        </header>
+          </div>
+        </h2>
 
-        <ul className="ui list">
+        <div className="ui content segments">
           { this.renderMeteor() }
-        </ul>
+        </div>
       </div>
     );
   }
