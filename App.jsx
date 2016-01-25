@@ -4,7 +4,10 @@ const url = 'http://dev.unginfo.fi/wp-json/wp/v2/tjanst'
 
 App = React.createClass({
   getInitialState: function() {
-    return {_parent: 0}
+    return {
+        _parent: 0,
+        initialLoad: false
+    }
   },
   // allows us to get data with getMeteorData
   mixins: [ReactMeteorData],
@@ -28,15 +31,7 @@ App = React.createClass({
         return <Item key={item._id} item={item} />;
       }
     })
-    console.log(renderCount);
-    if(renderCount < 1) { // no items were loaded
-      renderedObjects = this.data.tjanst.map((item) => {
-        if(item._parent == this.props.slug) {
-          return <Article key={item._id} item={item} />
-        }
-      });
-    }
-    if(renderCount < 1) { // no articles were loaded
+    if(renderCount < 1 && !this.props.initialLoad) { // no items were loaded
       renderedObjects.push(<Item item={{
         text: "Gå tillbaka",
         link: "back",
@@ -44,8 +39,24 @@ App = React.createClass({
         id: 0,
         slug: "root"
       }} />)
+    } else if(renderCount < 1) {
+      renderedObjects.push(
+        <div className="ui blurring segment">
+          <div className="ui active inverted dimmer">
+            <div className="ui text loader">Laddar...</div> //*DOES NOT SHOW, WHY? 
+          </div>
+        </div>
+        );
     }
     return renderedObjects;
+  },
+
+  renderArticles() {
+    return this.data.tjanst.map((item) => {
+      if(item._parent == this.props.slug) {
+        return <Article key={item._id} item={item} />
+      }
+    });
   },
 
   render() {
@@ -58,7 +69,12 @@ App = React.createClass({
         </h2>
 
         <div className="ui content segments">
+            { this.renderArticles() }
+        </div>
+
+        <div className="ui content segments">
           { this.renderMeteor() }
+
         </div>
       </div>
     );

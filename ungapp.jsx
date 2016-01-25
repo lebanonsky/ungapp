@@ -26,6 +26,7 @@ Meteor.methods({
             Tjanst.insert({
               _parent: toFetch,
               text: data[i]['content']['rendered'],
+              title: data[i]['title']['rendered'],
               createdAt: new Date()
             }); 
           }
@@ -79,6 +80,6 @@ if (Meteor.isClient) {
     Meteor.call("clearData", () => {
       Meteor.call("getItems");
     });
-    ReactDOM.render(<App _id={0} />, document.getElementById("render-target"));
+    ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
   });
 }
