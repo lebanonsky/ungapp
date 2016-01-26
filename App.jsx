@@ -20,6 +20,11 @@ App = React.createClass({
     }
   },
 
+  goHome() {
+    console.log("CLICK ON TOP REGISTERED")
+    FlowRouter.go('/')
+  },
+
   renderMeteor() {
     path = Path.find().fetch()
     let renderedObjects = []
@@ -31,7 +36,7 @@ App = React.createClass({
         return <Item key={item._id} item={item} />;
       }
     })
-    if(renderCount < 1 && !this.props.initialLoad) { // no items were loaded
+    if(this.props._id != 0) { // no items were loaded
       renderedObjects.push(<Item item={{
         text: "Gå tillbaka",
         link: "back",
@@ -69,7 +74,7 @@ App = React.createClass({
     return (
       <div className="teal">
         <h2 className="ui image header teal">
-        <div className="content">
+        <div onClick={this.goHome} className="content">
           <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
         </h2>

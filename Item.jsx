@@ -9,7 +9,11 @@ Item = React.createClass({
 
     handleClick() {
       console.log(this.props.item.id + " clicked");
-      FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);
+      if(this.props.item.link == 'back') {
+        history.back()
+      } else {
+        FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);
+      }
     },
 
     render() {
