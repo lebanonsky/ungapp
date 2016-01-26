@@ -51,11 +51,18 @@ App = React.createClass({
   },
 
   renderArticles() {
-    return this.data.tjanst.map((item) => {
-      if(item._parent == this.props.slug) {
-        return <Article key={item._id} item={item} />
-      }
-    });
+    let itemScreen = false;
+    this.data.items.map((item) => {
+      if(item._parent == this.props._id) {
+        itemScreen = true;
+    }});
+    if(!itemScreen) {
+      return this.data.tjanst.map((item) => {
+        if(item._parent == this.props.slug) {
+          return <Article key={item._id} item={item} />
+        }
+      });
+    }
   },
 
   render() {
