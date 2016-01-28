@@ -20,7 +20,8 @@ Item = React.createClass({
         console.log("Item.render()");
         currentName = "ui segment " + this.props.item.slug
         return (
-          <div className={currentName} onClick={this.handleClick} >{this.props.item.text}</div>
+          <div className={currentName} onClick={this.handleClick} >
+         <h4>{this.props.item.text}</h4></div>
        );
     }
 });
