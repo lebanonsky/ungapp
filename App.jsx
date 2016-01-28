@@ -76,6 +76,7 @@ App = React.createClass({
       <div className="teal">
         <h2 className="ui image header teal">
         <div onClick={this.goHome} className="content">
+          <i className="sidebar icon"></i>
           <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
         </h2>
