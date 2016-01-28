@@ -81,5 +81,6 @@ if (Meteor.isClient) {
       Meteor.call("getItems");
     });
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
+    ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));
   });
 }
