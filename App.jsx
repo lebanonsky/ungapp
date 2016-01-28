@@ -79,7 +79,6 @@ App = React.createClass({
       <div className="teal">
         <div className="ui fixed inverted menu left">
             <i  onClick={this.toggleSidebar} className="sidebar icon inverted big"></i>
-            <i className="search icon inverted big"></i>
         </div>
         <h2 className="ui image header teal">
         <div onClick={this.goHome} className="content">
