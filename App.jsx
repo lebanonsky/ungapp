@@ -22,6 +22,7 @@ App = React.createClass({
 
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
+    FlowRouter.go('/');
     $('.ui.sidebar').sidebar('toggle')
   },
 
@@ -59,7 +60,7 @@ App = React.createClass({
     let itemScreen = false;
     this.data.items.map((item) => {
       if(item._parent == this.props._id) {
-        itemScreen = true;
+        itemScreen = false;
     }});
     if(!itemScreen) {
       return this.data.tjanst.map((item) => {
@@ -79,12 +80,12 @@ App = React.createClass({
           </div>
         </h2>
 
-        <div className="ui styled fluid accordion white">
-            { this.renderArticles() }
-        </div>
-
         <div className="ui content segments">
           { this.renderMeteor() }
+        </div>
+
+        <div className="ui styled fluid accordion white">
+            { this.renderArticles() }
         </div>
 
         <div id="hidden"></div>
