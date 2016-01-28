@@ -42,7 +42,7 @@ App = React.createClass({
     })
     if(this.props._id != 0) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text: "Gå tillbaka",
+        text: "<<",
         link: "back",
         _parent: this.props._id,
         id: 0,
