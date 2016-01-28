@@ -4,9 +4,13 @@ Article = React.createClass({
     propTypes: {
     },
 
+    componentDidMount() {
+      jQuery('.ui .accordion').accordion();
+    },
+
     handleClick() {
       this.props.active = true;
-      console.log(this.props);
+      this.setState({active:true})
     },
 
     render() {

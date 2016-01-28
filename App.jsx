@@ -22,7 +22,7 @@ App = React.createClass({
 
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
-    FlowRouter.go('/')
+    $('.ui.sidebar').sidebar('toggle')
   },
 
   renderMeteor() {
@@ -86,6 +86,8 @@ App = React.createClass({
         <div className="ui content segments">
           { this.renderMeteor() }
         </div>
+
+        <div id="hidden"></div>
 
       </div>
     );
