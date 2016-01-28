@@ -23,6 +23,9 @@ App = React.createClass({
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
     FlowRouter.go('/');
+  },
+
+  toggleSidebar() {
     $('.ui.sidebar').sidebar('toggle')
   },
 
@@ -75,7 +78,7 @@ App = React.createClass({
     return (
       <div className="teal">
         <div className="ui fixed inverted menu left">
-            <i className="sidebar icon inverted big"></i>
+            <i  onClick={this.toggleSidebar} className="sidebar icon inverted big"></i>
             <i className="search icon inverted big"></i>
         </div>
         <h2 className="ui image header teal">
