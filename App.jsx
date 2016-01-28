@@ -76,7 +76,7 @@ App = React.createClass({
 
   render() {
     return (
-      <div className="teal">
+      <div className={this.props.slug}>
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar icon big"></i>
         </div>
