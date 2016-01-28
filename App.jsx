@@ -77,15 +77,14 @@ App = React.createClass({
   render() {
     return (
       <div className="teal">
-        <div className="ui fixed inverted menu left">
-            <i  onClick={this.toggleSidebar} className="sidebar icon inverted big"></i>
+        <div className="ui fixed menu white left">
+            <i  onClick={this.toggleSidebar} className="sidebar icon big"></i>
         </div>
-        <h2 className="ui image header teal">
+        <div className="ui image header">
         <div onClick={this.goHome} className="content">
           <img src="/img/ui_logo.png" className="ui_logo" />
           </div>
-        </h2>
-
+        </div>
         <div className="ui content segments">
           { this.renderMeteor() }
         </div>
@@ -93,9 +92,13 @@ App = React.createClass({
         <div className="ui styled fluid accordion white">
             { this.renderArticles() }
         </div>
-
+        <div className="ui image fixed footer">
+        <div onClick={this.goHome} className="content">
+          <img src="/img/fraga_logo.png" className="ui_logo" />
+          </div>
+        </div>
+      
         <div id="hidden"></div>
-
       </div>
     );
   }
