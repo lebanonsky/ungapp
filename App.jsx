@@ -42,7 +42,7 @@ App = React.createClass({
     })
     if(this.props._id != 0) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text: "<<",
+        text: "\u21A9",
         link: "back",
         _parent: this.props._id,
         id: 0,
@@ -82,7 +82,7 @@ App = React.createClass({
         </div>
         <div className="ui image header">
         <div onClick={this.goHome} className="content">
-          <img src="/img/ui_logo.png" className="ui_logo" />
+          <img src="/img/UngInfo_app_logo.png" className="ui_logo" />
           </div>
         </div>
         <div className="ui content segments">
