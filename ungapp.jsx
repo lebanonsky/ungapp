@@ -7,7 +7,7 @@ Meteor.methods({
     let api = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:100000});
     if(api.statusCode == 200) {
       let data = JSON.parse(api.content);
-      console.log(data)
+
       for(let i=0; i<data.length; i++) {
         Items.insert({
           _parent: data[i]['parent'],
@@ -26,6 +26,13 @@ Meteor.methods({
               _parent: toFetch,
               text: data[i]['content']['rendered'],
               title: data[i]['title']['rendered'],
+              adress: data[i]['tjanst_meta']['adress'],
+              tid: data[i]['tjanst_meta']['tid'],
+              tel: data[i]['tjanst_meta']['tel'],
+              epost: data[i]['tjanst_meta']['epost'],
+              oppet: data[i]['tjanst_meta']['oppet'],
+              webbsida: data[i]['tjanst_meta']['webbsida'],
+              link: data[i]['tjanst_meta']['link'],
               createdAt: new Date()
             }); 
           }
