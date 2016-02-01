@@ -4,9 +4,10 @@ Path = new Mongo.Collection("path");
 
 Meteor.methods({
   "getItems"() {
-    let api = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori', {timeout:10000});
+    let api = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:100000});
     if(api.statusCode == 200) {
       let data = JSON.parse(api.content);
+      console.log(data)
       for(let i=0; i<data.length; i++) {
         Items.insert({
           _parent: data[i]['parent'],
@@ -17,7 +18,7 @@ Meteor.methods({
           createdAt: new Date()
         });
         toFetch = data[i]['slug'];
-        let tjanst = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?filter[huvudkategori]=" + toFetch, {timeout: 10000});
+        let tjanst = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=100&filter[huvudkategori]=" + toFetch, {timeout: 100000});
         if(tjanst.statusCode == 200) {
           let data = JSON.parse(tjanst.content);
           for(let i=0; i<data.length; i++) {
@@ -44,7 +45,7 @@ Meteor.methods({
   },
 
   "clearData"() {
-    console.log("clearData()");
+    //console.log("clearData()");
     var db = Items.find().fetch();
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
@@ -54,7 +55,7 @@ Meteor.methods({
     }
     db = Tjanst.find().fetch();
     for(var i=0; i<db.length; i++) {
-      console.log(db[i]);
+      //console.log(db[i]);
       if(Tjanst.remove(db[i]._id) == 0) {
         console.log("Failed removing items from db Tjanst");
       }
@@ -62,7 +63,7 @@ Meteor.methods({
   },
 
   "clearPath"() {
-    console.log("clearPath()");
+    //console.log("clearPath()");
     var db = Path.find().fetch();
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);

@@ -19,7 +19,9 @@ App = React.createClass({
       tjanst: Tjanst.find({}).fetch()
     }
   },
-
+  callback() {
+    return
+  },
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
     FlowRouter.go('/');
@@ -42,7 +44,7 @@ App = React.createClass({
     })
     if(this.props._id != 0) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text: "\u21A9",
+        text: "\u23CE",
         link: "back",
         _parent: this.props._id,
         id: 0,
@@ -66,6 +68,7 @@ App = React.createClass({
         itemScreen = false;
     }});
     if(!itemScreen) {
+      var hideContent = "hidden";
       return this.data.tjanst.map((item) => {
         if(item._parent == this.props.slug) {
           return <Article key={item._id} item={item} />
@@ -89,15 +92,21 @@ App = React.createClass({
           { this.renderMeteor() }
         </div>
 
-        <div className="ui styled fluid accordion white">
-            { this.renderArticles() }
+        <div className="ui header">
+        <div className="content">
+        <i className="icon users orange"></i>
+        Tjänster</div>
         </div>
+        <div className="ui styled fluid accordion white">
+            { this.renderArticles() } 
+        </div>
+
         <div className="ui image fixed footer">
         <div onClick={this.goHome} className="content">
           <img src="/img/fraga_logo.png" className="ui_logo" />
           </div>
         </div>
-      
+
         <div id="hidden"></div>
       </div>
     );
