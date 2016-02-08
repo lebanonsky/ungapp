@@ -103,7 +103,7 @@ App = React.createClass({
 
         { this.renderHeader() }
 
-        <div className="ui styled fluid accordion white">
+        <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>
 
