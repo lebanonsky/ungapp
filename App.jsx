@@ -58,6 +58,17 @@ App = React.createClass({
     this.props.renderCount = renderCount
     return renderedObjects;
   },
+  
+  renderHeader() {
+    if(this.props._id != 0) {
+    return (        
+      <div className="ui header" >
+        <div className="content">
+        <i className="icon users orange"></i>
+        Tjänster</div>
+        </div>);
+    }
+  },
 
   renderArticles() {
     let itemScreen = false;
@@ -90,11 +101,8 @@ App = React.createClass({
           { this.renderMeteor() }
         </div>
 
-        <div className="ui header">
-        <div className="content">
-        <i className="icon users orange"></i>
-        Tjänster</div>
-        </div>
+        { this.renderHeader() }
+
         <div className="ui styled fluid accordion white">
             { this.renderArticles() } 
         </div>
