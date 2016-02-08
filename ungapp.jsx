@@ -34,8 +34,16 @@ Meteor.methods({
             let tdata = JSON.parse(tjanst.content);
             for(let i=0; i<tdata.length; i++) {
               //console.log(data[i]['tjanst_meta']);
+              let ort = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tdata[i]['id']+"/ort", {timeout: 10000});
+              if(ort.statusCode == 200) {
+                let odata = JSON.parse(ort.content);
+                reg = odata[0]['id'];
+              } else {
+                reg = 0;
+              }
               Tjanst.insert({
                 _parent: slug,
+                id: tdata[i]['id'],
                 text: tdata[i]['content']['rendered'],
                 title: tdata[i]['title']['rendered'],
                 adress: tdata[i]['tjanst_meta']['adress'],
@@ -45,6 +53,7 @@ Meteor.methods({
                 oppet: tdata[i]['tjanst_meta']['oppet'],
                 webbsida: tdata[i]['tjanst_meta']['webbsida'],
                 link: tdata[i]['tjanst_meta']['link'],
+                region: reg,
                 createdAt: new Date()
               }); 
              }  
@@ -56,7 +65,8 @@ Meteor.methods({
     let region = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
 
     if(region.statusCode == 200) {
-      let rdata = JSON.parse(api.content);
+
+      let rdata = JSON.parse(region.content);
 
       for(let i=0; i<rdata.length; i++) {
         Region.insert({ 
@@ -72,6 +82,10 @@ Meteor.methods({
           console.log("ITEM STATUS CODE INVALID");
         }          
 
+    regions = Region.find().fetch();
+
+
+
   },
 
   "deleteItem"(_id) {
@@ -80,6 +94,10 @@ Meteor.methods({
 
   "deleteArticle"(_id) {
     Tjanst.remove(_id);
+  },
+
+  "deleteRegion"(_id) {
+    Region.remove(_id);
   },
 
   "clearData"() {
@@ -96,6 +114,13 @@ Meteor.methods({
       //console.log(db[i]);
       if(Tjanst.remove(db[i]._id) == 0) {
         console.log("Failed removing items from db Tjanst");
+      }
+    }
+    db = Region.find().fetch();
+    for(var i=0; i<db.length; i++) {
+      //console.log(db[i]);
+      if(Region.remove(db[i]._id) == 0) {
+        console.log("Failed removing items from db Region");
       }
     }
   },
