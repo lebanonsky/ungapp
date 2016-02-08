@@ -19,9 +19,7 @@ App = React.createClass({
       tjanst: Tjanst.find({}).fetch()
     }
   },
-  callback() {
-    return
-  },
+
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
     FlowRouter.go('/');
@@ -102,7 +100,7 @@ App = React.createClass({
         </div>
 
         <div className="ui image fixed footer">
-        <div onClick={this.goHome} className="content">
+        <div className="content">
           <img src="/img/fraga_logo.png" className="ui_logo" />
           </div>
         </div>
