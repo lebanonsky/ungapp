@@ -1,21 +1,41 @@
-Items = new Mongo.Collection("items");
+Cats = new Mongo.Collection("cat");
 Tjanst = new Mongo.Collection("tjanst");
 Path = new Mongo.Collection("path");
 Region = new Mongo.Collection("region");
 
 Meteor.methods({
   "getItems"() {
-    let api = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:10000});
-    if(api.statusCode == 200) {
-      let data = JSON.parse(api.content);
 
-      for(let i=0; i<data.length; i++) {
-        Items.insert({ 
-          _parent: data[i]['parent'],
-          link: data[i]['link'],
-          id: data[i]['id'],
-          text: data[i]['description'],
-          slug: data[i]['slug'],
+    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
+    if(regdata.statusCode == 200) {
+
+      let regs = JSON.parse(regdata.content);
+
+      for(let i=0; i<regs.length; i++) {
+        Region.insert({ 
+          _parent: regs[i]['parent'],
+          link: regs[i]['link'],
+          id: regs[i]['id'],
+          text: regs[i]['description'],
+          slug: regs[i]['slug'],
+          createdAt: new Date()
+          });
+         }
+        } else {
+          console.log("ITEM STATUS CODE INVALID");
+        }  
+
+    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:10000});
+    if(catdata.statusCode == 200) {
+      let cats = JSON.parse(catdata.content);
+
+      for(let i=0; i<cats.length; i++) {
+        Cats.insert({ 
+          _parent: cats[i]['parent'],
+          link: cats[i]['link'],
+          id: cats[i]['id'],
+          text: cats[i]['description'],
+          slug: cats[i]['slug'],
           createdAt: new Date()
           });
          }
@@ -23,36 +43,42 @@ Meteor.methods({
           console.log("ITEM STATUS CODE INVALID");
         }          
 
-        data = Items.find().fetch();
+        cats = Cats.find().fetch();
         //console.log(data)
 
-        for(let i=0; i<data.length; i++){  
-          slug = data[i]['slug'];
-          //console.log(slug)
-          let tjanst = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=100&filter[huvudkategori]=" + slug, {timeout: 10000});
-          if(tjanst.statusCode == 200) {
-            let tdata = JSON.parse(tjanst.content);
-            for(let i=0; i<tdata.length; i++) {
-              //console.log(data[i]['tjanst_meta']);
-              let ort = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tdata[i]['id']+"/ort", {timeout: 10000});
-              if(ort.statusCode == 200) {
-                let odata = JSON.parse(ort.content);
-                reg = odata[0]['id'];
-              } else {
-                reg = 0;
+        for(let i=0; i<cats.length; i++){  
+          slug = cats[i]['slug'];
+          let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=100&filter[huvudkategori]=" + slug, {timeout: 10000});
+          if(tjdata.statusCode == 200) {
+            let tjanst = JSON.parse(tjdata.content);
+            for(let i=0; i<tjanst.length; i++) {
+              //console.log(tdata[i]['tjanst_meta']);
+              let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 100000});
+              if(ortdata.statusCode == 200) {
+                 let ort = JSON.parse(ortdata.content);
+                 
+                 try {
+                   reg = ort[0]['id'];
+                   } catch(e) {
+                    reg = 0;
+                   }
               }
+              
+              console.log(tjanst[i]['id']);
+              console.log(reg);
+
               Tjanst.insert({
                 _parent: slug,
-                id: tdata[i]['id'],
-                text: tdata[i]['content']['rendered'],
-                title: tdata[i]['title']['rendered'],
-                adress: tdata[i]['tjanst_meta']['adress'],
-                tid: tdata[i]['tjanst_meta']['tid'],
-                tel: tdata[i]['tjanst_meta']['tel'],
-                epost: tdata[i]['tjanst_meta']['epost'],
-                oppet: tdata[i]['tjanst_meta']['oppet'],
-                webbsida: tdata[i]['tjanst_meta']['webbsida'],
-                link: tdata[i]['tjanst_meta']['link'],
+                id: tjanst[i]['id'],
+                text: tjanst[i]['content']['rendered'],
+                title: tjanst[i]['title']['rendered'],
+                adress: tjanst[i]['tjanst_meta']['adress'],
+                tid: tjanst[i]['tjanst_meta']['tid'],
+                tel: tjanst[i]['tjanst_meta']['tel'],
+                epost: tjanst[i]['tjanst_meta']['epost'],
+                oppet: tjanst[i]['tjanst_meta']['oppet'],
+                webbsida: tjanst[i]['tjanst_meta']['webbsida'],
+                link: tjanst[i]['tjanst_meta']['link'],
                 region: reg,
                 createdAt: new Date()
               }); 
@@ -60,36 +86,12 @@ Meteor.methods({
         } else {
           console.log("TJANST STATUS CODE INVALID");
         }
-      }
-
-    let region = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
-
-    if(region.statusCode == 200) {
-
-      let rdata = JSON.parse(region.content);
-
-      for(let i=0; i<rdata.length; i++) {
-        Region.insert({ 
-          _parent: rdata[i]['parent'],
-          link: rdata[i]['link'],
-          id: rdata[i]['id'],
-          text: rdata[i]['description'],
-          slug: rdata[i]['slug'],
-          createdAt: new Date()
-          });
-         }
-        } else {
-          console.log("ITEM STATUS CODE INVALID");
-        }          
-
-    regions = Region.find().fetch();
-
-
+      }        
 
   },
 
   "deleteItem"(_id) {
-    Items.remove(_id);
+    Cats.remove(_id);
   },
 
   "deleteArticle"(_id) {
@@ -102,25 +104,25 @@ Meteor.methods({
 
   "clearData"() {
     //console.log("clearData()");
-    var db = Items.find().fetch();
+    var db = Cats.find().fetch();
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
-      if(Items.remove(db[i]._id) == 0) {
-        console.log("Failed removing items from db Items");
+      if(Cats.remove(db[i]._id) == 0) {
+        console.log("Failed removing Cats from db Cats");
       }
     }
     db = Tjanst.find().fetch();
     for(var i=0; i<db.length; i++) {
       //console.log(db[i]);
       if(Tjanst.remove(db[i]._id) == 0) {
-        console.log("Failed removing items from db Tjanst");
+        console.log("Failed removing Cats from db Tjanst");
       }
     }
     db = Region.find().fetch();
     for(var i=0; i<db.length; i++) {
       //console.log(db[i]);
       if(Region.remove(db[i]._id) == 0) {
-        console.log("Failed removing items from db Region");
+        console.log("Failed removing Cats from db Region");
       }
     }
   },
@@ -131,7 +133,7 @@ Meteor.methods({
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
       if(Path.remove(db[i]._id) == 0) {
-        console.log("Failed removing items from db");
+        console.log("Failed removing Cats from db");
       }
     }
     Path.insert({id:0});

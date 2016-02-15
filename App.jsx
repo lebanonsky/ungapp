@@ -13,10 +13,11 @@ App = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    console.log("getMeteorData()");
+    //console.log("getMeteorData()");
     return {
-      items: Items.find({}).fetch(),
-      tjanst: Tjanst.find({}).fetch()
+      items: Cats.find({}).fetch(),
+      tjanst: Tjanst.find({}).fetch(),
+      region: Region.find({}).fetch()
     }
   },
 
