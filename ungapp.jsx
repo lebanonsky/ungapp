@@ -164,10 +164,15 @@ Meteor.methods({
 });
 
 if (Meteor.isClient) {
+ 
+
+
   Meteor.startup(function() {
     Meteor.call("clearPath")
     Meteor.call("clearData", () => {
     Meteor.call("getItems");
+    GoogleMaps.load();
+ 
     });
 
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));

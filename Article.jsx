@@ -1,5 +1,7 @@
 // single item from JSON
 
+
+
 Article = React.createClass({
     propTypes: {
     },
@@ -10,13 +12,25 @@ Article = React.createClass({
 
     handleClick() {
       this.props.active = true;
-      this.setState({active:true})
+      this.setState({active:true});
+      console.log(this.props.item.id);
+
+          GoogleMaps.create({
+  name: this.props.item.id,
+  element: document.getElementById(this.props.item.id),
+  options: {
+    center: new google.maps.LatLng( 60.170014,  24.938466),
+    zoom: 8
+  }});
+
+
     },
 
     render() {
-        console.log("Article.render()");
+
         titleName=this.props.active ? "active title" : "title"
         divName=this.props.active ? "active content" : "content"
+
         return (
         	<span>
             <h2 className={titleName} onClick = {this.handleClick} >
@@ -28,7 +42,10 @@ Article = React.createClass({
             <div className="ui list relaxed divided">
               <div className="item">
                 <i className="map icon"></i>
-                <div className="content">
+         <div id={this.props.item.id} className="map-container">
+  </div>
+          <div className="content">
+
                 {this.props.item.adress}
                 </div>
                </div> 
