@@ -1,13 +1,22 @@
 /*******************************
          Site Overrides
 *******************************/
-body, .teal.pushable, .ui.pusher {
+html.ios {
+	height:100% !important;
+
+}
+
+body.pushable, .teal.pushable, .ui.pusher {
 	background-color: rgb(205,231,202) !important;
-	height:1000px;
 }
 
 .sidebar.icon, search.icon {
 	margin:6px 12px;
+}
+
+.ui.vertical.icon.menu {
+	width: 260px !important;
+	height: 100%
 }
 
 .search input {
@@ -23,6 +32,7 @@ div.ui.image.fixed.footer {
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
+	padding:0;
 }
 
 div.ui.image.fixed.footer .content {
