@@ -9,6 +9,15 @@ Sidebar = React.createClass({
 
   },
 
+//insert search action
+
+  searchTjanst() {
+    $('.ui.sidebar').trigger('search');
+   FlowRouter.go('/search/' + $('#searchForm').val());
+  },
+
+
+
 /** tähän dymaaninen menu regioneista ja filtteröintiin **/
 
   render() {
@@ -29,8 +38,8 @@ Sidebar = React.createClass({
         <a className="orange item large" href="">Ställ en fråga</a>
         </x>
          <div className="item search large">
-          <i className="search orange icon left"></i>
-          <input className="orange" placeholder="Sök"></input></div>
+          <i onClick={this.searchTjanst} className="search orange icon left"></i>
+          <input id="searchForm" className="orange" placeholder="Sök"></input></div>
       </div>
     );}
 });
