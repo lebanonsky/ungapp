@@ -49,7 +49,8 @@ App = React.createClass({
     })
     if(this.props._id != 0 ) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text: "\u23CE",
+        text:"⬅︎",
+        //text: "\u23CE",
         link: "back",
         _parent: this.props._id,
         id: 0,
@@ -143,12 +144,6 @@ App = React.createClass({
 
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
-        </div>
-
-        <div className="ui image fixed footer">
-        <div className="content">
-          <img src="/img/fraga_logo.png" className="ui_logo" />
-          </div>
         </div>
 
         <div id="hidden"></div>

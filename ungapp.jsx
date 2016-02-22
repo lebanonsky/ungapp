@@ -38,7 +38,7 @@ Meteor.methods({
         Region.insert({ 
           _parent: regs[i]['parent'],
           link: regs[i]['link'],
-          id: regs[i]['id'],
+          id: regs[i]['id'], 
           text: regs[i]['description'],
           slug: regs[i]['slug'],
           createdAt: new Date()
@@ -87,8 +87,8 @@ Meteor.methods({
                    }
               }
               
-              console.log(tjanst[i]['id']);
-              console.log(reg);
+              //console.log(tjanst[i]['id']);
+              //console.log(reg);
 
               Tjanst.insert({
                 _parent: slug,
@@ -126,8 +126,7 @@ Meteor.methods({
   },
 
   "clearData"() {
-    //console.log("clearData()");
-    var db = Cats.find().fetch();
+    db = Cats.find().fetch();
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
       if(Cats.remove(db[i]._id) == 0) {
