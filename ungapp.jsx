@@ -3,6 +3,29 @@ Tjanst = new Mongo.Collection("tjanst");
 Path = new Mongo.Collection("path");
 Region = new Mongo.Collection("region");
 
+
+TjanstIndex = new EasySearch.Index({
+  engine: new EasySearch.Minimongo({
+    sort: function () {
+      return { score: -1 };
+    } 
+  }),
+  collection: Tjanst,
+  fields: ['title', 'text'],
+  defaultSearchOptions: {
+    limit: 100
+  },
+  permission: () => {
+    return true;
+  }
+});
+
+
+
+
+
+
+
 Meteor.methods({
   "getItems"() {
 
@@ -146,7 +169,13 @@ if (Meteor.isClient) {
     Meteor.call("clearData", () => {
     Meteor.call("getItems");
     });
+
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
     ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));
+
   });
 }
+
+
+
+

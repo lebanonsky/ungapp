@@ -7,7 +7,15 @@ FlowRouter.route('/path/:pathId', {
   },
   name: '<path>'
 });
-
+FlowRouter.route('/search/:searchstring', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} searchstring={params.searchstring} slug="search" />, containerElement);
+    Path.insert({searchstring: params.searchstring, slug: "search"})
+    console.log(params.searchstring + " loaded with");
+  },
+  name: '<path>'
+});
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
@@ -16,3 +24,4 @@ FlowRouter.route('/', {
   },
   name: '<root>'
 });
+
