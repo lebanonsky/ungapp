@@ -10,6 +10,10 @@ meteor add flemay:less-autoprefixer
 meteor add jquery
 meteor add http
 
+meteor add easysearch:core
+
+meteor add dburles:google-maps
+
 meteor –> wait –> ctrl-C
 rm client/.custom.semantic.json
 meteor

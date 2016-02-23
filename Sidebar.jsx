@@ -40,9 +40,12 @@ Sidebar = React.createClass({
         <i className="huge help icon"></i>
         <h3>Ställ en fråga</h3>
         </a>
-         <a className="item massive">
-        <input id="searchForm" className="black" placeholder="Sök"></input>
+         <a className="item huge">
+         <div className="ui input">
+        <input id="searchForm" className="ui input" placeholder="Sök"></input>
+          </div>
           <i onClick={this.searchTjanst} className="search huge icon"></i>
+
       </a>
       </div>
     );}
