@@ -129,18 +129,17 @@ App = React.createClass({
     return (
       <div className={this.props.slug}>
         <div className="ui fixed menu white left">
-            <i  onClick={this.toggleSidebar} className="sidebar icon big"></i>
+            <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
+            <img src="/img/Ungapp_unginfologo_musta.png" className="right" id="top_logo"/>
         </div>
-        <div className="ui image header">
+        <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">
-          <img src="/img/UngInfo_app_logo.png" className="ui_logo" />
+          <img src="/img/Ungapp_hjalp.png" className="ui_logo" />
           </div>
         </div>
-        <div className="ui content segments">
+        <div className="ui content segments ungapp">
           { this.renderMeteor() }
         </div>
-
-        { this.renderHeader() }
 
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 

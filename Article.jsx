@@ -35,10 +35,10 @@ Article = React.createClass({
         	<span>
             <h2 className={titleName} onClick = {this.handleClick} >
                 <i className="dropdown icon large"></i>
-              {this.props.item.title}</h2>
+            <div dangerouslySetInnerHTML={{__html: this.props.item.text }} /><br/>
+            {this.props.item.title}
+              </h2>
             <div className={divName} > 
-            <div dangerouslySetInnerHTML={{__html: this.props.item.text }} />
-
             <div className="ui list relaxed divided">
               <div className="item">
                 <i className="map icon"></i>
