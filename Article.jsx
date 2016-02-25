@@ -34,8 +34,8 @@ Article = React.createClass({
         return (
         	<span>
             <h2 className={titleName} onClick = {this.handleClick} >
-                <i className="dropdown icon large"></i>
             <div dangerouslySetInnerHTML={{__html: this.props.item.text }} /><br/>
+                <i className="dropdown icon large"></i>
             {this.props.item.title}
               </h2>
             <div className={divName} > 
