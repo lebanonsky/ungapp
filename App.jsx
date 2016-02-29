@@ -26,7 +26,7 @@ App = React.createClass({
 
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
-    var hideContent = "TjanstMap"
+    jQuery('#TjanstMap').hide();
     FlowRouter.go('/');
   },
 

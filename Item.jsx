@@ -10,17 +10,21 @@ Item = React.createClass({
     handleClick() {
       //console.log(this.props.item.id + " clicked");
 
-         if (GoogleMaps.loaded()) {
-    console.log(google);
-    
-    GoogleMaps.create({
-        name: "TjanstMap",
-        element: document.getElementById("TjanstMap"),
-        options: {
-          center: new google.maps.LatLng( 60.170014,  24.938466),
-          zoom: 8
-        }});
-    }
+    if (GoogleMaps.loaded()) {
+      console.log(google);
+      
+      jQuery('#TjanstMap').show();
+
+      GoogleMaps.create({
+          name: "TjanstMap",
+          element: document.getElementById("TjanstMap"),
+          options: {
+            center: new google.maps.LatLng( 60.170014,  24.938466),
+            zoom: 8
+          }});
+      }
+      
+
       if(this.props.item.link == 'back') {
         history.back()
       } else {
