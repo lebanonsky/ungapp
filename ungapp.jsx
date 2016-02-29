@@ -142,38 +142,20 @@ Meteor.methods({
   },
 
   "clearData"() {
-    cdb = Cats.find().fetch();
-    for(var i=0; i<cdb.length; i++) {
-      console.log(cdb[i]._id);
-      if(Cats.remove(cdb[i]._id) == 0) {
-        console.log("Failed removing items from db Cats");
-      }
-    }
+    rm = Cats.remove({})
+    if(!rm) {
+        console.log("Failed removing items from db Cats ");
+      }    
     
-    tdb = Tjanst.find().fetch();
-
-    for(var i=0; i<tdb.length; i++) {
-      console.log(tdb[i]._id);
-      if(Tjanst.remove(tdb[i]._id) == 0) {
-        console.log("Failed removing items from db Tjanst");
-      }
-    }
-    rdb = Region.find().fetch();
-    for(var i=0; i<rdb.length; i++) {
-      console.log(rdb[i]._id);
-      if(Region.remove(rdb[i]._id) == 0) {
-        console.log("Failed removing items from db Region");
-      }
-    }
   },
 
   "clearPath"() {
     //console.log("clearPath()");
-    var db = Path.find().fetch();
-    for(var i=0; i<db.length; i++) {
-      console.log(db[i]);
-      if(Path.remove(db[i]._id) == 0) {
-        console.log("Failed removing Cats from db");
+    var pdb = Path.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      console.log(pdb[i]);
+      if(Path.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
       }
     }
     Path.insert({id:0});
@@ -184,7 +166,7 @@ if (Meteor.isClient) {
 
   Meteor.startup(function() {
     Meteor.call("clearPath")
-    Meteor.call("clearData", () => {
+    Meteor.call("removeDatas", () => {
       Meteor.call("getItems");
       GoogleMaps.load();
  
@@ -196,6 +178,31 @@ if (Meteor.isClient) {
   });
 }
 
+if (Meteor.isServer) {
+
+  Meteor.startup(function() {
+
+    return Meteor.methods({
+
+      removeDatas: function() {
+
+        Tjanst.remove({});
+        Region.remove({});
+        Evenemang.remove({});
+
+        console.log('dropped');
+
+        return Cats.remove({});
+
+      }
+
+
+
+    });
+
+  });
+
+}
 
 
 
