@@ -8,7 +8,7 @@ Item = React.createClass({
     },
 
     handleClick() {
-      console.log(this.props.item.id + " clicked");
+      //console.log(this.props.item.id + " clicked");
 
          if (GoogleMaps.loaded()) {
     console.log(google);
@@ -29,7 +29,7 @@ Item = React.createClass({
     },
 
     render() {
-        console.log("Item.render()");
+        //console.log("Item.render()");
         currentName = "ui raised segment " + this.props.item.slug
         return (
           <div className={currentName} onClick={this.handleClick} >

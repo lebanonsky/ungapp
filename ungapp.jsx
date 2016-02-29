@@ -2,7 +2,7 @@ Cats = new Mongo.Collection("cat");
 Tjanst = new Mongo.Collection("tjanst");
 Path = new Mongo.Collection("path");
 Region = new Mongo.Collection("region");
-
+Events = new Mongo.Collection("events");
 
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
@@ -22,14 +22,10 @@ TjanstIndex = new EasySearch.Index({
 
 
 
-
-
-
-
 Meteor.methods({
   "getItems"() {
 
-    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
+    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:1000});
     if(regdata.statusCode == 200) {
 
       let regs = JSON.parse(regdata.content);
@@ -48,7 +44,7 @@ Meteor.methods({
           console.log("ITEM STATUS CODE INVALID");
         }  
 
-    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:10000});
+    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:1000});
     if(catdata.statusCode == 200) {
       let cats = JSON.parse(catdata.content);
 

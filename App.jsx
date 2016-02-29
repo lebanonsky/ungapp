@@ -38,6 +38,14 @@ App = React.createClass({
     let renderedObjects = []
     let renderCount = 0
         if(this.props.slug == "search") {
+
+        } else if(this.props.slug == "regions") {
+        
+        renderedObjects = this.data.region.map((region) => {
+            renderedObjects.push(region)
+            return <Item key={region._id} item={region} />;
+          })
+
         } else {
 
     renderedObjects = this.data.items.map((item) => {

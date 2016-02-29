@@ -3,7 +3,7 @@ FlowRouter.route('/path/:pathId', {
     const containerElement = document.getElementById("render-target");
     ReactDOM.render(<App _id={params.pathId} slug={queryParams.slug} />, containerElement);
     Path.insert({id: params.pathId, slug: queryParams.slug})
-    console.log(params.pathId + " loaded with" + queryParams.slug);
+    //console.log(params.pathId + " loaded with" + queryParams.slug);
   },
   name: '<path>'
 });
@@ -16,6 +16,16 @@ FlowRouter.route('/search/:searchstring', {
   },
   name: '<path>'
 });
+FlowRouter.route('/regions', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="region" />, containerElement);
+    //Path.insert({id: params.pathId, slug: queryParams.slug})
+    console.log("regions");
+  },
+  name: '<path>'
+});
+
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");

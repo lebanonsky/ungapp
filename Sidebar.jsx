@@ -1,14 +1,5 @@
 Sidebar = React.createClass({
 
-  regionMenu() {
-    data = Region.find().fetch();
-
-    for(let i=0; i<data.length; i++) {
-
-    }
-
-  },
-
 //insert search action
 
   searchTjanst() {
@@ -17,6 +8,9 @@ Sidebar = React.createClass({
   },
 
 
+  listRegions() {
+    FlowRouter.go('/regions');
+  },
 
 /** tähän dymaaninen menu regioneista ja filtteröintiin **/
 
@@ -24,7 +18,7 @@ Sidebar = React.createClass({
     return (
 
       <div className="ui icon vertical inverted relaxed sticky menu massive">
-        <a className="item massive" href="">
+        <a className="item massive" href="/regions" onClick={this.listRegions}>
         <i className="huge map icon"></i>
         <h3>Regioner</h3>
         </a>
