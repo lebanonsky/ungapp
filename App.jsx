@@ -69,15 +69,16 @@ App = React.createClass({
   },
   
   renderHeader() {
-    if(this.props._id != 0) {
+
+    //if(this.props.renderCount > 0) {
+
     return (        
-      <div className="ui header" >
-        <div className="content">
-        <i className="icon users orange"></i>
-        Tjänster</div>
+      <div id="TjanstMap" className="map-container ui content" >
         </div>);
-    }
+    //}
+    
   },
+
   renderSearchResults() {
     this.toggleSidebar()
   },
@@ -126,6 +127,7 @@ App = React.createClass({
 
   render() {
     
+
     return (
       <div className={this.props.slug}>
         <div className="ui fixed menu white left">
@@ -140,6 +142,8 @@ App = React.createClass({
         <div className="ui content segments ungapp">
           { this.renderMeteor() }
         </div>
+
+        { this.renderHeader() }
 
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 

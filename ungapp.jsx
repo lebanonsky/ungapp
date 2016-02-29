@@ -130,21 +130,21 @@ Meteor.methods({
     for(var i=0; i<db.length; i++) {
       console.log(db[i]);
       if(Cats.remove(db[i]._id) == 0) {
-        console.log("Failed removing Cats from db Cats");
+        console.log("Failed removing items from db Cats");
       }
     }
     db = Tjanst.find().fetch();
     for(var i=0; i<db.length; i++) {
       //console.log(db[i]);
       if(Tjanst.remove(db[i]._id) == 0) {
-        console.log("Failed removing Cats from db Tjanst");
+        console.log("Failed removing items from db Tjanst");
       }
     }
     db = Region.find().fetch();
     for(var i=0; i<db.length; i++) {
       //console.log(db[i]);
       if(Region.remove(db[i]._id) == 0) {
-        console.log("Failed removing Cats from db Region");
+        console.log("Failed removing items from db Region");
       }
     }
   },
