@@ -166,7 +166,9 @@ if (Meteor.isClient) {
 
   Meteor.startup(function() {
     Meteor.call("clearPath")
-    Meteor.call("removeDatas", () => {
+    Meteor.call("removeReg")
+    Meteor.call("removeTja")
+    Meteor.call("removeCats", () => {
       Meteor.call("getItems");
       GoogleMaps.load();
  
@@ -184,17 +186,32 @@ if (Meteor.isServer) {
 
     return Meteor.methods({
 
-      removeDatas: function() {
-
-        Tjanst.remove({});
-        Region.remove({});
-        Evenemang.remove({});
-
-        console.log('dropped');
+      removeCats: function() {
 
         return Cats.remove({});
 
+      },
+
+      removeReg: function() {
+
+        return Region.remove({});
+
+      },
+
+      removeEve: function() {
+
+        return Evenemang.remove({});
+
+      },
+
+      removeTja: function() {
+
+        return Tjanst.remove({});
+
       }
+
+
+
 
 
 
