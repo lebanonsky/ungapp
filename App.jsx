@@ -26,6 +26,7 @@ App = React.createClass({
 
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
+    var hideContent = "TjanstMap"
     FlowRouter.go('/');
   },
 
@@ -76,16 +77,6 @@ App = React.createClass({
     return renderedObjects;
   },
   
-  renderHeader() {
-
-    //if(this.props.renderCount > 0) {
-
-    return (        
-      <div id="TjanstMap" className="map-container ui content" >
-        </div>);
-    //}
-    
-  },
 
   renderSearchResults() {
     this.toggleSidebar()
@@ -131,6 +122,14 @@ App = React.createClass({
     }
 
 
+  },
+
+  renderHeader() {
+
+    return (        
+      <div id="TjanstMap" className="map-container ui content" >
+        </div>);
+    
   },
 
   render() {

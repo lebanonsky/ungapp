@@ -2,7 +2,7 @@ Cats = new Mongo.Collection("cat");
 Tjanst = new Mongo.Collection("tjanst");
 Path = new Mongo.Collection("path");
 Region = new Mongo.Collection("region");
-Events = new Mongo.Collection("events");
+Evenemang = new Mongo.Collection("evenemang");
 
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
@@ -25,7 +25,7 @@ TjanstIndex = new EasySearch.Index({
 Meteor.methods({
   "getItems"() {
 
-    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:1000});
+    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
     if(regdata.statusCode == 200) {
 
       let regs = JSON.parse(regdata.content);
@@ -44,7 +44,7 @@ Meteor.methods({
           console.log("ITEM STATUS CODE INVALID");
         }  
 
-    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:1000});
+    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:10000});
     if(catdata.statusCode == 200) {
       let cats = JSON.parse(catdata.content);
 
@@ -72,7 +72,7 @@ Meteor.methods({
             let tjanst = JSON.parse(tjdata.content);
             for(let i=0; i<tjanst.length; i++) {
               //console.log(tdata[i]['tjanst_meta']);
-              let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 100000});
+              let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 10000});
               if(ortdata.statusCode == 200) {
                  let ort = JSON.parse(ortdata.content);
                  
@@ -106,6 +106,26 @@ Meteor.methods({
           console.log("TJANST STATUS CODE INVALID");
         }
       }        
+
+    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:10000});
+    if(regdata.statusCode == 200) {
+
+      let regs = JSON.parse(regdata.content);
+
+      for(let i=0; i<regs.length; i++) {
+        Region.insert({ 
+          _parent: regs[i]['parent'],
+          link: regs[i]['link'],
+          id: regs[i]['id'], 
+          text: regs[i]['description'],
+          slug: regs[i]['slug'],
+          createdAt: new Date()
+          });
+         }
+        } else {
+          console.log("ITEM STATUS CODE INVALID");
+        }  
+
 
   },
 
@@ -159,14 +179,12 @@ Meteor.methods({
 });
 
 if (Meteor.isClient) {
- 
-
 
   Meteor.startup(function() {
     Meteor.call("clearPath")
     Meteor.call("clearData", () => {
-    Meteor.call("getItems");
-    GoogleMaps.load();
+      Meteor.call("getItems");
+      GoogleMaps.load();
  
     });
 
