@@ -142,24 +142,26 @@ Meteor.methods({
   },
 
   "clearData"() {
-    db = Cats.find().fetch();
-    for(var i=0; i<db.length; i++) {
-      console.log(db[i]);
-      if(Cats.remove(db[i]._id) == 0) {
+    cdb = Cats.find().fetch();
+    for(var i=0; i<cdb.length; i++) {
+      console.log(cdb[i]._id);
+      if(Cats.remove(cdb[i]._id) == 0) {
         console.log("Failed removing items from db Cats");
       }
     }
-    db = Tjanst.find().fetch();
-    for(var i=0; i<db.length; i++) {
-      //console.log(db[i]);
-      if(Tjanst.remove(db[i]._id) == 0) {
+    
+    tdb = Tjanst.find().fetch();
+
+    for(var i=0; i<tdb.length; i++) {
+      console.log(tdb[i]._id);
+      if(Tjanst.remove(tdb[i]._id) == 0) {
         console.log("Failed removing items from db Tjanst");
       }
     }
-    db = Region.find().fetch();
-    for(var i=0; i<db.length; i++) {
-      //console.log(db[i]);
-      if(Region.remove(db[i]._id) == 0) {
+    rdb = Region.find().fetch();
+    for(var i=0; i<rdb.length; i++) {
+      console.log(rdb[i]._id);
+      if(Region.remove(rdb[i]._id) == 0) {
         console.log("Failed removing items from db Region");
       }
     }
