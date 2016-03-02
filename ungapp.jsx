@@ -21,8 +21,9 @@ TjanstIndex = new EasySearch.Index({
 });
 
 
-
+if (Meteor.isServer) {
 Meteor.methods({
+
   "getItems"() {
 
     let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
@@ -33,6 +34,7 @@ Meteor.methods({
       for(let i=0; i<regs.length; i++) {
         Region.insert({ 
           _parent: regs[i]['parent'],
+          title: regs[i]['name'],
           link: regs[i]['link'],
           id: regs[i]['id'], 
           text: regs[i]['description'],
@@ -63,28 +65,10 @@ Meteor.methods({
         }          
 
         cats = Cats.find().fetch();
-        //console.log(data)
-
-     //   for(let i=0; i<cats.length; i++){  
-     //     slug = cats[i]['slug'];
           let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 10000});
           if(tjdata.statusCode == 200) {
             let tjanst = JSON.parse(tjdata.content);
             for(let i=0; i<tjanst.length; i++) {
-              //console.log(tdata[i]['tjanst_meta']);
-             // let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 10000});
-           /*   if(ortdata.statusCode == 200) {
-                 let ort = JSON.parse(ortdata.content);
-                 
-                 try {
-                   reg = ort[0]['id'];
-                   } catch(e) {
-                    reg = 0;
-                   }
-              }*/
-              
-              //console.log(tjanst[i]['id']);
-              //console.log(reg);
               if(tjanst[i]['tjanst_meta']['huvudkategori'].length == 0) {
                 huvudkategori = "none";
               } else {
@@ -117,17 +101,21 @@ Meteor.methods({
     //  }        
 
     let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:10000});
-    if(regdata.statusCode == 200) {
+    if(eventdata.statusCode == 200) {
 
-      let regs = JSON.parse(regdata.content);
+      let regs = JSON.parse(eventdata.content);
 
       for(let i=0; i<regs.length; i++) {
-        Region.insert({ 
+        Evenemang.insert({ 
           _parent: regs[i]['parent'],
           link: regs[i]['link'],
+          title: regs[i]['title']['rendered'],
           id: regs[i]['id'], 
-          text: regs[i]['description'],
+          text: regs[i]['content']['rendered'],
           slug: regs[i]['slug'],
+          startdate : regs[i]['tribe_meta']['startdate'],
+          enddate : regs[i]['tribe_meta']['enddate'],
+          venue : regs[i]['tribe_meta']['venue'],
           createdAt: new Date()
           });
          }
@@ -170,13 +158,14 @@ Meteor.methods({
     Path.insert({id:0});
   }
 });
-
+}
 if (Meteor.isClient) {
 
   Meteor.startup(function() {
     Meteor.call("clearPath")
     Meteor.call("removeReg")
     Meteor.call("removeTja")
+    Meteor.call("removeEve")
     Meteor.call("removeCats", () => {
       Meteor.call("getItems");
       GoogleMaps.load();

@@ -20,12 +20,18 @@ FlowRouter.route('/regions', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
     ReactDOM.render(<App _id={0} slug="region" />, containerElement);
-    //Path.insert({id: params.pathId, slug: queryParams.slug})
-    console.log("regions");
+    Path.insert({slug: "region"})
   },
   name: '<path>'
 });
-
+FlowRouter.route('/evenemang', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="evenemang" />, containerElement);
+    Path.insert({slug: "evenemang"})
+  },
+  name: '<path>'
+});
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");

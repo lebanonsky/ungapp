@@ -3,15 +3,19 @@ Sidebar = React.createClass({
 //insert search action
 
   searchTjanst() {
-    $('.ui.sidebar').trigger('search');
+   $('.ui.sidebar').trigger('search');
    FlowRouter.go('/search/' + $('#searchForm').val());
   },
 
 
   listRegions() {
+    $('.ui.sidebar').trigger('regions');
     FlowRouter.go('/regions');
   },
-
+  listEvenemang() {
+    $('.ui.sidebar').trigger('evenemang');
+    FlowRouter.go('/evenemang');
+  },
 /** tähän dymaaninen menu regioneista ja filtteröintiin **/
 
   render() {
@@ -22,7 +26,7 @@ Sidebar = React.createClass({
         <i className="huge map icon"></i>
         <h3>Regioner</h3>
         </a>
-        <a className="item massive" href="">
+        <a className="item massive" href="/evenemang" onClick={this.listEvenemang}>
         <i className="huge calendar icon"></i>
         <h3>Evenemang</h3>
         </a>  

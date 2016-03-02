@@ -6,6 +6,8 @@ App = React.createClass({
   getInitialState: function() {
      
      $('.ui.sidebar').on('search', this.renderSearchResults);
+     $('.ui.sidebar').on('regions', this.renderRegions);
+     $('.ui.sidebar').on('evenemang', this.renderRegions);
 
     return {
         _parent: 0,
@@ -16,16 +18,15 @@ App = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    //console.log("getMeteorData()");
     return {
       items: Cats.find({}).fetch(),
       tjanst: Tjanst.find({}).fetch(),
-      region: Region.find({}).fetch()
+      region: Region.find({}).fetch(),
+      evenemang: Evenemang.find({}).fetch()
     }
   },
 
   goHome() {
-    console.log("CLICK ON TOP REGISTERED")
     jQuery('#TjanstMap').hide();
     FlowRouter.go('/');
   },
@@ -35,27 +36,34 @@ App = React.createClass({
   },
 
   renderMeteor() {
-    path = Path.find().fetch()
+    path = Path.find().fetch();
     let renderedObjects = []
     let renderCount = 0
-        if(this.props.slug == "search") {
+    if(this.props.slug == "search") {
 
-        } else if(this.props.slug == "regions") {
-        
-        renderedObjects = this.data.region.map((region) => {
-            renderedObjects.push(region)
-            return <Item key={region._id} item={region} />;
-          })
-
-        } else {
-
-    renderedObjects = this.data.items.map((item) => {
-      if(item._parent == this.props._id) {
+    } else if(this.props.slug == "region") {
+      renderedObjects = this.data.region.map((item) => {
         renderedObjects.push(item)
         renderCount++
-        return <Item key={item._id} item={item} />;
-      }
-    })
+        return <Region2 key={item._id} item={item} />;
+      })
+
+    }  else if(this.props.slug == "evenemang") {
+      renderedObjects = this.data.evenemang.map((item) => {
+        renderedObjects.push(item)
+        renderCount++
+        return <EvenemangView key={item._id} item={item} />;
+      })
+
+    }
+    else {
+      renderedObjects = this.data.items.map((item) => {
+        if(item._parent == this.props._id) {
+          renderedObjects.push(item)
+          renderCount++
+          return <Item key={item._id} item={item} />;
+        }
+      })
     if(this.props._id != 0 ) { // no items were loaded
       renderedObjects.push(<Item item={{
         text:"⬅︎",
@@ -67,21 +75,23 @@ App = React.createClass({
       }} />)
     } else if(renderCount < 1) {
       renderedObjects.push(
-          <div className="ui active dimmer">
-            <div className="ui text loader">Laddar...</div>
-          </div>
+        <div className="ui active dimmer">
+        <div className="ui text loader">Laddar...</div>
+        </div>
         );
     }
   }
-    this.props.renderCount = renderCount
-    return renderedObjects;
-  },
+  this.props.renderCount = renderCount
+  return renderedObjects;
+},
   
 
   renderSearchResults() {
     this.toggleSidebar()
   },
-
+  renderRegions() {
+    this.toggleSidebar()
+  },
 
   renderArticles() {
 
@@ -103,6 +113,10 @@ App = React.createClass({
       }
   
 
+    } else if (this.props.slug == "region"){ 
+
+    }  else if (this.props.slug == "evenemang"){ 
+
     } else { 
       let itemScreen = false;
       this.data.items.map((item) => {
@@ -120,6 +134,7 @@ App = React.createClass({
         });
       }
     }
+
 
 
   },
