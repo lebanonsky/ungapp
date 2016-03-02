@@ -65,15 +65,15 @@ Meteor.methods({
         cats = Cats.find().fetch();
         //console.log(data)
 
-        for(let i=0; i<cats.length; i++){  
-          slug = cats[i]['slug'];
-          let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=100&filter[huvudkategori]=" + slug, {timeout: 10000});
+     //   for(let i=0; i<cats.length; i++){  
+     //     slug = cats[i]['slug'];
+          let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 10000});
           if(tjdata.statusCode == 200) {
             let tjanst = JSON.parse(tjdata.content);
             for(let i=0; i<tjanst.length; i++) {
               //console.log(tdata[i]['tjanst_meta']);
-              let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 10000});
-              if(ortdata.statusCode == 200) {
+             // let ortdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst/" + tjanst[i]['id']+"/ort", {timeout: 10000});
+           /*   if(ortdata.statusCode == 200) {
                  let ort = JSON.parse(ortdata.content);
                  
                  try {
@@ -81,13 +81,22 @@ Meteor.methods({
                    } catch(e) {
                     reg = 0;
                    }
-              }
+              }*/
               
               //console.log(tjanst[i]['id']);
               //console.log(reg);
-
+              if(tjanst[i]['tjanst_meta']['huvudkategori'].length == 0) {
+                huvudkategori = "none";
+              } else {
+                huvudkategori = tjanst[i]['tjanst_meta']['huvudkategori'][0].slug;
+              }
+              if(tjanst[i]['tjanst_meta']['ort'].length == 0) {
+                ort = "none";               
+              } else {
+                ort = tjanst[i]['tjanst_meta']['ort'][0].slug;
+              }
               Tjanst.insert({
-                _parent: slug,
+                _parent: huvudkategori,
                 id: tjanst[i]['id'],
                 text: tjanst[i]['content']['rendered'],
                 title: tjanst[i]['title']['rendered'],
@@ -98,14 +107,14 @@ Meteor.methods({
                 oppet: tjanst[i]['tjanst_meta']['oppet'],
                 webbsida: tjanst[i]['tjanst_meta']['webbsida'],
                 link: tjanst[i]['tjanst_meta']['link'],
-                region: reg,
+                region: ort,
                 createdAt: new Date()
               }); 
              }  
         } else {
           console.log("TJANST STATUS CODE INVALID");
         }
-      }        
+    //  }        
 
     let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:10000});
     if(regdata.statusCode == 200) {
