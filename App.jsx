@@ -27,6 +27,8 @@ App = React.createClass({
   goHome() {
     console.log("CLICK ON TOP REGISTERED")
     jQuery('#TjanstMap').hide();
+    jQuery('#ungapp').removeClass();
+    jQuery('#ungapp').addClass('header pushable');
     FlowRouter.go('/');
   },
 

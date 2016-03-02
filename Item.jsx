@@ -10,6 +10,9 @@ Item = React.createClass({
     handleClick() {
       //console.log(this.props.item.id + " clicked");
 
+    jQuery('#ungapp').removeClass();
+    jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug);
+
     if (GoogleMaps.loaded()) {
       console.log(google);
       
