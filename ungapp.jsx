@@ -21,7 +21,6 @@ TjanstIndex = new EasySearch.Index({
 });
 
 
-
 Meteor.methods({
   "getItems"() {
 
@@ -218,11 +217,6 @@ if (Meteor.isServer) {
         return Tjanst.remove({});
 
       }
-
-
-
-
-
 
     });
 

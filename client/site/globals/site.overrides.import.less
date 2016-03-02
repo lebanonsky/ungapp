@@ -6,14 +6,18 @@ html.ios {
 
 }
 
-body.pushable, .ui.pusher {
-	background-image: url('/img/Ungapp_bg_white.png') !important;
+body.pushable.home {
+	/*background-image: url('/img/Ungapp_bg_white.png') !important;*/
 	background-size: cover;
 	background-color: #dbead0 !important;
 }
 
+body.pushable > .pusher {
+	background-color: transparent !important;
+}
+
 ui.pusher {
-	background: url('/img/Ungapp_bg_white.png') !important;
+	background: transparent url('/img/Ungapp_bg_white.png') !important;
 }
 
 .sidebar.icon, search.icon {
@@ -101,16 +105,8 @@ div.ui.raised.segment {
 }
 
 
-.segment h2 {
+.segment h3 {
 	color: #fff;
-}
-
-.halsa_valmoende>h3 {
-	color: #fda67c;
-	}
-
-.halsa_valmoende .segment {
-	background-color: #f26622 !important;
 }
 
 .arbete>h3 {
@@ -118,11 +114,15 @@ div.ui.raised.segment {
 		
 }	
 
-.arbete div.ui.raised.segment {
+body#ungapp.header.pushable.arbete {
 	background-color: #fadae7 !important;
 }
 
-.arbete .segment h2 {
+.arbete div.ui.raised.segment {
+	background-color: #fe8288 !important;
+}
+
+.arbete .segment h3 {
 	color: #000;	
 }
 
@@ -130,25 +130,50 @@ div.ui.raised.segment {
 	color: #a9c19e;
 	}
 
+body#ungapp.header.pushable.ekonomi {
+	background-color: #cfe8cc !important;
+}
+
 .ekonomi div.ui.raised.segment {
 	background-color: #a9c19e !important;
+}
+
+
+.halsa_valmoende>h3 {
+	color: #f4be8e;
+	}
+
+.halsa_valmoende .segment {
+	background-color: #f26622 !important;
+}
+
+body#ungapp.header.pushable.halsa_valmoende {
+	background-color:#f4be8e !important;
+}
+
+.radgivning>h3 {
+	color: #fe8288;
+}
+
+body#ungapp.header.pushable.radgivning {
+	background-color:#f9d7e6 !important;
+}
+
+.radgivning div.ui.raised.segment {
+	background-color: #fe8288 !important;
 }
 
 .studier>h3 {		
 	color: #5385c4;
 	}
 
+body#ungapp.header.pushable.studier {
+	background-color:#cce2ff !important;
+}
+
 .studier div.ui.raised.segment {
 	background-color: #5385c4 !important;
 }	
-
-.radgivning>h3 {
-	color: #ff656c;
-}
-
-.radgivning div.ui.raised.segment {
-	background-color: #fe8288 !important;
-}
 
 
 .ui.styled.fluid.accordion	{
