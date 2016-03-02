@@ -28,6 +28,8 @@ App = React.createClass({
 
   goHome() {
     jQuery('#TjanstMap').hide();
+    jQuery('#ungapp').removeClass();
+    jQuery('#ungapp').addClass('header pushable home');
     FlowRouter.go('/');
   },
 
