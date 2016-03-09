@@ -162,16 +162,8 @@ Meteor.methods({
 }
 if (Meteor.isClient) {
 
-  Meteor.startup(function() {
-    Meteor.call("clearPath")
-    Meteor.call("removeReg")
-    Meteor.call("removeTja")
-    Meteor.call("removeEve")
-    Meteor.call("removeCats", () => {
-      Meteor.call("getItems");
-      GoogleMaps.load();
- 
-    });
+Meteor.startup(function() {
+      GoogleMaps.load();  
 
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
     ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));
@@ -181,35 +173,34 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 
-  Meteor.startup(function() {
+Meteor.startup(function() {
+      Cats.remove({});
+      Region.remove({});
+      Tjanst.remove({});
+      Evenemang.remove({});
+      Meteor.call("getItems");
+  
 
-    return Meteor.methods({
+  // Meteor.startup(function() {
+    // return Meteor.methods({
+    //   removeCats: function() {
+    //     return Cats.remove({});
+    //   },
 
-      removeCats: function() {
+    //   removeReg: function() {
+    //     return Region.remove({});
+    //   },
 
-        return Cats.remove({});
+    //   removeEve: function() {
+    //     return Evenemang.remove({});
+    //   },
+    //   removeTja: function() {
 
-      },
+    //     return Tjanst.remove({});
 
-      removeReg: function() {
+    //   }
 
-        return Region.remove({});
-
-      },
-
-      removeEve: function() {
-
-        return Evenemang.remove({});
-
-      },
-
-      removeTja: function() {
-
-        return Tjanst.remove({});
-
-      }
-
-    });
+    // });
 
   });
 

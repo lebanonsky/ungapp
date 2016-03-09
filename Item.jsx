@@ -11,7 +11,9 @@ Item = React.createClass({
       //console.log(this.props.item.id + " clicked");
 
     jQuery('#ungapp').removeClass();
-    jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug);
+    parent = Cats.find({ _id:this.props.item._parent }).fetch()
+    console.log(parent)
+    jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parent.slug );
 
     if (GoogleMaps.loaded()) {
       console.log(google);
