@@ -19,11 +19,11 @@ Article = React.createClass({
       name: this.props.item.id,
       element: document.getElementById(this.props.item.id),
       options: {
-        center: new google.maps.LatLng( 60.170014,  24.938466),
+        center: new google.maps.LatLng( 60,25),
+        // center: new google.maps.LatLng( this.props.item.lat,  this.props.item.lon),
         zoom: 8
-      }});
-
-
+        }
+      });
     },
 
     render() {
@@ -34,19 +34,14 @@ Article = React.createClass({
         return (
         	<span>
             <h2 className={titleName} onClick = {this.handleClick} >
-            <i className="dropdown icon large"></i>
-            {this.props.item.title} 
-            &ndash;
-            <div dangerouslySetInnerHTML={{__html: this.props.item.text }} /> 
+            <i className="dropdown icon large"></i><div dangerouslySetInnerHTML={{__html: this.props.item.text }} /> 
             </h2>
             <div className={divName} > 
             <div className="ui list relaxed divided">
               <div className="item">
-                <i className="map icon"></i>
-         <div id={this.props.item.id} className="map-container">
-  </div>
+         <div id={this.props.item.id} className="map-container"></div>
           <div className="content">
-
+                <i className="map icon"></i>
                 {this.props.item.adress}
                 </div>
                </div> 
