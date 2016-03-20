@@ -46,7 +46,6 @@ Article = React.createClass({
          <div id={this.props.item.id} className="map-container">
   </div>
           <div className="content">
-
                 {this.props.item.adress}
                 </div>
                </div> 

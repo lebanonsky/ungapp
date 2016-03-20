@@ -67,14 +67,14 @@ App = React.createClass({
         }
       })
     if(this.props._id != 0 ) { // no items were loaded
-      renderedObjects.push(<Item item={{
+      renderedObjects.push(<Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe}><Item item={{
         text:"⬅︎",
         //text: "\u23CE",
         link: "back",
         _parent: this.props._id,
         id: 0,
         slug: "root"
-      }} />)
+      }} /></Hammer>)
     } else if(renderCount < 1) {
       renderedObjects.push(
         <div className="ui active dimmer">
@@ -87,7 +87,9 @@ App = React.createClass({
   return renderedObjects;
 },
   
-
+  handleSwipe() {
+    history.back();
+  },
   renderSearchResults() {
     this.toggleSidebar()
   },
@@ -168,7 +170,6 @@ App = React.createClass({
         </div>
 
         { this.renderHeader() }
-
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>

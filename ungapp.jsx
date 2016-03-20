@@ -163,7 +163,37 @@ Meteor.methods({
 if (Meteor.isClient) {
 
 Meteor.startup(function() {
-      GoogleMaps.load();  
+    GoogleMaps.load();  
+
+    if(window.cordova) {
+      console.log("using cordova");
+      document.addEventListener("deviceready", loadLocation, false);
+    } else {
+      console.log("not using cordova");
+      $(document).ready(function(){ loadLocation(); });
+    }
+
+    function loadLocation() {
+    
+        var onSuccess = function(position) {
+            console.log('Latitude: '          + position.coords.latitude          + '\n' +
+                  'Longitude: '         + position.coords.longitude         + '\n' +
+                  'Altitude: '          + position.coords.altitude          + '\n' +
+                  'Accuracy: '          + position.coords.accuracy          + '\n' +
+                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                  'Heading: '           + position.coords.heading           + '\n' +
+                  'Speed: '             + position.coords.speed             + '\n' +
+                  'Timestamp: '         + position.timestamp                + '\n');
+        };
+    
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+        console.log(navigator.geolocation);        navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true });
+    }
+
+
 
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
     ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));

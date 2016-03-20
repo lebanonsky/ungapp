@@ -12,13 +12,10 @@ Item = React.createClass({
 
     jQuery('#ungapp').removeClass();
     parent = Cats.find({ _id:this.props.item._parent }).fetch()
-    console.log(parent)
     jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parent.slug );
 
-    if (GoogleMaps.loaded()) {
-      console.log(google);
-      
-      jQuery('#TjanstMap').show();
+    if (GoogleMaps.loaded()) {      
+     jQuery('#TjanstMap').show();
 
       GoogleMaps.create({
           name: "TjanstMap",
