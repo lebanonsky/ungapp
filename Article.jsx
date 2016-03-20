@@ -3,28 +3,37 @@
 
 
 Article = React.createClass({
-    propTypes: {
-    },
+  propTypes: {
+  },
 
-    componentDidMount() {
-      jQuery('.ui .accordion').accordion();
-    },
+  componentDidMount() {
+    jQuery('.ui .accordion').accordion();
+  },
 
-    handleClick() {
-      this.props.active = true;
-      this.setState({active:true});
-      console.log(this.props.item.id);
+  handleClick() {
+    this.props.active = true;
+    this.setState({active:true});
+    var self = this;
 
-    GoogleMaps.create({
-      name: this.props.item.id,
-      element: document.getElementById(this.props.item.id),
-      options: {
-        center: new google.maps.LatLng( 60,25),
-        // center: new google.maps.LatLng( this.props.item.lat,  this.props.item.lon),
-        zoom: 8
+    //check if coordinates for the item are defined and load gmap and place marker
+    if(!isNaN(this.props.item.lat) && !isNaN(this.props.item.lon) ) {   
+      GoogleMaps.create({
+        name: this.props.item.id,
+        element: document.getElementById(this.props.item.id),
+        options: {
+          center: new google.maps.LatLng( parseFloat(this.props.item.lat),  parseFloat(this.props.item.lon)),
+          zoom: 10
         }
       });
-    },
+      GoogleMaps.ready(this.props.item.id, function(map) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( parseFloat(self.props.item.lat),  parseFloat(self.props.item.lon)),
+          map: map.instance,
+          title: self.props.item.tid
+        });
+     });
+    }
+  },
 
     render() {
 
