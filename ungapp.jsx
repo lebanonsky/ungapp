@@ -88,6 +88,8 @@ Meteor.methods({
                 adress: tjanst[i]['tjanst_meta']['adress'],
                 tid: tjanst[i]['tjanst_meta']['tid'],
                 tel: tjanst[i]['tjanst_meta']['tel'],
+                lat: tjanst[i]['tjanst_meta']['lat'],
+                lon: tjanst[i]['tjanst_meta']['lon'],
                 epost: tjanst[i]['tjanst_meta']['epost'],
                 oppet: tjanst[i]['tjanst_meta']['oppet'],
                 webbsida: tjanst[i]['tjanst_meta']['webbsida'],
