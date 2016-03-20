@@ -14,9 +14,8 @@ Article = React.createClass({
     this.props.active = true;
     this.setState({active:true});
     var self = this;
-
     //check if coordinates for the item are defined and load gmap and place marker
-    if(!isNaN(this.props.item.lat) && !isNaN(this.props.item.lon) ) {   
+    if(this.props.item.lon && this.props.item.lat)  {   
       GoogleMaps.create({
         name: this.props.item.id,
         element: document.getElementById(this.props.item.id),
@@ -32,6 +31,9 @@ Article = React.createClass({
           title: self.props.item.tid
         });
      });
+    } else {
+      //if no map coordinates are defined, remove the div
+      jQuery('#'+this.props.item.id).remove();
     }
   },
 
