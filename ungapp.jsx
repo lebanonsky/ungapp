@@ -186,6 +186,11 @@ Meteor.startup(function() {
                   'Heading: '           + position.coords.heading           + '\n' +
                   'Speed: '             + position.coords.speed             + '\n' +
                   'Timestamp: '         + position.timestamp                + '\n');
+
+        Meteor.call("checkMapApi", position.coords.latitude ,position.coords.longitude, function(error, results) {
+          console.log(results.content); //results.data should be a JSON object
+        });
+
         };
     
         function onError(error) {
@@ -204,6 +209,16 @@ Meteor.startup(function() {
 }
 
 if (Meteor.isServer) {
+    Meteor.methods({
+        checkMapApi: function (lat, lon) {
+           console.log(lat,lon);
+            console.log("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
+            this.unblock();
+            return Meteor.http.call("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
+        }
+    });
+
+
 
 Meteor.startup(function() {
       Cats.remove({});
