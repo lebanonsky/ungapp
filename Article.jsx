@@ -3,28 +3,39 @@
 
 
 Article = React.createClass({
-    propTypes: {
-    },
+  propTypes: {
+  },
 
-    componentDidMount() {
-      jQuery('.ui .accordion').accordion();
-    },
+  componentDidMount() {
+    jQuery('.ui .accordion').accordion();
+  },
 
-    handleClick() {
-      this.props.active = true;
-      this.setState({active:true});
-      console.log(this.props.item.id);
-
-    GoogleMaps.create({
-      name: this.props.item.id,
-      element: document.getElementById(this.props.item.id),
-      options: {
-        center: new google.maps.LatLng( 60.170014,  24.938466),
-        zoom: 8
-      }});
-
-
-    },
+  handleClick() {
+    this.props.active = true;
+    this.setState({active:true});
+    var self = this;
+    //check if coordinates for the item are defined and load gmap and place marker
+    if(this.props.item.lon && this.props.item.lat)  {   
+      GoogleMaps.create({
+        name: this.props.item.id,
+        element: document.getElementById(this.props.item.id),
+        options: {
+          center: new google.maps.LatLng( parseFloat(this.props.item.lat),  parseFloat(this.props.item.lon)),
+          zoom: 10
+        }
+      });
+      GoogleMaps.ready(this.props.item.id, function(map) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( parseFloat(self.props.item.lat),  parseFloat(self.props.item.lon)),
+          map: map.instance,
+          title: self.props.item.tid
+        });
+     });
+    } else {
+      //if no map coordinates are defined, remove the div
+      jQuery('#'+this.props.item.id).remove();
+    }
+  },
 
     render() {
 
@@ -41,7 +52,7 @@ Article = React.createClass({
               <div className="item">
          <div id={this.props.item.id} className="map-container"></div>
           <div className="content">
-                <i className="map icon"></i>
+
                 {this.props.item.adress}
                 </div>
                </div> 
