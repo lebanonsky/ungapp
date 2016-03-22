@@ -19,11 +19,11 @@ Article = React.createClass({
       name: this.props.item.id,
       element: document.getElementById(this.props.item.id),
       options: {
-        center: new google.maps.LatLng( 60,25),
-        // center: new google.maps.LatLng( this.props.item.lat,  this.props.item.lon),
+        center: new google.maps.LatLng( 60.170014,  24.938466),
         zoom: 8
-        }
-      });
+      }});
+
+
     },
 
     render() {
