@@ -21,7 +21,7 @@ Article = React.createClass({
         element: document.getElementById(this.props.item.id),
         options: {
           center: new google.maps.LatLng( parseFloat(this.props.item.lat),  parseFloat(this.props.item.lon)),
-          zoom: 10
+          zoom: 13
         }
       });
       GoogleMaps.ready(this.props.item.id, function(map) {
@@ -44,15 +44,15 @@ Article = React.createClass({
 
         return (
         	<span>
-            <h2 className={titleName} onClick = {this.handleClick} >
-            <i className="dropdown icon large"></i><div dangerouslySetInnerHTML={{__html: this.props.item.text }} /> 
-            </h2>
+            <div className={titleName} onClick = {this.handleClick} >
+            <i className="dropdown icon large"></i>
+            <div dangerouslySetInnerHTML={{__html: this.props.item.text }} /> 
+            </div>
             <div className={divName} > 
             <div className="ui list relaxed divided">
               <div className="item">
          <div id={this.props.item.id} className="map-container"></div>
           <div className="content">
-
                 {this.props.item.adress}
                 </div>
                </div> 

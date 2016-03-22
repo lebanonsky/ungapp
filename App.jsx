@@ -73,7 +73,7 @@ App = React.createClass({
         link: "back",
         _parent: this.props._id,
         id: 0,
-        slug: "root"
+        slug: this.props.slug
       }} /></Hammer>)
     } else if(renderCount < 1) {
       renderedObjects.push(
