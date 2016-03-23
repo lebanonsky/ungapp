@@ -18,12 +18,25 @@ App = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    return {
-      items: Cats.find({}).fetch(),
-      tjanst: Tjanst.find({}).fetch(),
-      region: Region.find({}).fetch(),
-      evenemang: Evenemang.find({}).fetch()
+    if(Session.get('userRegion')) {
+      return {
+
+
+        items: Cats.find({}).fetch(),
+        tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationelt"} ] } ).fetch(),
+        region: Region.find({}).fetch(),
+        evenemang: Evenemang.find({}).fetch()
+     }
+    } else {
+      return {
+        items: Cats.find({}).fetch(),
+        tjanst: Tjanst.find({}).fetch(),
+        region: Region.find({}).fetch(),
+        evenemang: Evenemang.find({}).fetch()
+      }
+
     }
+    
   },
 
   goHome() {
@@ -37,7 +50,8 @@ App = React.createClass({
     FlowRouter.go('/info');
   },
   toggleSidebar() {
-    $('.ui.sidebar').sidebar('toggle')    
+    $('.ui.sidebar').sidebar('toggle')  
+
   },
 
   renderMeteor() {
@@ -156,7 +170,17 @@ App = React.createClass({
         </div>);
     
   },
+  renderUserInfo() {
+    if(Session.get('userRegion')) {
+    return (        
+      <div id="userdata" className="ui content" >{Session.get('userRegion')}
+        </div>);
 
+    } else { return ""}
+
+    
+    
+  },
   render() {
     
 
@@ -172,6 +196,9 @@ App = React.createClass({
         <div onClick={this.goHome} className="content">
           <img src="/img/Ungapp_hjalp.png" className="ui_logo" />
           </div>
+        </div>
+        <div className="ui content segments ungapp">
+          { this.renderUserInfo() }
         </div>
         <div className="ui content segments ungapp">
           { this.renderMeteor() }

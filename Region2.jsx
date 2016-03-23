@@ -8,10 +8,17 @@ Region2 = React.createClass({
 
 
       if(this.props.item.link == 'back') {
-        history.back()
+        history.back();
       } else {
-        FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);
+        Session.set('userRegion', this.props.item.slug);
+        //redirect to home page
+        jQuery('#TjanstMap').hide();
+        jQuery('#ungapp').removeClass();
+        jQuery('#ungapp').addClass('header pushable home');
+        FlowRouter.go('/');
       }
+
+
     },
 
     render() {
