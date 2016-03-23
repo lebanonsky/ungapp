@@ -33,6 +33,9 @@ App = React.createClass({
     FlowRouter.go('/');
   },
 
+  openInfo() {
+    FlowRouter.go('/info');
+  },
   toggleSidebar() {
     $('.ui.sidebar').sidebar('toggle')    
   },
@@ -57,6 +60,9 @@ App = React.createClass({
         return <EvenemangView key={item._id} item={item} />;
       })
 
+    } else if (this.props.slug == "info"){
+      renderedObjects.push(<iframe src="http://dev.unginfo.fi/ovrig-verksamhet/unginfo-app/" width="100%"></iframe>
+        )
     }
     else {
       renderedObjects = this.data.items.map((item) => {
@@ -158,7 +164,9 @@ App = React.createClass({
       <div className={this.props.slug}>
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
+            <a href="/info" onClick={this.openInfo}>
             <img src="/img/Ungapp_unginfologo_musta.png" className="right" id="top_logo"/>
+            </a>
         </div>
         <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">

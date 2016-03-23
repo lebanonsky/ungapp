@@ -32,6 +32,14 @@ FlowRouter.route('/evenemang', {
   },
   name: '<path>'
 });
+FlowRouter.route('/info', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="info" />, containerElement);
+    Path.insert({slug: "info"})
+  },
+  name: '<path>'
+});
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
