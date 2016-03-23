@@ -23,7 +23,7 @@ App = React.createClass({
 
 
         items: Cats.find({}).fetch(),
-        tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationelt"} ] } ).fetch(),
+        tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationell"} ] } ).fetch(),
         region: Region.find({}).fetch(),
         evenemang: Evenemang.find({}).fetch()
      }
