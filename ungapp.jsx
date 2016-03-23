@@ -165,6 +165,9 @@ Meteor.methods({
 if (Meteor.isClient) {
 
 Meteor.startup(function() {
+
+
+   
     GoogleMaps.load();  
 
     if(window.cordova) {
@@ -188,7 +191,38 @@ Meteor.startup(function() {
                   'Timestamp: '         + position.timestamp                + '\n');
 
         Meteor.call("checkMapApi", position.coords.latitude ,position.coords.longitude, function(error, results) {
-          console.log(results.content); //results.data should be a JSON object
+          var address_components = results.data.results[0].address_components;
+          //loop through components to find locality / political accyracy
+          var component =  null;
+          for(let i=0; i<address_components.length; i++) {
+
+            var locality  = jQuery.inArray( "locality", address_components[i].types)
+            var political =  jQuery.inArray( "political", address_components[i].types)
+            if(locality > -1 && political > -1) {
+              component = address_components[i];
+            }
+          }
+          // TODO - CHECK IF COMPONENT LONGNAME IS DEFINED AND IF THE VALUE IS FOUND IN REGIONS
+        //  Session.set('userRegion', component.long_name);
+        if(component.long_name) {
+          var regions = Region.find({}).fetch();
+          var match = false;
+          for(let i=0; i<regions.length; i++) {
+            if(component.long_name.toLowerCase() == regions[i].title.toLowerCase()) {
+              match = true;
+            }
+          }
+          if(match) {
+            if(Session.get('userRegion')) {
+                console.log("previous region found saved", Session.get('userRegion'));
+            }
+
+            console.log("found match from regions, setting");
+
+            Session.set('userRegion', component.long_name);
+          }
+        }
+
         });
 
         };
@@ -211,8 +245,6 @@ Meteor.startup(function() {
 if (Meteor.isServer) {
     Meteor.methods({
         checkMapApi: function (lat, lon) {
-           console.log(lat,lon);
-            console.log("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
             this.unblock();
             return Meteor.http.call("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
         }
