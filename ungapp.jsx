@@ -72,8 +72,10 @@ Meteor.methods({
             for(let i=0; i<tjanst.length; i++) {
               if(tjanst[i]['tjanst_meta']['huvudkategori'].length == 0) {
                 huvudkategori = "none";
+                huvudkategoriparent = "none";
               } else {
                 huvudkategori = tjanst[i]['tjanst_meta']['huvudkategori'][0].slug;
+                huvudkategoriparent = tjanst[i]['tjanst_meta']['huvudkategori_parent'][0];
               }
               if(tjanst[i]['tjanst_meta']['ort'].length == 0) {
                 ort = "none";               
@@ -82,6 +84,7 @@ Meteor.methods({
               }
               Tjanst.insert({
                 _parent: huvudkategori,
+                rootparent: huvudkategoriparent,
                 id: tjanst[i]['id'],
                 text: tjanst[i]['content']['rendered'],
                 title: tjanst[i]['title']['rendered'],
