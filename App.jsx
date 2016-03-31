@@ -8,8 +8,8 @@ App = React.createClass({
      $('.ui.sidebar').on('search', this.renderSearchResults);
      $('.ui.sidebar').on('regions', this.renderRegions);
      $('.ui.sidebar').on('evenemang', this.renderRegions);
-     $('.ui.sidebar').on('chat', this.renderRegions);
-     $('.ui.sidebar').on('fraga', this.renderRegions);
+     $('.ui.sidebar').on('chat', this.renderFrame);
+     $('.ui.sidebar').on('fraga', this.renderFrame);
 
     return {
         _parent: 0,
@@ -49,6 +49,7 @@ App = React.createClass({
   },
 
   openInfo() {
+    jQuery('div#iframe-target').slideToggle();
     FlowRouter.go('/info');
   },
 
@@ -119,6 +120,11 @@ App = React.createClass({
   renderRegions() {
     this.toggleSidebar()
   },
+  renderFrame() {
+    jQuery('div#iframe-target').slideToggle();
+    this.toggleSidebar()
+  },
+
 
   renderArticles() {
 
