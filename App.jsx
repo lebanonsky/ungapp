@@ -8,6 +8,8 @@ App = React.createClass({
      $('.ui.sidebar').on('search', this.renderSearchResults);
      $('.ui.sidebar').on('regions', this.renderRegions);
      $('.ui.sidebar').on('evenemang', this.renderRegions);
+     $('.ui.sidebar').on('chat', this.renderRegions);
+     $('.ui.sidebar').on('fraga', this.renderRegions);
 
     return {
         _parent: 0,
@@ -49,6 +51,7 @@ App = React.createClass({
   openInfo() {
     FlowRouter.go('/info');
   },
+
   toggleSidebar() {
     $('.ui.sidebar').sidebar('toggle')  
 
@@ -163,13 +166,13 @@ App = React.createClass({
 
   },
 
-  renderHeader() {
+  // renderHeader() {
 
-    return (        
-      <div id="TjanstMap" className="map-container ui content" >
-        </div>);
+  //   return (        
+  //     <div className="ui content" >
+  //       </div>);
     
-  },
+  // },
   // renderUserInfo() {
   //   if(Session.get('userRegion')) {
   //   return (        
@@ -199,7 +202,6 @@ App = React.createClass({
           { this.renderMeteor() }
         </div>
 
-        { this.renderHeader() }
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>

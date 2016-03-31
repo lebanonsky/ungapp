@@ -34,7 +34,7 @@ FlowRouter.route('/evenemang', {
 });
 FlowRouter.route('/info', {
   action: function(params, queryParams) {
-    const containerElement = document.getElementById("render-target");
+    const containerElement = document.getElementById("iframe-target");
     ReactDOM.render(<App _id={0} slug="info" />, containerElement);
     Path.insert({slug: "info"})
   },
@@ -42,7 +42,7 @@ FlowRouter.route('/info', {
 });
 FlowRouter.route('/fraga', {
   action: function(params, queryParams) {
-    const containerElement = document.getElementById("render-target");
+    const containerElement = document.getElementById("iframe-target");
     ReactDOM.render(<App _id={0} slug="fraga" />, containerElement);
     Path.insert({slug: "info"})
   },
@@ -50,7 +50,7 @@ FlowRouter.route('/fraga', {
 });
 FlowRouter.route('/chat', {
   action: function(params, queryParams) {
-    const containerElement = document.getElementById("render-target");
+    const containerElement = document.getElementById("iframe-target");
     ReactDOM.render(<App _id={0} slug="chat" />, containerElement);
     Path.insert({slug: "info"})
   },

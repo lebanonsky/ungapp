@@ -5,9 +5,12 @@ Sidebar = React.createClass({
   sendform(e) {
         //console.log(e.which);
     if (e.which && e.which == 13) {
+        $('.ui.sidebar').trigger('search');
         FlowRouter.go('/search/' + $('#searchForm').val());  
+        return false;
+      } else {
+        return true;
       }
-      return true;
     },
 
   searchTjanst() {
@@ -24,8 +27,18 @@ Sidebar = React.createClass({
     $('.ui.sidebar').trigger('evenemang');
     FlowRouter.go('/evenemang');
   },
-/** tähän dynaaminen menu regioneista ja filtteröintiin **/
 
+  openChat() {
+    $('.ui.sidebar').trigger('chat');
+    FlowRouter.go('/chat');
+  },
+  
+  openFraga() {
+    $('.ui.sidebar').trigger('fraga');
+    FlowRouter.go('/fraga');
+  },
+  
+  
   render() {
     return (
 
@@ -38,11 +51,11 @@ Sidebar = React.createClass({
         <img src="/img/evenemang.png" />
         <h3>Evenemang</h3>
         </a>  
-        <a className="item massive" href="/chat">
+        <a className="item massive" href="/chat" onClick={this.openChat}>
         <img src="/img/chat.png" id="chat_menu"/>
         <h3>Chat</h3>
         </a>
-        <a className="item massive" href="/fraga">
+        <a className="item massive" href="/fraga" onClick={this.openFraga}>
         <img src="/img/fraga_logo.png" id="fraga_menu"/>
         </a>
          <a className="item huge">
