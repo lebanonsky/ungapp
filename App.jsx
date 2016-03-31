@@ -8,8 +8,8 @@ App = React.createClass({
      $('.ui.sidebar').on('search', this.renderSearchResults);
      $('.ui.sidebar').on('regions', this.renderRegions);
      $('.ui.sidebar').on('evenemang', this.renderRegions);
-     $('.ui.sidebar').on('chat', this.renderFrame);
-     $('.ui.sidebar').on('fraga', this.renderFrame);
+     $('.ui.sidebar').on('chat', this.openChat);
+     $('.ui.sidebar').on('fraga', this.openFraga);
 
     return {
         _parent: 0,
@@ -120,9 +120,17 @@ App = React.createClass({
   renderRegions() {
     this.toggleSidebar()
   },
-  renderFrame() {
+  openChat() {
     jQuery('div#iframe-target').slideToggle();
     this.toggleSidebar()
+    FlowRouter.go('/chat');
+
+  },
+  openFraga() {
+    jQuery('div#iframe-target').slideToggle();
+    this.toggleSidebar()
+    FlowRouter.go('/fraga');
+
   },
 
 
