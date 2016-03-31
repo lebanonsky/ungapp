@@ -241,6 +241,7 @@ Meteor.startup(function() {
 
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
     ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));
+    ReactDOM.render(<ContentFrame />, document.getElementById("iframe-target"));
 
   });
 }
