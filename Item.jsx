@@ -19,22 +19,22 @@ Item = React.createClass({
     }
 
     jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parentclass );
-    console.log(parentclass)
+    //console.log(parentclass)
 
-    if (GoogleMaps.loaded()) {      
-     jQuery('#TjanstMap').show();
+    // if (GoogleMaps.loaded()) {      
+    //  jQuery('#TjanstMap').show();
 
-      GoogleMaps.create({
-          name: "TjanstMap",
-          element: document.getElementById("TjanstMap"),
-          options: {
-            center: new google.maps.LatLng( 60.170014,  24.938466),
-            zoom: 8
-          }});
-      }
+    //   GoogleMaps.create({
+    //       name: "TjanstMap",
+    //       element: document.getElementById("TjanstMap"),
+    //       options: {
+    //         center: new google.maps.LatLng( 60.170014,  24.938466),
+    //         zoom: 8
+    //       }});
+    //   }
       
 
-      if(this.props.item.link == 'back') {
+    if(this.props.item.link == 'back') {
         history.back()
       } else {
         FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);

@@ -2,10 +2,21 @@ ContentFrame = React.createClass({
 
 
   render() {
+  	if(this.props.slug == 'info') {
     return (
-
-          <div className="ui content segments ungapp">
           <iframe src="http://dev.unginfo.fi/om-oss/" ></iframe>
-        </div>
-    );}
+    );
+	} else if (this.props.slug == 'fraga') {
+	return (
+          <iframe src="http://fraga.luckan.fi/usp_form/fraga/" ></iframe>
+    );
+	} else if (this.props.slug == 'chat') {
+	return (
+          <iframe src="http://svenska.yle.fi/sluta-panta" ></iframe>
+    );
+	} else {
+
+	return
+	}
+}
 });

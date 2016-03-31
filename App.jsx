@@ -170,17 +170,15 @@ App = React.createClass({
         </div>);
     
   },
-  renderUserInfo() {
-    if(Session.get('userRegion')) {
-    return (        
-      <div id="userdata" className="ui content" >{Session.get('userRegion')}
-        </div>);
+  // renderUserInfo() {
+  //   if(Session.get('userRegion')) {
+  //   return (        
+  //     <div id="userdata" className="ui content" >{Session.get('userRegion')}
+  //       </div>);
 
-    } else { return ""}
+  //   } else { return ""}
 
-    
-    
-  },
+  //  },
   render() {
     
 
@@ -189,16 +187,13 @@ App = React.createClass({
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
             <a href="/info" onClick={this.openInfo}>
-            <img src="/img/Ungapp_unginfologo_musta.png" className="right" id="top_logo"/>
+            <img src="/img/Ungapp_unginfologo.png" className="right" id="top_logo"/>
             </a>
         </div>
         <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">
-          <img src="/img/Ungapp_hjalp.png" className="ui_logo" />
+          <img src="/img/hjalp_logo.png" className="ui_logo" />
           </div>
-        </div>
-        <div className="ui content segments ungapp">
-          { this.renderUserInfo() }
         </div>
         <div className="ui content segments ungapp">
           { this.renderMeteor() }

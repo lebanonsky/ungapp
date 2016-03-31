@@ -40,6 +40,22 @@ FlowRouter.route('/info', {
   },
   name: '<path>'
 });
+FlowRouter.route('/fraga', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="fraga" />, containerElement);
+    Path.insert({slug: "info"})
+  },
+  name: '<path>'
+});
+FlowRouter.route('/chat', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="chat" />, containerElement);
+    Path.insert({slug: "info"})
+  },
+  name: '<path>'
+});
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
