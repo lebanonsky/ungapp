@@ -22,8 +22,6 @@ App = React.createClass({
   getMeteorData() {
     if(Session.get('userRegion')) {
       return {
-
-
         items: Cats.find({}).fetch(),
         tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationell"} ] } ).fetch(),
         region: Region.find({}).fetch(),
@@ -54,6 +52,7 @@ App = React.createClass({
   },
 
   toggleSidebar() {
+    console.log(Session.get('userRegion'));
     $('.ui.sidebar').sidebar('toggle')  
 
   },
@@ -135,50 +134,61 @@ App = React.createClass({
 
 
   renderArticles() {
-
-    if(this.props.slug == "search") {
-      var hideContent = "hidden";
-      let cursor = TjanstIndex.search(this.props.searchstring);
-      var searchResults = cursor.fetch();
-      
-      let itemScreen = false;
-
-
-
-      if(!itemScreen) {
-        var hideContent = "hidden";
-        return searchResults.map((item) => {
-            return <Article key={item._id} item={item} />
-          
-        });
-      }
-  
-
-    } else if (this.props.slug == "region"){ 
-
-    }  else if (this.props.slug == "evenemang"){ 
-
-    } else { 
-      let itemScreen = false;
-      this.data.items.map((item) => {
-        if(item._parent == this.props._id) {
-          itemScreen = false;
-        }});
-
-
-      if(!itemScreen) {
-        var hideContent = "hidden";
-        return this.data.tjanst.map((item) => {
-          if(item._parent == this.props.slug) {
-            return <Article key={item._id} item={item} />
-          }
-        });
-      }
+    // don't return any items
+    if (this.props.slug == "region" || this.props.slug == "evenemang"){ 
+        return null;
     }
+    //search page
+    if(this.props.slug == "search") {
+      this.renderSearchResults();
+    } 
+    //normal list
+    var hideContent = "hidden";
+    //navigationleven 0 = frontpage, 1 ...
+    var navigationlevel = 0;
+
+    if(this.props.slug) {
+      //if current slug is found only as a root category we have navigationlevel 1
+      frontparent = Tjanst.findOne({ rootparent : this.props.slug},{slug:1});
+      //if current slug is found only as a normal category we have navigationlevel 2
+      parent = Tjanst.findOne({ _parent : this.props.slug},{slug:1});
+      if(frontparent) {
+        navigationlevel = 1;
+      }
+      if(parent) {
+        navigationlevel = 2;
+      }
+
+    }
+    return this.data.tjanst.map((item) => {
+      if (navigationlevel == 1){
+        if(item.rootparent == this.props.slug) {
+          return <Article key={item._id} item={item} />
+        }    
+      } else if(navigationlevel == 2) {
+        if(item._parent == this.props.slug) {
+          return <Article key={item._id} item={item} />
+        }    
+      } else {
+         return <Article key={item._id} item={item} />       
+       
+      }
+    });
+
+
 
 
 
   },
+
+  renderSearchResults() {
+      let cursor = TjanstIndex.search(this.props.searchstring);
+      var searchResults = cursor.fetch();
+      return searchResults.map((item) => {
+        return <Article key={item._id} item={item} />
+      });
+  },
+
 
   // renderHeader() {
 
