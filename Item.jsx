@@ -15,7 +15,7 @@ Item = React.createClass({
     try {
       parentclass = parent.slug;
     } catch(err) {
-      parentclass = '';
+      parentclass = 'home';
     }
 
     jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parentclass );
@@ -36,7 +36,9 @@ Item = React.createClass({
 
     if(this.props.item.link == 'back') {
         history.back()
+
       } else {
+
         FlowRouter.go('/path/' + this.props.item.id + "?slug=" + this.props.item.slug);
       }
     },
@@ -46,7 +48,7 @@ Item = React.createClass({
         currentName = "ui raised segment " + this.props.item.slug
         return (
           <div className={currentName} onClick={this.handleClick} >
-         <h3>{this.props.item.text}</h3></div>
+         <h4>{this.props.item.text}</h4></div>
        );
     }
 });
