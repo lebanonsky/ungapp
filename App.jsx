@@ -46,6 +46,10 @@ App = React.createClass({
     FlowRouter.go('/');
   },
 
+  closeFrame() {
+    jQuery('div#iframe-target').hide();
+  },
+
   openInfo() {
     jQuery('div#iframe-target').slideToggle();
     FlowRouter.go('/info');
@@ -91,7 +95,7 @@ App = React.createClass({
       })
     if(this.props._id != 0 ) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text:"⬅︎",
+        text:"",
         //text: "\u23CE",
         link: "back",
         _parent: this.props._id,
@@ -159,7 +163,7 @@ App = React.createClass({
 
     }
     return this.data.tjanst.map((item) => {
-      console.log(item.rootparent);
+      //console.log(item.rootparent);
       if (navigationlevel == 1){
         if(_.contains(item.rootparent,  this.props.slug)) {
           return <Article key={item._id} item={item} />
@@ -169,7 +173,7 @@ App = React.createClass({
           return <Article key={item._id} item={item} />
         }    
       } else {
-         return <Article key={item._id} item={item} />       
+         //return <Article key={item._id} item={item} />       
        
       }
     });

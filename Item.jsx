@@ -14,10 +14,10 @@ Item = React.createClass({
 
     jQuery('#ungapp').removeClass();
     parent = Cats.findOne({ id:this.props.item._parent},{slug:1});
-    try {
+    if(!parent) {
+      parentclass = 'home'
+    } else {
       parentclass = parent.slug;
-    } catch(err) {
-      parentclass = 'home';
     }
 
     jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parentclass );

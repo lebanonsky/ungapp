@@ -21,7 +21,10 @@ Article = React.createClass({
         element: document.getElementById(this.props.item.id),
         options: {
           center: new google.maps.LatLng( parseFloat(this.props.item.lat),  parseFloat(this.props.item.lon)),
-          zoom: 13
+          zoom: 13,
+          draggable: false,
+          mapTypeControl: false,
+          streetViewControl:false
         }
       });
       GoogleMaps.ready(this.props.item.id, function(map) {
