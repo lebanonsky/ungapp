@@ -74,13 +74,33 @@ Meteor.methods({
                 huvudkategori = "none";
                 huvudkategoriparent = "none";
               } else {
-                huvudkategori = tjanst[i]['tjanst_meta']['huvudkategori'][0].slug;
-                huvudkategoriparent = tjanst[i]['tjanst_meta']['huvudkategori_parent'][0];
+
+                var huvudkategori = new Array();
+                var huvudkategoriparent = new Array();
+
+
+                for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori'].length; k++) {
+                  if(tjanst[i]['tjanst_meta']['ort'][k]) {
+                    huvudkategori.push(tjanst[i]['tjanst_meta']['ort'][k].slug);
+                  }
+                }
+                for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori_parent'].length; k++) {
+                  if(tjanst[i]['tjanst_meta']['huvudkategori_parent'][k]) {
+                    huvudkategoriparent.push(tjanst[i]['tjanst_meta']['huvudkategori_parent'][k]);
+                  }
+                }
               }
               if(tjanst[i]['tjanst_meta']['ort'].length == 0) {
                 ort = "none";               
               } else {
-                ort = tjanst[i]['tjanst_meta']['ort'][0].slug;
+
+                var ort = new Array();
+
+                for(let l=0; l < tjanst[i]['tjanst_meta']['ort'].length; l++) {
+                  if(tjanst[i]['tjanst_meta']['ort'][l]) {
+                    ort.push(tjanst[i]['tjanst_meta']['ort'][l].slug);
+                  }
+                }
               }
               Tjanst.insert({
                 _parent: huvudkategori,

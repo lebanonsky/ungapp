@@ -161,12 +161,13 @@ App = React.createClass({
 
     }
     return this.data.tjanst.map((item) => {
+      console.log(item.rootparent);
       if (navigationlevel == 1){
-        if(item.rootparent == this.props.slug) {
+        if(_.contains(item.rootparent,  this.props.slug)) {
           return <Article key={item._id} item={item} />
         }    
       } else if(navigationlevel == 2) {
-        if(item._parent == this.props.slug) {
+        if(_.contains(item._parent,  this.props.slug)) {
           return <Article key={item._id} item={item} />
         }    
       } else {
