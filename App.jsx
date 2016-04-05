@@ -36,6 +36,7 @@ App = React.createClass({
       }
 
     }
+    
   },
 
   goHome() {
@@ -88,17 +89,15 @@ App = React.createClass({
           return <Item key={item._id} item={item} />;
         }
       })
-
     if(this.props._id != 0 ) { // no items were loaded
-      renderedObjects.push(<Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe}><Item item={{
-        text:"",
+      renderedObjects.push(<Item item={{
+        text:"⬅︎",
         //text: "\u23CE",
         link: "back",
         _parent: this.props._id,
         id: 0,
         slug: this.props.slug
-      }} /></Hammer>)
-
+      }} />)
     } else if(renderCount < 1) {
       renderedObjects.push(
         <div className="ui active dimmer">
@@ -111,10 +110,7 @@ App = React.createClass({
   return renderedObjects;
 },
   
-  handleSwipe() {
-    history.back();
-    
-  },
+ 
   renderSearchResults() {
     this.toggleSidebar()
   },
@@ -173,10 +169,14 @@ App = React.createClass({
           return <Article key={item._id} item={item} />
         }    
       } else {
-         //return <Article key={item._id} item={item} />       
+         return <Article key={item._id} item={item} />       
        
       }
     });
+
+
+
+
 
   },
 

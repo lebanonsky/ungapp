@@ -6,7 +6,9 @@ Item = React.createClass({
         link: React.PropTypes.object.isRequired,
         _parent: React.PropTypes.object.isRequired 
     },
-
+    handleSwipe() {
+        history.back();
+    },
     handleClick() {
       //console.log(this.props.item.id + " clicked");
 
@@ -44,11 +46,22 @@ Item = React.createClass({
     },
 
     render() {
-        //console.log("Item.render()");
         currentName = "ui raised segment " + this.props.item.slug
-        return (
-          <div className={currentName} onClick={this.handleClick} >
-         <h4>{this.props.item.text}</h4></div>
-       );
+
+        if(this.props.item.link == "back") {
+            return (
+                <Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe}>
+                    <div className={currentName} onClick={this.handleClick} >
+                        <h4>{this.props.item.text}</h4>
+                    </div>
+                </Hammer>
+            );
+        } else {
+            return (
+                <div className={currentName} onClick={this.handleClick} >
+                    <h4>{this.props.item.text}</h4>
+                </div>
+            );
+        }
     }
 });
