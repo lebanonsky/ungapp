@@ -34,9 +34,7 @@ App = React.createClass({
         region: Region.find({}).fetch(),
         evenemang: Evenemang.find({}).fetch()
       }
-
     }
-    
   },
 
   goHome() {
@@ -81,11 +79,7 @@ App = React.createClass({
         return <EvenemangView key={item._id} item={item} />;
       })
 
-    } else if (this.props.slug == "info"){
-      renderedObjects.push(<iframe src="http://dev.unginfo.fi/ovrig-verksamhet/unginfo-app/" width="100%"></iframe>
-        )
-    }
-    else {
+    } else {
       renderedObjects = this.data.items.map((item) => {
         if(item._parent == this.props._id) {
           renderedObjects.push(item)
@@ -93,6 +87,7 @@ App = React.createClass({
           return <Item key={item._id} item={item} />;
         }
       })
+
     if(this.props._id != 0 ) { // no items were loaded
       renderedObjects.push(<Item item={{
         text:"",
@@ -102,6 +97,16 @@ App = React.createClass({
         id: 0,
         slug: this.props.slug
       }} />)
+    } else if(this.props._id == 0) {
+      renderedObjects.push(<Item item={{
+        text:"Få Hjäp Direkt",
+        img: '/img/fa_hjalp_direkt.png',
+        link: "direkt",
+        _parent: this.props._id,
+        id: 1,
+        slug: 'direkt'
+      }} />)
+
     } else if(renderCount < 1) {
       renderedObjects.push(
         <div className="ui active dimmer">
@@ -178,10 +183,6 @@ App = React.createClass({
       }
     });
 
-
-
-
-
   },
 
   renderSearchResults() {
@@ -217,7 +218,7 @@ App = React.createClass({
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
             <a href="/info" onClick={this.openInfo}>
-            <img src="/img/Ungapp_unginfologo.png" className="right" id="top_logo"/>
+            <img src="/img/unginfo_logo.png" className="right" id="top_logo"/>
             </a>
         </div>
         <div className="ui image header ungapp">

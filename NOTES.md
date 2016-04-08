@@ -16,6 +16,8 @@ meteor add dburles:google-maps
 
 meteor add praneybehl:reactjs-hammerjs
 
+meteor add ls3271:meteor-linkify
+
 meteor –> wait –> ctrl-C
 rm client/.custom.semantic.json
 meteor

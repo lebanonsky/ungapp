@@ -56,6 +56,14 @@ FlowRouter.route('/chat', {
   },
   name: '<path>'
 });
+FlowRouter.route('/direkt', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("iframe-target");
+    ReactDOM.render(<ContentFrame _id={0} slug="direkt" />, containerElement);
+    Path.insert({slug: "direkt"})
+  },
+  name: '<path>'
+});
 FlowRouter.route('/', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");

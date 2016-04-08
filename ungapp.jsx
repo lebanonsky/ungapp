@@ -4,6 +4,9 @@ Path = new Mongo.Collection("path");
 Region = new Mongo.Collection("region");
 Evenemang = new Mongo.Collection("evenemang");
 
+// var linkify = require('linkifyjs');
+// var linkifyHtml = require('linkifyjs/html');
+
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
     sort: function () {
