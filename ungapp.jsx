@@ -83,8 +83,8 @@ Meteor.methods({
 
 
                 for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori'].length; k++) {
-                  if(tjanst[i]['tjanst_meta']['ort'][k]) {
-                    huvudkategori.push(tjanst[i]['tjanst_meta']['ort'][k].slug);
+                  if(tjanst[i]['tjanst_meta']['huvudkategori'][k]) {
+                    huvudkategori.push(tjanst[i]['tjanst_meta']['huvudkategori'][k].slug);
                   }
                 }
                 for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori_parent'].length; k++) {
