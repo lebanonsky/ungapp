@@ -5,7 +5,7 @@ ContentFrame = React.createClass({
 	  },
 
 	loadFrame() {
-
+		
 	  	if(this.props.slug == 'info') {
 		     return (<div>
 		     <div className="ui fixed menu white right">
@@ -28,8 +28,8 @@ ContentFrame = React.createClass({
 			return (<div>	  		
 				<div className="ui fixed menu white right">
        		     <i className="chevron left icon" onClick={this.closeFrame}></i>
-        </div>
-        <iframe src="http://unginfo.fi/ovriga-tjanster/" ></iframe></div>)
+        		</div>
+	        <iframe src="http://unginfo.fi/ovriga-tjanster" ></iframe></div>)
 		} else {
 			return (
 			<div className="ui fixed menu white right">

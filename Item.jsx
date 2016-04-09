@@ -10,7 +10,6 @@ Item = React.createClass({
         history.back();
     },
     handleClick() {
-      //console.log(this.props.item.id + " clicked");
 
     jQuery('#ungapp').removeClass();
       parent = Cats.findOne({ id:this.props.item._parent},{slug:1});
@@ -41,6 +40,8 @@ Item = React.createClass({
           history.back()
 
         } else if(this.props.item.link == 'direkt') {
+          
+          jQuery('div#iframe-target').slideToggle();
           FlowRouter.go('/direkt');
 
         } else {

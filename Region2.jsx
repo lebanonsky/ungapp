@@ -19,14 +19,14 @@ Region2 = React.createClass({
       }
 
 
-    },
-
+    },    
     render() {
         //console.log("Item.render()");
-        currentName = "ui raised segment " + this.props.item.slug
+        currentName = "ui segment raised " + this.props.item.slug
+
         return (
           <div className={currentName} onClick={this.handleClick} >
-         <h3>{this.props.item.title}</h3></div>
+         {this.props.item.title}</div>
        );
     }
 });

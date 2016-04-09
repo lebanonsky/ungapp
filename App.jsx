@@ -66,6 +66,11 @@ App = React.createClass({
     if(this.props.slug == "search") {
 
     } else if(this.props.slug == "region") {
+        if(Session.get('userRegion')) {
+              userRegion = Region.findOne({title:Session.get('userRegion').toLowerCase() })
+              renderedObjects.push(userRegion)
+              }
+          
       renderedObjects = this.data.region.map((item) => {
         renderedObjects.push(item)
         renderCount++
@@ -103,7 +108,7 @@ App = React.createClass({
         img: '/img/fa_hjalp_direkt.png',
         link: "direkt",
         _parent: this.props._id,
-        id: 1,
+        id: 0,
         slug: 'direkt'
       }} />)
 
@@ -210,6 +215,7 @@ App = React.createClass({
   //   } else { return ""}
 
   //  },
+
   render() {
     
 
@@ -229,7 +235,6 @@ App = React.createClass({
         <div className="ui content segments ungapp">
           { this.renderMeteor() }
         </div>
-
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>
