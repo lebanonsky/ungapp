@@ -11,36 +11,28 @@ Item = React.createClass({
     },
     handleClick() {
 
-    jQuery('#ungapp').removeClass();
-      parent = Cats.findOne({ id:this.props.item._parent},{slug:1});
-      if(!parent) {
-        parentclass = 'home'
-      } else {
-        parentclass = parent.slug;
-      }
 
-      jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug + ' '+ parentclass );
+    if(this.props.item._parent == 0) {
+      console.log(this.props.item._parent)
+      jQuery('#ungapp').removeClass();
+  
+      // parent = Cats.findOne({ id:this.props.item._parent},{slug:1});
+      // if(!parent) {
+      //   parentclass = 'home'
+      // } else {
+      //   parentclass = parent.slug;
+      // }
 
-      //console.log(parentclass)
+      jQuery('#ungapp').addClass('header pushable '+ this.props.item.slug );
 
-      // if (GoogleMaps.loaded()) {      
-      //  jQuery('#TjanstMap').show();
-
-      //   GoogleMaps.create({
-      //       name: "TjanstMap",
-      //       element: document.getElementById("TjanstMap"),
-      //       options: {
-      //         center: new google.maps.LatLng( 60.170014,  24.938466),
-      //         zoom: 8
-      //       }});
-      //   }
-        
+      }        
+      
       if(this.props.item.link == 'back') {
           
           history.back()
 
         } else if(this.props.item.link == 'direkt') {
-          
+
           jQuery('div#iframe-target').slideToggle();
           FlowRouter.go('/direkt');
 
