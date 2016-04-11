@@ -61,10 +61,7 @@ Meteor.methods({
           id: cats[i]['id'],
           text: cats[i]['description'],
           slug: cats[i]['slug'],
-          createdAt: new Date()
-          if (cats[i]['slug'] == 'direkt') {
-            img: '/img/fa_hjalp_direkt.png'
-          }
+          createdAt: new Date(),
           });
          }
         } else {

@@ -41,10 +41,10 @@ Item = React.createClass({
                     </div>
                 </Hammer>
             );
-        } else if (this.props.item.img) {
+        } else if (this.props.item.slug == 'direkt') {
             return (
                 <div className={currentName} onClick={this.handleClick} >
-                    <img src={this.props.item.img} width="300px" />
+                    <img src='/img/fa_hjalp_direkt.png' width="300px" />
                 </div>
             );
         }
