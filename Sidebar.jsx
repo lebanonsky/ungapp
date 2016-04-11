@@ -4,6 +4,7 @@ Sidebar = React.createClass({
 
   sendform(e) {
         //console.log(e.which);
+        console.log(e.which)
     if (e.which && e.which == 13) {
         $('.ui.sidebar').trigger('search');
         FlowRouter.go('/search/' + $('#searchForm').val());  
