@@ -2,10 +2,11 @@ ContentFrame = React.createClass({
 
 	closeFrame() {
 	    jQuery('div#iframe-target').hide();
+	    FlowRouter.go('/');
 	  },
 
 	loadFrame() {
-		
+
 	  	if(this.props.slug == 'info') {
 		     return (<div>
 		     <div className="ui fixed menu white right">

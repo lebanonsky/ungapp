@@ -61,7 +61,7 @@ Meteor.methods({
           id: cats[i]['id'],
           text: cats[i]['description'],
           slug: cats[i]['slug'],
-          createdAt: new Date()
+          createdAt: new Date(),
           });
          }
         } else {

@@ -101,15 +101,15 @@ App = React.createClass({
         id: 0,
         slug: this.props.slug
       }} />)
-    } else if(this.props._id == 0) {
-      renderedObjects.push(<Item item={{
-        text:"Få Hjäp Direkt",
-        img: '/img/fa_hjalp_direkt.png',
-        link: "direkt",
-        _parent: this.props._id,
-        id: 0,
-        slug: 'direkt'
-      }} />)
+    // } else if(this.props._id == 0) {
+    //   renderedObjects.push(<Item item={{
+    //     text:"Få Hjäp Direkt",
+    //     img: '/img/fa_hjalp_direkt.png',
+    //     link: "direkt",
+    //     _parent: this.props._id,
+    //     id: 0,
+    //     slug: 'direkt'
+    //   }} />)
 
     } else if(renderCount < 1) {
       renderedObjects.push(
@@ -134,7 +134,6 @@ App = React.createClass({
     jQuery('div#iframe-target').slideToggle();
     this.toggleSidebar()
     FlowRouter.go('/chat');
-
   },
   openFraga() {
     jQuery('div#iframe-target').slideToggle();
