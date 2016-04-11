@@ -3,14 +3,13 @@ Sidebar = React.createClass({
 //insert search action
 
   sendform(e) {
-        //console.log(e.which);
     if (e.which && e.which == 13) {
         $('.ui.sidebar').trigger('search');
         FlowRouter.go('/search/' + $('#searchForm').val());  
         return false;
-      } else {
+    } else {
         return true;
-      }
+    }
     },
 
   searchTjanst() {

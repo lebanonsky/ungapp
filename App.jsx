@@ -54,7 +54,6 @@ App = React.createClass({
   },
 
   toggleSidebar() {
-    console.log(Session.get('userRegion'));
     $('.ui.sidebar').sidebar('toggle')  
 
   },
@@ -152,7 +151,13 @@ App = React.createClass({
     }
     //search page
     if(this.props.slug == "search") {
-      this.renderSearchResults();
+            let cursor = TjanstIndex.search(this.props.searchstring);
+      var searchResults = cursor.fetch();
+      console.log(searchResults);
+      return searchResults.map((item) => {
+
+        return <Article key={item._id} item={item} />
+      });
     } 
     //normal list
     var hideContent = "hidden";
@@ -189,15 +194,6 @@ App = React.createClass({
     });
 
   },
-
-  renderSearchResults() {
-      let cursor = TjanstIndex.search(this.props.searchstring);
-      var searchResults = cursor.fetch();
-      return searchResults.map((item) => {
-        return <Article key={item._id} item={item} />
-      });
-  },
-
 
   // renderHeader() {
 
