@@ -201,7 +201,8 @@ Meteor.startup(function() {
       document.addEventListener("deviceready", loadLocation, false);
     } else {
       console.log("not using cordova");
-      $(document).ready(function(){ loadLocation(); });
+      $(document).ready(function(){ 
+        loadLocation(); });
     }
 
     function loadLocation() {

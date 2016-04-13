@@ -21,7 +21,10 @@ Sidebar = React.createClass({
     $('.ui.sidebar').trigger('regions');
     FlowRouter.go('/regions');
   },
-
+  listCategories() {
+    $('.ui.sidebar').trigger('categories');
+    FlowRouter.go('/categories');
+  },
   listEvenemang() {
     $('.ui.sidebar').trigger('evenemang');
     FlowRouter.go('/evenemang');
@@ -42,24 +45,28 @@ Sidebar = React.createClass({
     return (
 
       <div className="ui icon vertical inverted relaxed sticky menu massive">
-        <a className="item massive" href="/regions" onClick={this.listRegions}>
+        <a className="item massive 1-col" href="/regions" onClick={this.listRegions}>
         <img src="/img/regioner.png" />
         <h3>Regioner</h3>
         </a>
-        <a className="item massive" href="/evenemang" onClick={this.listEvenemang}>
+        <a className="item massive 1-col" href="/categories" onClick={this.listCategories}>
+        <img src="/img/kategorier.png" id="kat_menu" />
+        <h3>Kategorierna</h3>
+        </a>
+        <a className="item massive 1-col" href="/evenemang" onClick={this.listEvenemang}>
         <img src="/img/evenemang.png" />
         <h3>Evenemang</h3>
         </a>  
-        <a className="item massive" href="/chat" onClick={this.openChat}>
+        <a className="item massive 1-col" href="/chat" onClick={this.openChat}>
         <img src="/img/chat.png" id="chat_menu"/>
         <h3>Chat</h3>
         </a>
-        <a className="item massive" href="/fraga" onClick={this.openFraga}>
+        <a className="item huge 2-col" href="/fraga" onClick={this.openFraga}>
         <img src="/img/fraga_logo.png" id="fraga_menu"/>
         </a>
-         <a className="item huge">
+         <a className="item huge 2-col">
          <div className="ui input">
-        <input id="searchForm" className="ui input" onKeyPress={this.sendform} placeholder=""></input>
+            <input id="searchForm" className="ui input" onKeyPress={this.sendform} placeholder=""></input>
           </div>
         </a>
       </div>

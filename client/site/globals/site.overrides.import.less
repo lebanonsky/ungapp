@@ -53,11 +53,26 @@ div.ui.fixed.menu.left {
 }
 
 #chat_menu {
-	width: 25%
+	width: 75%
 }
 
 #fraga_menu {
 	width: 75%;
+}
+
+#kat_menu {
+	width: 45%;
+}
+
+a.item.massive {
+	width: 49% !important;
+	float:left !important;
+}
+
+a.item.huge {
+	width: 100% !important;
+	float: none !important;
+	clear: both;
 }
 
 #searchForm {
@@ -74,7 +89,7 @@ div.ui.fixed.menu.left {
 }
 
 img.ui_logo {
-	padding-top:50px;
+	padding-top:20px;
 	padding-left:30px;
 	width: 55%;
 	margin: 0 auto;
@@ -83,6 +98,7 @@ img.ui_logo {
 .ui.fixed.menu {
 	background: url('/img/transpBlack50.png');
 	color: #fff;
+	z-index: 999 !important;
 }
 
 .ui.fixed.menu #top_logo {
@@ -101,6 +117,11 @@ img.ui_logo {
 	margin-bottom: 0px;
 }
 
+/*.ui.image.header.ungapp.fixed {
+	position: fixed !important;
+	display: block;
+	z-index: 999;
+}*/
 
 .ui.content.segments.ungapp {
 	margin-top:0px;
@@ -156,6 +177,7 @@ div.ui.raised.segment {
 		
 }	
 
+.arbete .header,
 body#ungapp.header.pushable.arbete {
 	background-color: #f48833 !important;
 
@@ -174,6 +196,7 @@ body#ungapp.header.pushable.arbete {
 	color: #fc817d;
 	}
 
+.ekonomi .header,
 body#ungapp.header.pushable.ekonomi {
 	background-color: #fc817d !important;
 }
@@ -187,10 +210,12 @@ body#ungapp.header.pushable.ekonomi {
 	color: #fcc354;
 	}
 
+
 .halsa_valmoende .segment {
 	background-color: #fcc354 !important;
 }
 
+.halsa_valmoende .header,
 body#ungapp.header.pushable.halsa_valmoende {
 	background-color:#fee7b9 !important;
 }
@@ -199,6 +224,7 @@ body#ungapp.header.pushable.halsa_valmoende {
 	color: #1b1e1d;
 	}
 
+.direkt .header,
 body#ungapp.header.pushable.direkt {
 	background-color:#1b1e1d !important;
 }
@@ -217,6 +243,7 @@ body.home div.ui.raised.segment.direkt {
 	color: #4f80c1;
 }
 
+.radgivning .header,
 body#ungapp.header.pushable.radgivning {
 	background-color: #4f80c1 !important;
 }
@@ -230,6 +257,7 @@ body#ungapp.header.pushable.radgivning {
 	color: #7d516d;
 	}
 
+.studier .header,
 body#ungapp.header.pushable.studier {
 	background-color: #7d516d !important;
 }

@@ -10,6 +10,7 @@ App = React.createClass({
      $('.ui.sidebar').on('evenemang', this.renderRegions);
      $('.ui.sidebar').on('chat', this.openChat);
      $('.ui.sidebar').on('fraga', this.openFraga);
+     $('.ui.sidebar').on('categories', this.renderRegions);
 
     return {
         _parent: 0,
@@ -65,10 +66,11 @@ App = React.createClass({
     if(this.props.slug == "search") {
 
     } else if(this.props.slug == "region") {
-        if(Session.get('userRegion')) {
-              userRegion = Region.findOne({title:Session.get('userRegion').toLowerCase() })
-              renderedObjects.push(userRegion)
-              }
+
+      if(Session.get('userRegion')) {
+            userRegion = Region.findOne({title:Session.get('userRegion').toLowerCase() })
+            renderedObjects.push(userRegion)
+            }
           
       renderedObjects = this.data.region.map((item) => {
         renderedObjects.push(item)
@@ -83,7 +85,15 @@ App = React.createClass({
         return <EvenemangView key={item._id} item={item} />;
       })
 
-    } else {
+    } else if(this.props.slug == "categories") {
+      console.log(this)
+      renderedObjects = this.data.items.map((item) => {
+        renderedObjects.push(item)
+        renderCount++
+        return <Categories key={item._id} item={item} />;
+      })
+    }
+    else {
       renderedObjects = this.data.items.map((item) => {
         if(item._parent == this.props._id) {
           renderedObjects.push(item)
@@ -123,7 +133,6 @@ App = React.createClass({
   return renderedObjects;
 },
   
- 
   renderSearchResults() {
     this.toggleSidebar()
   },
@@ -152,7 +161,7 @@ App = React.createClass({
     if(this.props.slug == "search") {
             let cursor = TjanstIndex.search(this.props.searchstring);
       var searchResults = cursor.fetch();
-      console.log(searchResults);
+      //console.log(searchResults);
       return searchResults.map((item) => {
 
         return <Article key={item._id} item={item} />
@@ -224,18 +233,20 @@ App = React.createClass({
         </div>
         <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">
-          <img src="/img/hjalp_logo.png" className="ui_logo" />
+          <img src="/img/hjalp_logo.png" className="ui_logo" id="ui_logo" />
           </div>
         </div>
-        <div className="ui content segments ungapp">
+        <div className="ui content segments ungapp" id="content">
           { this.renderMeteor() }
         </div>
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>
 
-        <div id="hidden"></div>
+        <div id="hidden">
+        </div>
       </div>
+
     );
   }
 });

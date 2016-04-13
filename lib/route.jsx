@@ -24,6 +24,15 @@ FlowRouter.route('/regions', {
   },
   name: '<path>'
 });
+FlowRouter.route('/categories', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("render-target");
+    ReactDOM.render(<App _id={0} slug="category" />, containerElement);
+    Path.insert({slug: "categories"})
+    console.log('xxx')
+  },
+  name: '<path>'
+});
 FlowRouter.route('/evenemang', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
