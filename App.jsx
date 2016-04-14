@@ -23,14 +23,14 @@ App = React.createClass({
   getMeteorData() {
     if(Session.get('userRegion')) {
       return {
-        items: Cats.find({}).fetch(),
+        items: Cats.find({},{sort:{'title':1}}).fetch(),
         tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationell"} ] } ).fetch(),
         region: Region.find({}).fetch(),
         evenemang: Evenemang.find({}).fetch()
      }
     } else {
       return {
-        items: Cats.find({}).fetch(),
+        items: Cats.find({},{sort:{'title':1}}).fetch(),
         tjanst: Tjanst.find({}).fetch(),
         region: Region.find({}).fetch(),
         evenemang: Evenemang.find({}).fetch()
@@ -85,8 +85,8 @@ App = React.createClass({
         return <EvenemangView key={item._id} item={item} />;
       })
 
-    } else if(this.props.slug == "categories") {
-      console.log(this)
+    } else if(this.props.slug == "category") {
+      console.log(Session.get('userRegion'))
       renderedObjects = this.data.items.map((item) => {
         renderedObjects.push(item)
         renderCount++
@@ -154,7 +154,7 @@ App = React.createClass({
 
   renderArticles() {
     // don't return any items
-    if (this.props.slug == "region" || this.props.slug == "evenemang"){ 
+    if (this.props.slug == "region" || this.props.slug == "evenemang" || this.props.slug == 'category'){ 
         return null;
     }
     //search page

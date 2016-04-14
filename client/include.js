@@ -1,7 +1,18 @@
+/*** Slide **/
+
+$(document).ready(function() {
+  $('.ungapp .segment').click(function () { 
+    console.log('slide')
+    $('#render-target').animate({left: '+=500'});
+    });
+  
+});
+
+/*** animate logo ***/
 $(window).scroll(function(){
   var header = $('.header.ungapp'),
       scroll = $(window).scrollTop();
-  if (scroll >= 100) { 
+  if (scroll >= 70) { 
     //header.sticky('refresh');
     header.addClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_vertical.png')
@@ -14,8 +25,3 @@ $(window).scroll(function(){
 });
 
 
-  $('.content.segment a').click(function () { 
-     $('#render-target').animate({left: '+='+sliderWidth}, 500);
-    });
-
-          

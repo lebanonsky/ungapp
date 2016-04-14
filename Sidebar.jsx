@@ -29,7 +29,6 @@ Sidebar = React.createClass({
     $('.ui.sidebar').trigger('evenemang');
     FlowRouter.go('/evenemang');
   },
-
   openChat() {
     $('.ui.sidebar').trigger('chat');
     FlowRouter.go('/chat');

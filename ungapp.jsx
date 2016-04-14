@@ -57,6 +57,7 @@ Meteor.methods({
       for(let i=0; i<cats.length; i++) {
         Cats.insert({ 
           _parent: cats[i]['parent'],
+          title: cats[i]['name'],
           link: cats[i]['link'],
           id: cats[i]['id'],
           text: cats[i]['description'],
@@ -191,8 +192,6 @@ Meteor.methods({
 if (Meteor.isClient) {
 
 Meteor.startup(function() {
-
-
    
     GoogleMaps.load();  
 

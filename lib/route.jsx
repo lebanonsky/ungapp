@@ -29,7 +29,6 @@ FlowRouter.route('/categories', {
     const containerElement = document.getElementById("render-target");
     ReactDOM.render(<App _id={0} slug="category" />, containerElement);
     Path.insert({slug: "categories"})
-    console.log('xxx')
   },
   name: '<path>'
 });

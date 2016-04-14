@@ -35,7 +35,8 @@ Item = React.createClass({
 
         if(this.props.item.link == "back") {
             return (
-                <Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe}>
+                <Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe} >
+                
                     <div className={currentName} onClick={this.handleClick} >
                         <h4>{this.props.item.text}</h4>
                     </div>
