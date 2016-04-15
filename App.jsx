@@ -68,10 +68,11 @@ App = React.createClass({
     } else if(this.props.slug == "region") {
 
       if(Session.get('userRegion')) {
-            userRegion = Region.findOne({title:Session.get('userRegion').toLowerCase() })
+            userRegion = Region.findOne({slug:Session.get('userRegion') })
             renderedObjects.push(userRegion)
-            }
-          
+            console.log(userRegion)
+          }
+
       renderedObjects = this.data.region.map((item) => {
         renderedObjects.push(item)
         renderCount++
@@ -86,7 +87,6 @@ App = React.createClass({
       })
 
     } else if(this.props.slug == "category") {
-      console.log(Session.get('userRegion'))
       renderedObjects = this.data.items.map((item) => {
         renderedObjects.push(item)
         renderCount++
