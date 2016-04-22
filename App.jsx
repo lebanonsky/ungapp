@@ -5,12 +5,12 @@ const url = 'http://dev.unginfo.fi/wp-json/wp/v2/tjanst'
 App = React.createClass({
   getInitialState: function() {
      
-     $('.ui.sidebar').on('search', this.renderSearchResults);
-     $('.ui.sidebar').on('regions', this.renderRegions);
-     $('.ui.sidebar').on('evenemang', this.renderRegions);
+     $('.ui.sidebar').on('search', this.toggleSidebar);
+     $('.ui.sidebar').on('regions', this.toggleSidebar);
+     $('.ui.sidebar').on('evenemang', this.toggleSidebar);
      $('.ui.sidebar').on('chat', this.openChat);
      $('.ui.sidebar').on('fraga', this.openFraga);
-     $('.ui.sidebar').on('categories', this.renderRegions);
+     $('.ui.sidebar').on('categories', this.toggleSidebar);
 
     return {
         _parent: 0,
@@ -39,18 +39,18 @@ App = React.createClass({
   },
 
   goHome() {
-    jQuery('#TjanstMap').hide();
-    jQuery('#ungapp').removeClass();
-    jQuery('#ungapp').addClass('header pushable home');
+    $('#TjanstMap').hide();
+    $('#ungapp').removeClass();
+    $('#ungapp').addClass('header pushable home');
     FlowRouter.go('/');
   },
 
   closeFrame() {
-    jQuery('div#iframe-target').hide();
+    $('div#iframe-target').hide();
   },
 
   openInfo() {
-    jQuery('div#iframe-target').slideToggle();
+    $('div#iframe-target').slideToggle();
     FlowRouter.go('/info');
   },
 
@@ -66,13 +66,16 @@ App = React.createClass({
 
     if(this.props.slug == "search") {
 
-    } else if(this.props.slug == "region") {
+    } else if(this.props.slug == "regions") {
+
+    console.log('reg!!!')
 
       if(Session.get('userRegion')) {
             console.log(Session.get('userRegion'))
             userRegion = Region.findOne({title:Session.get('userRegion') })
             if(userRegion) {
-              console.log('region ' +userRegion)
+              //console.log('region ' +userRegion)
+              userRegion.title = 'Ny valda ' + userRegion.title
               this.data.region.unshift(userRegion)
             }
           }
@@ -80,7 +83,7 @@ App = React.createClass({
       //console.log(this.data.region)
 
       renderedObjects = this.data.region.map((item) => {
-        console.log(item)
+        //console.log(item)
         renderedObjects.push(item)
         renderCount++
         return <Region2 key={item._id} item={item} />;
@@ -140,19 +143,21 @@ App = React.createClass({
   return renderedObjects;
 },
   
-  renderSearchResults() {
-    this.toggleSidebar()
-  },
-  renderRegions() {
-    this.toggleSidebar()
-  },
+  // renderSearchResults() {
+  //   this.toggleSidebar()
+  // },
+
+  // renderRegions() {
+  //   this.toggleSidebar()
+  // },
+
   openChat() {
-    jQuery('div#iframe-target').slideToggle();
+    $('div#iframe-target').slideToggle();
     this.toggleSidebar()
     FlowRouter.go('/chat');
   },
   openFraga() {
-    jQuery('div#iframe-target').slideToggle();
+    $('div#iframe-target').slideToggle();
     this.toggleSidebar()
     FlowRouter.go('/fraga');
 

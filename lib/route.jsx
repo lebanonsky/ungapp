@@ -19,8 +19,8 @@ FlowRouter.route('/search/:searchstring', {
 FlowRouter.route('/regions', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("render-target");
-    ReactDOM.render(<App _id={0} slug="region" />, containerElement);
-    Path.insert({slug: "region"})
+    ReactDOM.render(<App _id={0} slug="regions" />, containerElement);
+    Path.insert({slug: "regions"})
   },
   name: '<path>'
 });
