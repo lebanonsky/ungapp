@@ -9,14 +9,18 @@ Region2 = React.createClass({
 
       if(this.props.item.link == 'back') {
         history.back();
+  
+      } else if( this.props.item.slug == 'aaa'){
+        Session.set('userRegion', null);
+        console.log('userRegion set '+ Session.get('userRegion') )
       } else {
-        Session.set('userRegion', this.props.item.slug);
+        Session.set('userRegion', this.props.item.title);
         //redirect to home page
+      }
         jQuery('#TjanstMap').hide();
         jQuery('#ungapp').removeClass();
         jQuery('#ungapp').addClass('header pushable home');
         FlowRouter.go('/');
-      }
 
 
     },    
@@ -26,7 +30,7 @@ Region2 = React.createClass({
 
         return (
           <div className={currentName} onClick={this.handleClick} >
-         {this.props.item.title}</div>
+         <h3>{this.props.item.title}</h3></div>
        );
     }
 });

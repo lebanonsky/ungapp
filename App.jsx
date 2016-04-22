@@ -25,14 +25,14 @@ App = React.createClass({
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
         tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationell"} ] } ).fetch(),
-        region: Region.find({}).fetch(),
+        region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
      }
     } else {
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
         tjanst: Tjanst.find({}).fetch(),
-        region: Region.find({}).fetch(),
+        region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
       }
     }
@@ -63,17 +63,24 @@ App = React.createClass({
     path = Path.find().fetch();
     let renderedObjects = []
     let renderCount = 0
+
     if(this.props.slug == "search") {
 
     } else if(this.props.slug == "region") {
 
       if(Session.get('userRegion')) {
-            userRegion = Region.findOne({slug:Session.get('userRegion') })
-            renderedObjects.push(userRegion)
-            console.log(userRegion)
+            console.log(Session.get('userRegion'))
+            userRegion = Region.findOne({title:Session.get('userRegion') })
+            if(userRegion) {
+              console.log('region ' +userRegion)
+              this.data.region.unshift(userRegion)
+            }
           }
 
+      //console.log(this.data.region)
+
       renderedObjects = this.data.region.map((item) => {
+        console.log(item)
         renderedObjects.push(item)
         renderCount++
         return <Region2 key={item._id} item={item} />;
