@@ -166,7 +166,7 @@ App = React.createClass({
 
   renderArticles() {
     // don't return any items
-    if (this.props.slug == "region" || this.props.slug == "evenemang" || this.props.slug == 'category'){ 
+    if (this.props.slug == "regions" || this.props.slug == "evenemang" || this.props.slug == 'category'){ 
         return null;
     }
     //search page
