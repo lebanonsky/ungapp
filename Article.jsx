@@ -1,5 +1,6 @@
 // single item from JSON
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 
 Article = React.createClass({
@@ -46,6 +47,8 @@ Article = React.createClass({
         divName=this.props.active ? "active content" : "content"
 
         return (
+                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+
         	<span>
             <div className={titleName} onClick = {this.handleClick} >
             <i className="dropdown icon large"></i>
@@ -105,6 +108,7 @@ Article = React.createClass({
               </div>
             </div>
           </span>
+           </ReactCSSTransitionGroup>
        );
     }
 });

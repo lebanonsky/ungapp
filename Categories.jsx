@@ -1,4 +1,5 @@
 // single item from JSON
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Categories = React.createClass({
 

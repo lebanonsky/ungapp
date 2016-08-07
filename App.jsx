@@ -1,7 +1,7 @@
 // App component, called in myapp.jsx
 
 const url = 'http://dev.unginfo.fi/wp-json/wp/v2/tjanst'
-
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 App = React.createClass({
   getInitialState: function() {
      
@@ -64,92 +64,8 @@ App = React.createClass({
     let renderedObjects = []
     let renderCount = 0
 
-    if(this.props.slug == "search") {
-
-    } else if(this.props.slug == "regions") {
-
-    console.log('reg!!!')
-
-      if(Session.get('userRegion')) {
-            console.log(Session.get('userRegion'))
-            userRegion = Region.findOne({title:Session.get('userRegion') })
-            if(userRegion) {
-              //console.log('region ' +userRegion)
-              userRegion.title = 'Ny valda ' + userRegion.title
-              this.data.region.unshift(userRegion)
-            }
-          }
-
-      //console.log(this.data.region)
-
-      renderedObjects = this.data.region.map((item) => {
-        //console.log(item)
-        renderedObjects.push(item)
-        renderCount++
-        return <Region2 key={item._id} item={item} />;
-      })
-
-    }  else if(this.props.slug == "evenemang") {
-      renderedObjects = this.data.evenemang.map((item) => {
-        renderedObjects.push(item)
-        renderCount++
-        return <EvenemangView key={item._id} item={item} />;
-      })
-
-    } else if(this.props.slug == "category") {
-      renderedObjects = this.data.items.map((item) => {
-        renderedObjects.push(item)
-        renderCount++
-        return <Categories key={item._id} item={item} />;
-      })
-    }
-    else {
-      renderedObjects = this.data.items.map((item) => {
-        if(item._parent == this.props._id) {
-          renderedObjects.push(item)
-          renderCount++
-          return <Item key={item._id} item={item} />;
-        }
-      })
-
-    if(this.props._id != 0 ) { // no items were loaded
-      renderedObjects.push(<Item item={{
-        text:"",
-        //text: "\u23CE",
-        link: "back",
-        _parent: this.props._id,
-        id: 0,
-        slug: this.props.slug
-      }} />)
-    // } else if(this.props._id == 0) {
-    //   renderedObjects.push(<Item item={{
-    //     text:"Få Hjäp Direkt",
-    //     img: '/img/fa_hjalp_direkt.png',
-    //     link: "direkt",
-    //     _parent: this.props._id,
-    //     id: 0,
-    //     slug: 'direkt'
-    //   }} />)
-
-    } else if(renderCount < 1) {
-      renderedObjects.push(
-        <div className="ui active dimmer">
-        <div className="ui text loader">Laddar...</div>
-        </div>
-        );
-    }
-  }
-  this.props.renderCount = renderCount
-  return renderedObjects;
+    return <DataItems _id={this.props._id} data={this.data}  slug={this.props.slug} />
 },
-  
-  // renderSearchResults() {
-  //   this.toggleSidebar()
-  // },
-
-  // renderRegions() {
-  //   this.toggleSidebar()
-  // },
 
   openChat() {
     $('div#iframe-target').slideToggle();
@@ -169,16 +85,12 @@ App = React.createClass({
     if (this.props.slug == "regions" || this.props.slug == "evenemang" || this.props.slug == 'category'){ 
         return null;
     }
-    //search page
     if(this.props.slug == "search") {
-            let cursor = TjanstIndex.search(this.props.searchstring);
+      let cursor = TjanstIndex.search(this.props.searchstring);
       var searchResults = cursor.fetch();
-      //console.log(searchResults);
-      return searchResults.map((item) => {
-
-        return <Article key={item._id} item={item} />
-      });
+      return <Articles children={searchResults} search={1} />
     } 
+
     //normal list
     var hideContent = "hidden";
     //navigationleven 0 = frontpage, 1 ...
@@ -197,40 +109,11 @@ App = React.createClass({
       }
 
     }
-    return this.data.tjanst.map((item) => {
-      //console.log(item.rootparent);
-      if (navigationlevel == 1){
-        if(_.contains(item.rootparent,  this.props.slug)) {
-          return <Article key={item._id} item={item} />
-        }    
-      } else if(navigationlevel == 2) {
-        if(_.contains(item._parent,  this.props.slug)) {
-          return <Article key={item._id} item={item} />
-        }    
-      } else {
-         //return <Article key={item._id} item={item} />       
-       
-      }
-    });
+    return <Articles children={this.data.tjanst} nav={navigationlevel} slug={this.props.slug} />
+    
 
   },
 
-  // renderHeader() {
-
-  //   return (        
-  //     <div className="ui content" >
-  //       </div>);
-    
-  // },
-  // renderUserInfo() {
-  //   if(Session.get('userRegion')) {
-  //   return (        
-  //     <div id="userdata" className="ui content" >{Session.get('userRegion')}
-  //       </div>);
-
-  //   } else { return ""}
-
-  //  },
 
   render() {
     
@@ -251,6 +134,7 @@ App = React.createClass({
         <div className="ui content segments ungapp" id="content">
           { this.renderMeteor() }
         </div>
+
         <div className="ui styled fluid accordion">
             { this.renderArticles() } 
         </div>
