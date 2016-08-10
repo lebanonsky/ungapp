@@ -9,9 +9,11 @@ Article = React.createClass({
 
   componentDidMount() {
     jQuery('.ui .accordion').accordion();
+
   },
 
   handleClick() {
+
     this.props.active = true;
     this.setState({active:true});
     var self = this;
@@ -39,66 +41,86 @@ Article = React.createClass({
       //if no map coordinates are defined, remove the div
       jQuery('#'+this.props.item.id).remove();
     }
+
   },
+  
 
     render() {
 
-        titleName=this.props.active ? "active title" : "title"
-        divName=this.props.active ? "active content" : "content"
 
-        return (
-                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+        titleName = this.props.active ? "active title" : "title"
+        divName = this.props.active ? "active content" : "content"
+
+        adressClass = this.props.item.adress ? "item" : "item hidden"
+        tidClass = this.props.item.tid ? "item" : "item hidden" 
+        telClass = this.props.item.tel ? "item" : "item hidden"
+        epostClass = this.props.item.epost ? "item " : "item hidden"
+        oppetClass = this.props.item.oppet ? "item" : "item hidden"
+        webbsidaClass = this.props.item.webbsida ? "item" : "item hidden"
+        linkClass = this.props.item.link ? "item" : "item hidden"
+        
+    return (
+
+          <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
 
         	<span>
             <div className={titleName} onClick = {this.handleClick} >
             <i className="dropdown icon large"></i>
-            <div dangerouslySetInnerHTML={{__html: this.props.item.text }} /> 
+            <div/>{this.props.item.title}
             </div>
+
             <div className={divName} > 
             <div className="ui list relaxed divided">
-              <div className="item">
-         <div id={this.props.item.id} className="map-container"></div>
-          <div className="content">
+            <div className="textClass">
+                <div className="content" dangerouslySetInnerHTML={{__html: this.props.item.text }}>
+                </div>
+                Regioner: {this.props.item.regionlist}<br/>
+                Kategorier: {this.props.item.kategorilist}
+              </div>
+
+              <div className={adressClass}>
+           <div id={this.props.item.id} className="map-container"></div>
+            <div className="content">
                 {this.props.item.adress}
                 </div>
                </div> 
               
-              <div className="item">
+              <div className={tidClass}>
                 <i className="wait icon"></i>
                 <div className="content">
                 {this.props.item.tid}
                 </div>
               </div>
               
-              <div className="item">
+              <div className={telClass}>
                 <i className="phone icon"></i>
                 <div className="content">
                 {this.props.item.tel}
                 </div>
               </div>
 
-              <div className="item">
+              <div className={epostClass}>
                 <i className="mail icon"></i>
                 <div className="content">
                 {this.props.item.epost}
                 </div>
               </div>                
 
-              <div className="item">
+              <div className={oppetClass}>
                 <i className="calendar icon"></i>
                 <div className="content">
                 {this.props.item.oppet}
                 </div>
             </div>
 
-              <div className="item">
+              <div className={webbsidaClass}>
                 <i className="linkify icon"></i>
                 <div className="content">
                 {this.props.item.webbsida}
                 </div>
             </div>
 
-              <div className="item">
+              <div className={linkClass}>
                 <i className="bookmark icon"></i>
                 <div className="content">
                 {this.props.item.link}

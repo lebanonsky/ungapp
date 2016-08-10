@@ -81,11 +81,15 @@ Meteor.methods({
 
                 var huvudkategori = new Array();
                 var huvudkategoriparent = new Array();
+                var kategorilist = new Array();
 
 
                 for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori'].length; k++) {
                   if(tjanst[i]['tjanst_meta']['huvudkategori'][k]) {
                     huvudkategori.push(tjanst[i]['tjanst_meta']['huvudkategori'][k].slug);
+                    if(tjanst[i]['tjanst_meta']['huvudkategori'][k].parent != 0) {
+                      kategorilist.push(tjanst[i]['tjanst_meta']['huvudkategori'][k].name+' ');
+                    }
                   }
                 }
                 for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori_parent'].length; k++) {
@@ -99,10 +103,12 @@ Meteor.methods({
               } else {
 
                 var ort = new Array();
+                var ortlist = new Array();
 
                 for(let l=0; l < tjanst[i]['tjanst_meta']['ort'].length; l++) {
                   if(tjanst[i]['tjanst_meta']['ort'][l]) {
                     ort.push(tjanst[i]['tjanst_meta']['ort'][l].slug);
+                    ortlist.push(tjanst[i]['tjanst_meta']['ort'][l].name+' ');
                   }
                 }
               }
@@ -110,7 +116,7 @@ Meteor.methods({
                 _parent: huvudkategori,
                 rootparent: huvudkategoriparent,
                 id: tjanst[i]['id'],
-                text: tjanst[i]['content']['rendered'],
+                text: tjanst[i]['excerpt']['rendered'],
                 title: tjanst[i]['title']['rendered'],
                 adress: tjanst[i]['tjanst_meta']['adress'],
                 tid: tjanst[i]['tjanst_meta']['tid'],
@@ -122,6 +128,8 @@ Meteor.methods({
                 webbsida: tjanst[i]['tjanst_meta']['webbsida'],
                 link: tjanst[i]['tjanst_meta']['link'],
                 region: ort,
+                regionlist: ortlist,
+                kategorilist: kategorilist, 
                 createdAt: new Date()
               }); 
              }  

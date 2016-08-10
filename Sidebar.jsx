@@ -16,9 +16,13 @@ Sidebar = React.createClass({
    $('.ui.sidebar').trigger('search');
    FlowRouter.go('/search/' + $('#searchForm').val());
   },
-
-  listRegions() {
+  openInfo() {
     $('.ui.sidebar').trigger('regions');
+    $('div#iframe-target').slideToggle();
+    FlowRouter.go('/info');
+  },
+  listRegions() {
+    $('.ui.sidebar').trigger('info');
     FlowRouter.go('/regions');
   },
   listCategories() {
@@ -44,14 +48,11 @@ Sidebar = React.createClass({
     return (
 
       <div className="ui icon vertical inverted relaxed sticky menu massive">
-        <a className="item massive 1-col" href="/regions" onClick={this.listRegions}>
-        <img src="/img/regioner.png" />
-        <h3>Regioner</h3>
+
+        <a className="item huge 2-col" href="/fraga" onClick={this.openInfo}>
+        <h1>INFO</h1>
         </a>
-        <a className="item massive 1-col" href="/categories" onClick={this.listCategories}>
-        <img src="/img/kategorier.png" id="kat_menu" />
-        <h3>Kategorierna</h3>
-        </a>
+
         <a className="item massive 1-col" href="/evenemang" onClick={this.listEvenemang}>
         <img src="/img/evenemang.png" />
         <h3>Evenemang</h3>

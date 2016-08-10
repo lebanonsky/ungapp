@@ -2,7 +2,10 @@
 
 const url = 'http://dev.unginfo.fi/wp-json/wp/v2/tjanst'
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+
 App = React.createClass({
+
   getInitialState: function() {
      
      $('.ui.sidebar').on('search', this.toggleSidebar);
@@ -22,16 +25,19 @@ App = React.createClass({
 
   getMeteorData() {
     if(Session.get('userRegion')) {
+
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
-        tjanst: Tjanst.find( { $or: [ { region: Session.get('userRegion').toLowerCase()}, { region: "nationell"} ] } ).fetch(),
+        lokaltjanst: Tjanst.find( { region: Session.get('userRegion').toLowerCase()},{sort: {'title':1}}  ).fetch(),
+        ovrigatjanst: Tjanst.find( { region: "nationell"},{sort: {'title':1}} ).fetch(),
         region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
      }
     } else {
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
-        tjanst: Tjanst.find({}).fetch(),
+        lokaltjanst: Tjanst.find({},{sort: {'title':1}} ).fetch(),
+        ovrigatjanst: Tjanst.find( { region: "nationell"},{sort: {'title':1}} ).fetch(),
         region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
       }
@@ -79,6 +85,15 @@ App = React.createClass({
 
   },
 
+  listRegions() {
+    // $('.ui.sidebar').trigger('regions');
+    FlowRouter.go('/regions');
+  },
+
+  listCategories() {
+    // $('.ui.sidebar').trigger('categories');
+    FlowRouter.go('/categories');
+  },
 
   renderArticles() {
     // don't return any items
@@ -105,13 +120,31 @@ App = React.createClass({
         navigationlevel = 1;
       }
       if(parent) {
+
         navigationlevel = 2;
       }
-
     }
-    return <Articles children={this.data.tjanst} nav={navigationlevel} slug={this.props.slug} />
     
+    console.log(Session.get(this.data.lokaltjanst))
+    console.log(Session.get(this.data.ovrigatjanst))
 
+    if(this.data.lokaltjanst.length > 0 && !parent ) {
+
+        return (
+          <div>
+            <h3>Lokala tjänster</h3>
+              <Articles children={this.data.lokaltjanst} nav={navigationlevel} slug={this.props.slug} />
+            <h3>Övriga tjänster</h3>
+             <Articles children={this.data.ovrigatjanst} nav={navigationlevel} slug={this.props.slug} />
+          </div>)
+
+    } else {
+    
+        return (
+            <Articles children={this.data.ovrigatjanst} nav={navigationlevel} slug={this.props.slug} />
+          )
+
+        }
   },
 
 
@@ -131,7 +164,12 @@ App = React.createClass({
           <img src="/img/hjalp_logo.png" className="ui_logo" id="ui_logo" />
           </div>
         </div>
-        <div className="ui content segments ungapp" id="content">
+        <div className="ui top attached tabular menu">
+          <div className="active item"><a href="/" onClick={this.goHome}>Frågor</a></div>
+          <div className="item"><a href="/categories" onClick={this.listCategories}>Kategorier</a></div>
+          <div className="item"><a href="/regions" onClick={this.listRegions}>Regioner</a></div>
+      </div>
+        <div className="ui content tab active segments ungapp" id="content">
           { this.renderMeteor() }
         </div>
 
