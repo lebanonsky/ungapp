@@ -18,6 +18,9 @@ Articles = React.createClass({
           if(_.contains(item._parent,  this.props.slug)) {
             return <Article key={item._id} item={item} />
           }    
+        } else {
+          return <Article key={item._id} item={item} />
+
         }
       }); 
     }
