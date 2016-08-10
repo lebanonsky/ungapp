@@ -123,10 +123,11 @@ App = React.createClass({
         navigationlevel = 2;
       }
     }
-    
+    if(navigationlevel == 0) {
+        return false;
+      }
     console.log(this.data.lokaltjanst)
     console.log(this.data.ovrigatjanst)
-
     if(this.data.lokaltjanst) {
 
         return (
@@ -143,7 +144,8 @@ App = React.createClass({
             <Articles children={this.data.ovrigatjanst} nav={navigationlevel} slug={this.props.slug} />
           )
 
-        }
+    }
+  
   },
 
 

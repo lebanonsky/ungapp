@@ -18,8 +18,11 @@ Articles = React.createClass({
           if(_.contains(item._parent,  this.props.slug)) {
             return <Article key={item._id} item={item} />
           }    
+        } else if(this.props.nav == 0){
+         console.log(this.props.nav);
+
         } else {
-          return <Article key={item._id} item={item} />
+
 
         }
       }); 
