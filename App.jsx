@@ -36,7 +36,6 @@ App = React.createClass({
     } else {
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
-        lokaltjanst: Tjanst.find({},{sort: {'title':1}} ).fetch(),
         ovrigatjanst: Tjanst.find( { region: "nationell"},{sort: {'title':1}} ).fetch(),
         region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
@@ -125,10 +124,10 @@ App = React.createClass({
       }
     }
     
-    console.log(Session.get(this.data.lokaltjanst))
-    console.log(Session.get(this.data.ovrigatjanst))
+    console.log(this.data.lokaltjanst)
+    console.log(this.data.ovrigatjanst)
 
-    if(this.data.lokaltjanst.length > 0 && !parent ) {
+    if(this.data.lokaltjanst) {
 
         return (
           <div>
