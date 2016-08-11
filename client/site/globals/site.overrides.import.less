@@ -26,8 +26,10 @@ div#sidebar-target.ui.left.sidebar.uncover.visible {
 	z-index: 99;
 }
 
-ui.pusher {
-	background: transparent url('/img/tausta_elementti.png') !important;
+#render-target {
+	background: url('/img/tausta_elementti.png') !important;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
 }
 
 div#iframe-target {
@@ -106,15 +108,14 @@ img.ui_logo {
 	position:absolute;
 	right:0;
 	padding-right: 3px;
+	top: 5px;
 }
 
 .ui.image.header.ungapp {
-	background: url('/img/tausta_elementti.png');
-	background-repeat: no-repeat;
-	background-size: cover;
 	width: 100%;
 	margin-top: -10px;
 	margin-bottom: 0px;
+	background: transparent !important;
 }
 
 .ui.image.header.ungapp.fixed {
@@ -164,10 +165,15 @@ div.ui.raised.segment.root h4 {
 }
 
 div.ui.raised.segment {
-	height: 80px;
+	height: 60px;
 	margin: 2px 0;
 }
 
+div.ui.raised.segment.direkt img {
+	width: 275px;
+	position:relative;
+	top:-5px;
+}	
 
 .segment h4 {
 }
@@ -230,7 +236,7 @@ body#ungapp.header.pushable.direkt {
 }
 
 .direkt div.ui.raised.segment {
-	background-color: #1b1e1d !important;
+	background-color: #525758 !important;
 }	
 
 .direkt div.ui.raised.segment h4 {
@@ -318,6 +324,12 @@ div.ui.raised.segment.evenemang {
 	background-color: rgb(190,165,249);	
 	}
 */
+
+.ui.tabular.menu .item a {
+	color: #525758 !important;
+}
+
+
 
 .item.hidden {
 	display:none !important;

@@ -36,7 +36,7 @@ App = React.createClass({
     } else {
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
-        ovrigatjanst: Tjanst.find( { region: "nationell"},{sort: {'title':1}} ).fetch(),
+        ovrigatjanst: Tjanst.find({},{sort: {'title':1}} ).fetch(),
         region: Region.find({},{sort:{'slug':1}}).fetch(),
         evenemang: Evenemang.find({}).fetch()
       }
@@ -141,7 +141,7 @@ App = React.createClass({
     
         return (
           <div>
-          <h3>Nationella tjänster</h3>
+          <h3>Alla tjänster</h3>
             <Articles children={this.data.ovrigatjanst} nav={navigationlevel} slug={this.props.slug} />
           </div>
           )

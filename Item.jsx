@@ -45,7 +45,7 @@ Item = React.createClass({
         } else if (this.props.item.slug == 'direkt') {
             return (
                 <div className={currentName} onClick={this.handleClick} >
-                    <img src='/img/fa_hjalp_direkt.png' width="300px" />
+                    <img src='/img/fa_hjalp_direkt.png' />
                 </div>
             );
         }
@@ -53,7 +53,7 @@ Item = React.createClass({
         {
             return (
                 <div className={currentName} onClick={this.handleClick} >
-                    <h4>{this.props.item.text}</h4>
+                    <h4><img src="img/nuoli.png" height="15px"/>&nbsp;{this.props.item.text}</h4>
                 </div>
             );
         }
