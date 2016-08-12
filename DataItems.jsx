@@ -17,7 +17,7 @@ DataItems = React.createClass({
       if(Session.get('userRegion')) {
         userRegion = Region.findOne({title:Session.get('userRegion') })
         if(userRegion) {
-          userRegion.title = 'Ny valda ' + userRegion.title
+          userRegion.title = '&lt;img src="/img/nuoli.png" /&gt;' + userRegion.title
           this.props.data.region.unshift(userRegion)
         }
       }
