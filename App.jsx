@@ -47,6 +47,8 @@ App = React.createClass({
     $('#TjanstMap').hide();
     $('#ungapp').removeClass();
     $('#ungapp').addClass('header pushable home');
+    $('.tabular .item').removeClass('active')
+    $('.tabular .item.home').addClass('active');
     FlowRouter.go('/');
   },
 
@@ -85,11 +87,15 @@ App = React.createClass({
   },
 
   listRegions() {
+    $('.tabular .item').removeClass('active');
+    $('.tabular .item.reg').addClass('active');
     // $('.ui.sidebar').trigger('regions');
     FlowRouter.go('/regions');
   },
 
   listCategories() {
+    $('.tabular .item').removeClass('active');
+    $('.tabular .item.kat').addClass('active');
     // $('.ui.sidebar').trigger('categories');
     FlowRouter.go('/categories');
   },
@@ -168,9 +174,9 @@ App = React.createClass({
           </div>
         </div>
         <div className="ui top attached tabular menu">
-          <div className="active item"><a href="/" onClick={this.goHome}>Frågor</a></div>
-          <div className="item"><a href="/categories" onClick={this.listCategories}>Kategorier</a></div>
-          <div className="item"><a href="/regions" onClick={this.listRegions}>Regioner</a></div>
+          <div className="active item home"><a href="/" onClick={this.goHome}>Frågor</a></div>
+          <div className="item kat"><a href="/categories" onClick={this.listCategories}>Kategorier</a></div>
+          <div className="item reg"><a href="/regions" onClick={this.listRegions}>Regioner</a></div>
       </div>
         <div className="ui content tab active segments ungapp" id="content">
           { this.renderMeteor() }
