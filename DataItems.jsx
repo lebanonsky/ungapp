@@ -52,8 +52,7 @@ DataItems = React.createClass({
 
     if(this.props._id != 0 ) { // no items were loaded
       renderedObjects.push(<Item item={{
-        text:"",
-        //text: "\u23CE",
+        text: "",
         link: "back",
         _parent: this.props._id,
         id: 0,

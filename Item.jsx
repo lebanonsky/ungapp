@@ -38,7 +38,7 @@ Item = React.createClass({
                 <Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe} >
                 
                     <div className={currentName} onClick={this.handleClick} >
-                        <h4>{this.props.item.text}</h4>
+                        <h4><img src='/img/back.png' />{this.props.item.text}</h4>
                     </div>
                 </Hammer>
             );
