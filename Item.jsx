@@ -53,7 +53,7 @@ Item = React.createClass({
         {
             return (
                 <div className={currentName} onClick={this.handleClick} >
-                    <h4><img src="/img/nuoli.png" />&nbsp;{this.props.item.text}</h4>
+                    <h4><img src="/img/nuoli.png" className="back" />&nbsp;{this.props.item.text}</h4>
                 </div>
             );
         }

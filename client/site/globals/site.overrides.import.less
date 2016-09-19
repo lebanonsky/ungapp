@@ -48,7 +48,8 @@ div.ui.fixed.menu.left {
 	background: transparent;
 	box-shadow: none;
 	border-bottom: 0px;
-	color: #e75b22
+	color: #e75b22 !important
+
 }
 
 .ui.inverted.menu {
@@ -128,12 +129,12 @@ img.ui_logo {
 .ui.content.segments.ungapp {
 	margin-top:0px;
 	margin-bottom: 0px;
-	box-shadow: 0px;
+	box-shadow: 0px 0px 0px 0px;
 	border: 0;
 }
 
 div.ui.raised.segment {
-	box-shadow: 0px;
+	box-shadow: 0px 0px 0px 0px;
 	border: 0;
 }
 
@@ -344,11 +345,14 @@ div.ui.raised.segment.evenemang {
 	}
 */
 
-.ui.tabular.menu .item a {
+.ui.tabular.menu .item {
 	color: #525758 !important;
 	width: 33%;
 }
 
+.ui.tabular.menu .item a {
+	color: #525758 !important;
+}
 
 
 .item.hidden {

@@ -17,7 +17,7 @@ DataItems = React.createClass({
       if(Session.get('userRegion')) {
         userRegion = Region.findOne({title:Session.get('userRegion') })
         if(userRegion) {
-          userRegion.title = 'Valt region: ' + userRegion.title
+          userRegion.title = 'Vald region: ' + userRegion.title
           this.props.data.region.unshift(userRegion)
         }
       }
