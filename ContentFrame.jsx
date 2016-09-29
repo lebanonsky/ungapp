@@ -24,7 +24,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right">
        		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://svenska.yle.fi/sluta-panta" ></iframe></div>)
+        <iframe src="https://ninchat.s3.amazonaws.com/b/yle/luckan/app.html" ></iframe></div>)
 		} else if(this.props.slug == 'direkt') {
 			return (<div>	  		
 				<div className="ui fixed menu white right">
