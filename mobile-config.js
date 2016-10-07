@@ -12,3 +12,4 @@ App.setPreference('android-minSdkVersion', '17');
 
 //ios
 App.setPreference("BackupWebStorage", "local");
+App.accessRule('*');
