@@ -12,8 +12,6 @@ DataItems = React.createClass({
     if(this.props.slug == "search") {
 
     } else if(this.props.slug == "regions") {
-
-
       if(Session.get('userRegion')) {
         userRegion = Region.findOne({title:Session.get('userRegion') })
         if(userRegion) {
@@ -21,27 +19,26 @@ DataItems = React.createClass({
           this.props.data.region.unshift(userRegion)
         }
       }
+
       renderedObjects = this.props.data.region.map((item) => {
         renderedObjects.push(item)
         renderCount++
         return <Region2 key={item._id} item={item} />;
       })
 
-    }  else if(this.props.slug == "evenemang") {
-      renderedObjects = this.props.data.evenemang.map((item) => {
-        renderedObjects.push(item)
-        renderCount++
-        return <EvenemangView key={item._id} item={item} />;
-      })
-
+    } else if(this.props.slug == "evenemang") {
+        renderedObjects = this.props.data.evenemang.map((item) => {
+          renderedObjects.push(item)
+          renderCount++
+          return <EvenemangView key={item._id} item={item} />;
+        })
     } else if(this.props.slug == "category") {
-      renderedObjects = this.props.data.items.map((item) => {
-        renderedObjects.push(item)
-        renderCount++
-        return <Categories key={item._id} item={item} />;
-      })
-    }
-    else {
+        renderedObjects = this.props.data.items.map((item) => {
+          renderedObjects.push(item)
+          renderCount++
+          return <Categories key={item._id} item={item} />;
+        })
+    } else {
       renderedObjects = this.props.data.items.map((item) => {
         if(item._parent == this.props._id) {
           renderedObjects.push(item)
@@ -50,21 +47,22 @@ DataItems = React.createClass({
         }
       })
 
-    if(this.props._id != 0 ) { // no items were loaded
-      renderedObjects.push(<Item item={{
-        text: "",
-        link: "back",
-        _parent: this.props._id,
-        id: 0,
-        slug: this.props.slug
-      }} />)
+      if(this.props._id != 0 ) { // no items were loaded
+        renderedObjects.push(<Item item={{
+          text: "",
+          link: "back",
+          _parent: this.props._id,
+          id: 0,
+          slug: this.props.slug
+        }} />)
 
-    } else if(renderCount < 1) {
-      renderedObjects.push(
-        <div className="ui active dimmer">
-        <div className="ui text loader">Laddar...</div>
-        </div>
-        );
+      } else if(renderCount < 1) {
+        return
+          <div className="ui active dimmer">
+          <div className="ui text loader">Laddar...</div>
+          </div>
+          ;
+        
     }
   }
 

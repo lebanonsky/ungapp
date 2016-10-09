@@ -30,60 +30,65 @@ Meteor.methods({
 
   "getItems"() {
 
-    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:10000});
-    if(regdata.statusCode == 200) {
 
-      let regs = JSON.parse(regdata.content);
-
-      for(let i=0; i<regs.length; i++) {
-        Region.insert({ 
-          _parent: regs[i]['parent'],
-          title: regs[i]['name'],
-          link: regs[i]['link'],
-          id: regs[i]['id'], 
-          text: regs[i]['description'],
-          slug: regs[i]['slug'],
-          createdAt: new Date()
+    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:20000},function( error, response ) {
+    if ( error ) {
+      console.log( error );
+    } else {
+      if(response.statusCode == 200) {
+        let regs = JSON.parse(response.content);
+        for(let i=0; i<regs.length; i++) {
+          Region.insert({ 
+            _parent: regs[i]['parent'],
+            title: regs[i]['name'],
+            link: regs[i]['link'],
+            id: regs[i]['id'], 
+            text: regs[i]['description'],
+            slug: regs[i]['slug'],
+            createdAt: new Date()
           });
          }
+      } 
+    }
+  });
+
+
+    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:20000},function( error, response ) {
+      if ( error ) {
+        console.log( error );
+      } else {
+        if(response.statusCode == 200) {
+          let cats = JSON.parse(response.content);
+          for(let i=0; i<cats.length; i++) {
+            Cats.insert({ 
+              _parent: cats[i]['parent'],
+              title: cats[i]['name'],
+              link: cats[i]['link'],
+              id: cats[i]['id'],
+              text: cats[i]['description'],
+              slug: cats[i]['slug'],
+              createdAt: new Date(),
+            });
+          }
+        }      
+      }
+    });
+     
+
+
+        let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 20000}, function( error, response ) {
+        if ( error ) {
+          console.log( error );
         } else {
-          console.log("ITEM STATUS CODE INVALID");
-        }  
-
-    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:10000});
-    if(catdata.statusCode == 200) {
-      let cats = JSON.parse(catdata.content);
-
-      for(let i=0; i<cats.length; i++) {
-        Cats.insert({ 
-          _parent: cats[i]['parent'],
-          title: cats[i]['name'],
-          link: cats[i]['link'],
-          id: cats[i]['id'],
-          text: cats[i]['description'],
-          slug: cats[i]['slug'],
-          createdAt: new Date(),
-          });
-         }
-        } else {
-          console.log("ITEM STATUS CODE INVALID");
-        }          
-
-        cats = Cats.find().fetch();
-          let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 10000});
-          if(tjdata.statusCode == 200) {
-            let tjanst = JSON.parse(tjdata.content);
+            let tjanst = JSON.parse(response.content);
             for(let i=0; i<tjanst.length; i++) {
               if(tjanst[i]['tjanst_meta']['huvudkategori'].length == 0) {
                 huvudkategori = "none";
                 huvudkategoriparent = "none";
               } else {
-
                 var huvudkategori = new Array();
                 var huvudkategoriparent = new Array();
                 var kategorilist = new Array();
-
-
                 for(let k=0; k < tjanst[i]['tjanst_meta']['huvudkategori'].length; k++) {
                   if(tjanst[i]['tjanst_meta']['huvudkategori'][k]) {
                     huvudkategori.push(tjanst[i]['tjanst_meta']['huvudkategori'][k].slug);
@@ -101,10 +106,8 @@ Meteor.methods({
               if(tjanst[i]['tjanst_meta']['ort'].length == 0) {
                 ort = "none";               
               } else {
-
                 var ort = new Array();
                 var ortlist = new Array();
-
                 for(let l=0; l < tjanst[i]['tjanst_meta']['ort'].length; l++) {
                   if(tjanst[i]['tjanst_meta']['ort'][l]) {
                     ort.push(tjanst[i]['tjanst_meta']['ort'][l].slug);
@@ -132,17 +135,21 @@ Meteor.methods({
                 kategorilist: kategorilist, 
                 createdAt: new Date()
               }); 
-             }  
-        } else {
-          console.log("TJANST STATUS CODE INVALID");
-        }
-    //  }        
+            }
+          }
+        });
 
-    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:10000});
-    if(eventdata.statusCode == 200) {
+             
 
-      let regs = JSON.parse(eventdata.content);
 
+
+
+    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:20000}, function( error, response ) {
+  if ( error ) {
+    console.log( error );
+  } else {
+  if(response.statusCode == 200) {
+      let regs = JSON.parse(response.content);
       for(let i=0; i<regs.length; i++) {
         Evenemang.insert({ 
           _parent: regs[i]['parent'],
@@ -155,13 +162,12 @@ Meteor.methods({
           enddate : regs[i]['tribe_meta']['enddate'],
           venue : regs[i]['tribe_meta']['venue'],
           createdAt: new Date()
-          });
-         }
-        } else {
-          console.log("ITEM STATUS CODE INVALID");
-        }  
-
-
+        });
+      }
+    } 
+  }
+});
+  
   },
 
   "deleteItem"(_id) {
@@ -204,10 +210,8 @@ Meteor.startup(function() {
     GoogleMaps.load();  
 
     if(window.cordova) {
-      console.log("using cordova");
       document.addEventListener("deviceready", loadLocation, false);
     } else {
-      console.log("not using cordova");
       $(document).ready(function(){ 
         loadLocation(); });
     }
@@ -265,17 +269,30 @@ Meteor.startup(function() {
             alert('code: '    + error.code    + '\n' +
                   'message: ' + error.message + '\n');
         }
-        console.log(navigator.geolocation);        navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true });
+        navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true });
     }
 
+    const loadedStates = ['complete', 'loaded', 'interactive'];
+    //if document loaded, just run, else wait for DOMContentLoaded event
+    if (loadedStates.includes(document.readyState) && document.body) {
+      run();
+    } else {
+      window.addEventListener('DOMContentLoaded', run, false);
+    }
+  });
 
-
+//move rendering to separate function to ensure DOM content loaded
+function run() {
     ReactDOM.render(<App _id={0} initialLoad={true} />, document.getElementById("render-target"));
     ReactDOM.render(<Sidebar />, document.getElementById("sidebar-target"));
     ReactDOM.render(<ContentFrame />, document.getElementById("iframe-target"));
-
-  });
 }
+
+}
+
+
+
+
 
 if (Meteor.isServer) {
     Meteor.methods({
@@ -287,36 +304,13 @@ if (Meteor.isServer) {
 
 
 
-Meteor.startup(function() {
+    Meteor.startup(function() {
       Cats.remove({});
       Region.remove({});
       Tjanst.remove({});
       Evenemang.remove({});
       Meteor.call("getItems");
-  
-
-  // Meteor.startup(function() {
-    // return Meteor.methods({
-    //   removeCats: function() {
-    //     return Cats.remove({});
-    //   },
-
-    //   removeReg: function() {
-    //     return Region.remove({});
-    //   },
-
-    //   removeEve: function() {
-    //     return Evenemang.remove({});
-    //   },
-    //   removeTja: function() {
-
-    //     return Tjanst.remove({});
-
-    //   }
-
-    // });
-
-  });
+    });
 
 }
 
