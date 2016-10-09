@@ -2,9 +2,7 @@
 
 Item = React.createClass({
     propTypes: {
-        text: React.PropTypes.object.isRequired,
-        link: React.PropTypes.object.isRequired,
-        _parent: React.PropTypes.object.isRequired 
+
     },
     handleSwipe() {
         history.back();
