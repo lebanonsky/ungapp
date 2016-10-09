@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.3.2",
     "react-addons-create-fragment": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
