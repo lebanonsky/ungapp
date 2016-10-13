@@ -206,7 +206,6 @@ if (Meteor.isClient) {
     Path.insert({id:0});
   }
  removeAllItems = function() {
-    alert("removing");
     //console.log("clearPath()");
 
       
