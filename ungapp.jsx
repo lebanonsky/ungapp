@@ -27,10 +27,6 @@ TjanstIndex = new EasySearch.Index({
 
 if (Meteor.isClient) {
 
-        checkMapApi = function (lat, lon) {
-            this.unblock();
-            return Meteor.http.call("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
-        }
 
 
   getItems  = function () {
@@ -269,7 +265,12 @@ Meteor.startup(function() {
                   'Speed: '             + position.coords.speed             + '\n' +
                   'Timestamp: '         + position.timestamp                + '\n');
 
-        Meteor.call("checkMapApi", position.coords.latitude ,position.coords.longitude, function(error, results) {
+
+    HTTP.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv", {timeout:35000},function( error, results ) {
+
+    if ( error ) {
+      console.log( error );
+    } else {
           var address_components = results.data.results[0].address_components;
           //loop through components to find locality / political accyracy
           var component =  null;
@@ -302,7 +303,14 @@ Meteor.startup(function() {
           }
         }
 
-        });
+
+      
+    }
+
+  });
+
+
+
 
         };
     
