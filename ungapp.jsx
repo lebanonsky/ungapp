@@ -7,6 +7,7 @@ Evenemang = new Mongo.Collection("evenemang");
 // var linkify = require('linkifyjs');
 // var linkifyHtml = require('linkifyjs/html');
 
+
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
     sort: function () {
@@ -34,7 +35,7 @@ if (Meteor.isClient) {
 
   getItems  = function () {
 
-    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:20000},function( error, response ) {
+    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:35000},function( error, response ) {
     if ( error ) {
       console.log( error );
     } else {
@@ -56,7 +57,7 @@ if (Meteor.isClient) {
   });
 
 
-    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:20000},function( error, response ) {
+    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:35000},function( error, response ) {
       if ( error ) {
         console.log( error );
       } else {
@@ -79,7 +80,7 @@ if (Meteor.isClient) {
      
 
 
-        let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 20000}, function( error, response ) {
+        let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 35000}, function( error, response ) {
         if ( error ) {
           console.log( error );
         } else {
@@ -147,7 +148,7 @@ if (Meteor.isClient) {
 
 
 
-    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:20000}, function( error, response ) {
+    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:35000}, function( error, response ) {
   if ( error ) {
     console.log( error );
   } else {
@@ -204,11 +205,49 @@ if (Meteor.isClient) {
     }
     Path.insert({id:0});
   }
+ removeAllItems = function() {
+    alert("removing");
+    //console.log("clearPath()");
 
+      
+      var pdb = Cats.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      if(Cats.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
+      }
+    }
+      var pdb = Tjanst.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      if(Tjanst.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
+      }
+    }
+      var pdb = Path.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      if(Path.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
+      }
+    }   
+
+          var pdb = Region.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      if(Region.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
+      }
+    }  
+          var pdb = Evenemang.find().fetch();
+    for(var i=0; i<pdb.length; i++) {
+      if(Evenemang.remove(pdb[i]._id) == 0) {
+        console.log("Failed removing paths from db");
+      }
+    }  
+
+
+  }
 
 
 Meteor.startup(function() {
-
+    removeAllItems();
     getItems();
     GoogleMaps.load();  
 
