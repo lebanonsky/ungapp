@@ -24,12 +24,15 @@ TjanstIndex = new EasySearch.Index({
 });
 
 
-if (Meteor.isServer) {
+if (Meteor.isClient) {
 
-Meteor.methods({
+        checkMapApi = function (lat, lon) {
+            this.unblock();
+            return Meteor.http.call("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
+        }
 
-  "getItems"() {
 
+  getItems  = function () {
 
     let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:20000},function( error, response ) {
     if ( error ) {
@@ -168,29 +171,29 @@ Meteor.methods({
   }
 });
   
-  },
+  }
 
-  "deleteItem"(_id) {
+  deleteItem  = function (_id) {
     Cats.remove(_id);
-  },
+  }
 
-  "deleteArticle"(_id) {
+  deleteArticle = function (_id) {
     Tjanst.remove(_id);
-  },
+  }
 
-  "deleteRegion"(_id) {
+  deleteRegion = function (_id) {
     Region.remove(_id);
-  },
+  }
 
-  "clearData"() {
+  clearData  = function () {
     rm = Cats.remove({})
     if(!rm) {
         console.log("Failed removing items from db Cats ");
       }    
     
-  },
+  }
 
-  "clearPath"() {
+  clearPath = function() {
     //console.log("clearPath()");
     var pdb = Path.find().fetch();
     for(var i=0; i<pdb.length; i++) {
@@ -201,12 +204,12 @@ Meteor.methods({
     }
     Path.insert({id:0});
   }
-});
-}
-if (Meteor.isClient) {
+
+
 
 Meteor.startup(function() {
-   
+
+    getItems();
     GoogleMaps.load();  
 
     if(window.cordova) {
@@ -294,25 +297,6 @@ function run() {
 
 
 
-if (Meteor.isServer) {
-    Meteor.methods({
-        checkMapApi: function (lat, lon) {
-            this.unblock();
-            return Meteor.http.call("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv");
-        }
-    });
-
-
-
-    Meteor.startup(function() {
-      Cats.remove({});
-      Region.remove({});
-      Tjanst.remove({});
-      Evenemang.remove({});
-      Meteor.call("getItems");
-    });
-
-}
 
 
 
