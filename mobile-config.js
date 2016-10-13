@@ -13,7 +13,8 @@ App.setPreference('android-minSdkVersion', '17');
 //ios
 App.setPreference("BackupWebStorage", "local");
 App.accessRule('*');
-/*
+App.accessRule('*', { type: 'navigation' } );
+
 App.icons({
   "iphone_2x": "resources/icons/iphone_2x.png", // 120x120
   "iphone_3x": "resources/icons/iphone_3x.png", // 180x180
@@ -51,5 +52,3 @@ App.launchScreens({
   "android_xxhdpi_portrait": "resources/splashes/android_xxhdpi_portrait.png", // 1080x1440
   "android_xxhdpi_landscape": "resources/splashes/android_xxhdpi_landscape.png" // 1440x1080
 })
-
-*/
