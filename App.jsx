@@ -53,11 +53,13 @@ App = React.createClass({
   },
 
   closeFrame() {
+    $('div#render-target').show();
     $('div#iframe-target').hide();
   },
 
   openInfo() {
     $('div#iframe-target').slideToggle();
+    $('div#render-target').hide();
     FlowRouter.go('/info');
   },
 
@@ -72,15 +74,17 @@ App = React.createClass({
     let renderCount = 0
 
     return <DataItems _id={this.props._id} data={this.data}  slug={this.props.slug} />
-},
+  },
 
   openChat() {
     $('div#iframe-target').slideToggle();
     this.toggleSidebar()
+    $('div#render-target').hide();
     FlowRouter.go('/chat');
   },
   openFraga() {
     $('div#iframe-target').slideToggle();
+    $('div#render-target').hide();
     this.toggleSidebar()
     FlowRouter.go('/fraga');
 

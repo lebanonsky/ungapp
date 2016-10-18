@@ -1,7 +1,8 @@
 ContentFrame = React.createClass({
 
 	closeFrame() {
-	    jQuery('div#iframe-target').hide();
+		$('div#render-target').show();
+	    $('div#iframe-target').hide();
 	    FlowRouter.go('/');
 	  },
 
@@ -9,32 +10,32 @@ ContentFrame = React.createClass({
 
 	  	if(this.props.slug == 'info') {
 		     return (<div>
-		     <div className="ui fixed menu white right">
-		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
+		     <div className="ui fixed menu white right" onClick={this.closeFrame}>
+		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
         <iframe src="http://dev.unginfo.fi/om-oss/" ></iframe></div>)
 		} else if(this.props.slug == 'fraga') {
 			 return (<div>
-			 	<div className="ui fixed menu white right">
-		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
+			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
+		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
         <iframe src="http://fraga.luckan.fi/usp_form/fraga/" ></iframe></div>)
 		} else if(this.props.slug == 'chat') {
 			return (<div>	  		
-				<div className="ui fixed menu white right">
-       		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
+				<div className="ui fixed menu white right" onClick={this.closeFrame}>
+       		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
         <iframe src="https://ninchat.s3.amazonaws.com/b/yle/luckan/app.html" ></iframe></div>)
 		} else if(this.props.slug == 'direkt') {
 			return (<div>	  		
-				<div className="ui fixed menu white right">
-       		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
+				<div className="ui fixed menu white right" onClick={this.closeFrame}>
+       		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
 	        <iframe src="http://unginfo.fi/ovriga-tjanster" ></iframe></div>)
 		} else {
 			return (
-			<div className="ui fixed menu white right">
-		     <i className="chevron left icon" onClick={this.closeFrame}> </i> <div>Tillbaka</div>
+			<div className="ui fixed menu white right" onClick={this.closeFrame}>
+		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>)
 		}
 	},
