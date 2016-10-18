@@ -1,3 +1,5 @@
+
+
 Cats = new Mongo.Collection("cat");
 Tjanst = new Mongo.Collection("tjanst");
 Path = new Mongo.Collection("path");
@@ -6,7 +8,7 @@ Evenemang = new Mongo.Collection("evenemang");
 
 // var linkify = require('linkifyjs');
 // var linkifyHtml = require('linkifyjs/html');
-
+if (Meteor.isClient) {
 
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
@@ -25,7 +27,6 @@ TjanstIndex = new EasySearch.Index({
 });
 
 
-if (Meteor.isClient) {
 
 
 
@@ -250,7 +251,8 @@ Meteor.startup(function() {
       document.addEventListener("deviceready", loadLocation, false);
     } else {
       $(document).ready(function(){ 
-        loadLocation(); });
+        loadLocation(); 
+      });
     }
 
     function loadLocation() {
