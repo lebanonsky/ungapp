@@ -80,8 +80,6 @@ FlowRouter.route('/', {
 
     $('#ungapp').removeClass();
     $('#ungapp').addClass('header pushable home');
-      }, false);
-
 
   },
   name: '<root>'
