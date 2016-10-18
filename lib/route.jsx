@@ -77,8 +77,9 @@ FlowRouter.route('/', {
     const containerElement = document.getElementById("render-target");
     ReactDOM.render(<App _id={0} slug={null} />, containerElement);
     console.log(params.pathId + " loaded home " + queryParams.slug);
-    jQuery('#ungapp').removeClass();
-    jQuery('#ungapp').addClass('header pushable home');  
+
+    $('#ungapp').removeClass();
+    $('#ungapp').addClass('header pushable home');
 
   },
   name: '<root>'

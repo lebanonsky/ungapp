@@ -40,6 +40,7 @@ DataItems = React.createClass({
         })
     } else {
       renderedObjects = this.props.data.items.map((item) => {
+
         if(item._parent == this.props._id) {
           renderedObjects.push(item)
           renderCount++
