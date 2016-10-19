@@ -132,7 +132,7 @@ TjanstIndex = new EasySearch.Index({
                 rootparent: huvudkategoriparent,
                 id: tjanst[i]['id'],
                _id: tjanst[i]['id'].toString(), 
-                text: tjanst[i]['excerpt']['rendered'],
+                text: tjanst[i]['content']['rendered'],
                 title: tjanst[i]['title']['rendered'],
                 adress: tjanst[i]['tjanst_meta']['adress'],
                 tid: tjanst[i]['tjanst_meta']['tid'],
