@@ -6,24 +6,23 @@ DataItems = React.createClass({
 
   renderChildren() {
     path = Path.find().fetch();
-    let renderedObjects = []
-    let renderCount = 0
+    let renderedObjects = [];
+    let renderCount = 0;
 
     if(this.props.slug == "search") {
 
     } else if(this.props.slug == "regions") {
-      if(Session.get('userRegion')) {
+     if(Session.get('userRegion')) {
         userRegion = Region.findOne({title:Session.get('userRegion') })
         if(userRegion) {
           userRegion.title = 'Vald region: ' + userRegion.title
-          this.props.data.region.unshift(userRegion)
+          renderedObjects.push(<Region2 key="12345" item={userRegion} />);
         }
       }
 
-      renderedObjects = this.props.data.region.map((item) => {
-        renderedObjects.push(item)
+      this.props.data.region.map((item) => {
+        renderedObjects.push(<Region2 key={item._id} item={item} />)
         renderCount++
-        return <Region2 key={item._id} item={item} />;
       })
 
     } else if(this.props.slug == "evenemang") {
