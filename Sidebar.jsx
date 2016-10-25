@@ -9,7 +9,7 @@ Sidebar = React.createClass({
         return false;
     } else {
         return true;
-    }
+      }
     },
 
   searchTjanst() {
@@ -17,9 +17,14 @@ Sidebar = React.createClass({
    FlowRouter.go('/search/' + $('#searchForm').val());
   },
   openInfo() {
-    $('.ui.sidebar').trigger('regions');
+    $('.ui.sidebar').trigger('info');
     $('div#iframe-target').slideToggle();
     FlowRouter.go('/info');
+  },
+  openOmoss() {
+    $('.ui.sidebar').trigger('omoss');
+    $('div#iframe-target').slideToggle();
+    FlowRouter.go('/omoss');
   },
   listRegions() {
     $('.ui.sidebar').trigger('info');
@@ -40,6 +45,10 @@ Sidebar = React.createClass({
   openCal() {
     $('.ui.sidebar').trigger('cal');
     FlowRouter.go('/cal');
+  },
+  openOmoss() {
+    $('.ui.sidebar').trigger('info');
+    FlowRouter.go('/omoss');
   },
   openFraga() {
     $('.ui.sidebar').trigger('fraga');

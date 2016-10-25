@@ -58,12 +58,18 @@ App = React.createClass({
   },
 
   openInfo() {
+    $('.ui.sidebar').sidebar('hide')  
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
-    $('.ui.sidebar').hide(); 
     FlowRouter.go('/info');
   },
-
+  openOmoss() {
+    $('.ui.sidebar').sidebar('hide')  
+    $('div#iframe-target').slideToggle();
+    $('div#render-target').hide();
+    FlowRouter.go('/omoss');
+  },
+  
   toggleSidebar() {
     $('.ui.sidebar').sidebar('toggle')  
 
@@ -78,23 +84,23 @@ App = React.createClass({
   },
 
   openChat() {
+    $('.ui.sidebar').sidebar('hide')  
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
-    $('.ui.sidebar').hide(); 
     FlowRouter.go('/chat');
   },
  
    openCal() {
+    $('.ui.sidebar').sidebar('hide')  
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
-    $('.ui.sidebar').hide(); 
     FlowRouter.go('/cal');
   },
 
   openFraga() {
+    $('.ui.sidebar').sidebar('hide')  
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
-    $('.ui.sidebar').hide();
     FlowRouter.go('/fraga');
 
   },
@@ -177,7 +183,7 @@ App = React.createClass({
       <div className={this.props.slug}>
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
-            <a href="/info" onClick={this.openInfo}>
+            <a href="/info" onClick={this.openOmoss}>
             <img src="/img/unginfo_logo.png" className="right" id="top_logo"/>
             </a>
         </div>

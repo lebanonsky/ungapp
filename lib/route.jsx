@@ -48,6 +48,14 @@ FlowRouter.route('/info', {
   },
   name: '<path>'
 });
+FlowRouter.route('/omoss', {
+  action: function(params, queryParams) {
+    const containerElement = document.getElementById("iframe-target");
+    ReactDOM.render(<ContentFrame _id={0} slug="omoss" />, containerElement);
+    Path.insert({slug: "omoss"})
+  },
+  name: '<path>'
+});
 FlowRouter.route('/fraga', {
   action: function(params, queryParams) {
     const containerElement = document.getElementById("iframe-target");
