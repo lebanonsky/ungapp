@@ -37,7 +37,10 @@ Sidebar = React.createClass({
     $('.ui.sidebar').trigger('chat');
     FlowRouter.go('/chat');
   },
-  
+  openCal() {
+    $('.ui.sidebar').trigger('cal');
+    FlowRouter.go('/cal');
+  },
   openFraga() {
     $('.ui.sidebar').trigger('fraga');
     FlowRouter.go('/fraga');
@@ -53,7 +56,7 @@ Sidebar = React.createClass({
         <h1>INFO</h1>
         </a>
 
-        <a className="item massive 1-col" href="/evenemang" onClick={this.listEvenemang}>
+        <a className="item massive 1-col" href="/evenemang" onClick={this.openCal}>
         <img src="/img/evenemang.png" />
         <h3>Evenemang</h3>
         </a>  

@@ -10,7 +10,7 @@ App = React.createClass({
      
      $('.ui.sidebar').on('search', this.toggleSidebar);
      $('.ui.sidebar').on('regions', this.toggleSidebar);
-     $('.ui.sidebar').on('evenemang', this.toggleSidebar);
+     $('.ui.sidebar').on('cal', this.openCal);
      $('.ui.sidebar').on('chat', this.openChat);
      $('.ui.sidebar').on('fraga', this.openFraga);
      $('.ui.sidebar').on('categories', this.toggleSidebar);
@@ -84,6 +84,13 @@ App = React.createClass({
     FlowRouter.go('/chat');
   },
  
+   openCal() {
+    $('div#iframe-target').slideToggle();
+    $('div#render-target').hide();
+    $('.ui.sidebar').hide(); 
+    FlowRouter.go('/cal');
+  },
+
   openFraga() {
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
