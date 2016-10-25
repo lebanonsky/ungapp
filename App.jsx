@@ -60,6 +60,7 @@ App = React.createClass({
   openInfo() {
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
+    $('.ui.sidebar').hide(); 
     FlowRouter.go('/info');
   },
 
@@ -78,14 +79,15 @@ App = React.createClass({
 
   openChat() {
     $('div#iframe-target').slideToggle();
-    this.toggleSidebar()
     $('div#render-target').hide();
+    $('.ui.sidebar').hide(); 
     FlowRouter.go('/chat');
   },
+ 
   openFraga() {
     $('div#iframe-target').slideToggle();
     $('div#render-target').hide();
-    this.toggleSidebar()
+    $('.ui.sidebar').hide();
     FlowRouter.go('/fraga');
 
   },
