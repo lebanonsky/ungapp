@@ -2,7 +2,7 @@
 // the entire section is optional.
 App.info({
   id: 'com.unginfo.app',
-  name: 'Unginfo App',
+  name: 'Unginfo',
   version: "0.0.1"
 });
 
