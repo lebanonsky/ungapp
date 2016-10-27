@@ -14,9 +14,11 @@ Sidebar = React.createClass({
 
   searchTjanst() {
    $('.ui.sidebar').trigger('search');
+   $('.ui.sidebar').sidebar('hide')  
    FlowRouter.go('/search/' + $('#searchForm').val());
   },
   openInfo() {
+    $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('info');
     $('div#iframe-target').slideToggle();
     FlowRouter.go('/info');
@@ -39,11 +41,14 @@ Sidebar = React.createClass({
     FlowRouter.go('/evenemang');
   },
   openChat() {
+    $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('chat');
     FlowRouter.go('/chat');
   },
   openCal() {
+    $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('cal');
+    console.log('xxx')
     FlowRouter.go('/cal');
   },
   openOmoss() {
@@ -51,6 +56,7 @@ Sidebar = React.createClass({
     FlowRouter.go('/omoss');
   },
   openFraga() {
+    $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('fraga');
     FlowRouter.go('/fraga');
   },
