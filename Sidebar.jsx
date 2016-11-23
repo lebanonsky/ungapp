@@ -20,43 +20,47 @@ Sidebar = React.createClass({
   openInfo() {
     $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('info');
-    $('div#iframe-target').slideToggle();
+    $('div#iframe-target').slideDown();
     FlowRouter.go('/info');
   },
-  openOmoss() {
-    $('.ui.sidebar').trigger('omoss');
-    $('div#iframe-target').slideToggle();
-    FlowRouter.go('/omoss');
-  },
-  listRegions() {
-    $('.ui.sidebar').trigger('info');
-    FlowRouter.go('/regions');
-  },
-  listCategories() {
-    $('.ui.sidebar').trigger('categories');
-    FlowRouter.go('/categories');
-  },
-  listEvenemang() {
-    $('.ui.sidebar').trigger('evenemang');
-    FlowRouter.go('/evenemang');
-  },
+  // openOmoss() {
+  //   $('.ui.sidebar').sidebar('hide')  
+  //   $('.ui.sidebar').trigger('omoss');
+  //   $('div#iframe-target').slideDown();
+  //   FlowRouter.go('/omoss');
+  // },
+  // listRegions() {
+  //   $('.ui.sidebar').sidebar('hide')  
+  //   $('.ui.sidebar').trigger('info');
+  //   FlowRouter.go('/regions');
+  // },
+  // listCategories() {
+  //   $('.ui.sidebar').sidebar('hide')  
+  //   $('.ui.sidebar').trigger('categories');
+  //   FlowRouter.go('/categories');
+  // },
+  // listEvenemang() {
+  //   $('.ui.sidebar').sidebar('hide')  
+  //   $('.ui.sidebar').trigger('evenemang');
+  //   FlowRouter.go('/evenemang');
+  // },
   openChat() {
-    $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('chat');
+    $('.ui.sidebar').sidebar('toggle')
     FlowRouter.go('/chat');
   },
   openCal() {
-    $('.ui.sidebar').sidebar('hide')  
+    $('.ui.sidebar').sidebar('toggle')  
     $('.ui.sidebar').trigger('cal');
-    console.log('xxx')
     FlowRouter.go('/cal');
   },
   openOmoss() {
+    $('.ui.sidebar').sidebar('toggle')  
     $('.ui.sidebar').trigger('info');
     FlowRouter.go('/omoss');
   },
   openFraga() {
-    $('.ui.sidebar').sidebar('hide')  
+    $('.ui.sidebar').sidebar('toggle')  
     $('.ui.sidebar').trigger('fraga');
     FlowRouter.go('/fraga');
   },

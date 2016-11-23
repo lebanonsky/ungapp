@@ -1,8 +1,8 @@
 ContentFrame = React.createClass({
 
 	closeFrame() {
-		$('div#render-target').show();
 	    $('div#iframe-target').hide();
+		$('div#render-target').show();
 	    FlowRouter.go('/');
 	  },
 
