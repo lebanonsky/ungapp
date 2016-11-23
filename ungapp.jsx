@@ -32,7 +32,7 @@ TjanstIndex = new EasySearch.Index({
 
   getItems  = function () {
     
-    let regdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:35000},function( error, response ) {
+    let regdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:35000},function( error, response ) {
     if ( error ) {
       console.log( error );
     } else {
@@ -58,7 +58,7 @@ TjanstIndex = new EasySearch.Index({
   });
 
 
-    let catdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:35000},function( error, response ) {
+    let catdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/huvudkategori?per_page=100', {timeout:35000},function( error, response ) {
       if ( error ) {
         console.log( error );
       } else {
@@ -87,7 +87,7 @@ TjanstIndex = new EasySearch.Index({
      
 
 
-        let tjdata = HTTP.get("http://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 35000}, function( error, response ) {
+        let tjdata = HTTP.get("https://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 35000}, function( error, response ) {
         if ( error ) {
           console.log( error );
         } else {
@@ -159,7 +159,7 @@ TjanstIndex = new EasySearch.Index({
 
 
 
-    let eventdata = HTTP.get('http://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:35000}, function( error, response ) {
+    let eventdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:35000}, function( error, response ) {
   if ( error ) {
     console.log( error );
   } else {
