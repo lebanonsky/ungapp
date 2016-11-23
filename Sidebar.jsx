@@ -20,7 +20,8 @@ Sidebar = React.createClass({
   openInfo() {
     $('.ui.sidebar').sidebar('hide')  
     $('.ui.sidebar').trigger('info');
-    $('div#iframe-target').slideDown();
+    $('div#iframe-target').slideToggle();
+    $('div#render-target').hide();
     FlowRouter.go('/info');
   },
   // openOmoss() {
