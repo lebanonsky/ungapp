@@ -40,7 +40,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
        		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
-	        <iframe src="http://unginfo.fi/ovriga-tjanster" ></iframe></div>)
+	        <iframe src="http://dev.unginfo.fi/ovriga-tjanster" ></iframe></div>)
 
 	    } else if(this.props.slug == 'cal') {
 
@@ -48,7 +48,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
        		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
-	        <iframe src="http://unginfo.fi/kalender/" ></iframe></div>)
+	        <iframe src="http://dev.unginfo.fi/evenemang/" ></iframe></div>)
 
 		} else {
 			return (
