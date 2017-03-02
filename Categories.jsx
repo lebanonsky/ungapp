@@ -29,8 +29,12 @@ Categories = React.createClass({
 
         if (this.props.item._parent != 0) {
           return (
+                                                      <ReactCSSTransitionGroup component="div" className="animation-container" transitionName="pageSlider" transitionEnterTimeout={500} transitionAppear={true} transitionAppearTimeout={500} transitionLeaveTimeout={1}>
+
             <div className={currentName} onClick={this.handleClick} >
            <h3>{this.props.item.title}</h3></div>
+                                    </ReactCSSTransitionGroup>
+
          );
 
       } else {

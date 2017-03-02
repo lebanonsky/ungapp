@@ -76,9 +76,7 @@ DataItems = React.createClass({
 
     return (
         <div className="articles-container">
-          <ReactCSSTransitionGroup component="div" className="animation-container" transitionName="pageSlider" transitionEnterTimeout={500} transitionAppear={true} transitionAppearTimeout={500} transitionLeaveTimeout={300}>
             {this.renderChildren()}
-          </ReactCSSTransitionGroup>
         </div>
       
 
