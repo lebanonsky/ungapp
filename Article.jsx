@@ -95,7 +95,7 @@ Article = React.createClass({
               <div className={telClass}>
                 <i className="phone icon"></i>
                 <div className="content">
-                <a href="tel://{this.props.item.tel}">{this.props.item.tel}</a>
+                <a href="tel:{this.props.item.tel}">{this.props.item.tel}</a>
 
                 </div>
               </div>
