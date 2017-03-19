@@ -95,7 +95,7 @@ Article = React.createClass({
               <div className={telClass}>
                 <i className="phone icon"></i>
                 <div className="content">
-                <a href="tel:{this.props.item.tel}">{this.props.item.tel}</a>
+                <a href={'tel://' + this.props.item.tel}>{this.props.item.tel}</a>
 
                 </div>
               </div>
@@ -103,7 +103,7 @@ Article = React.createClass({
               <div className={epostClass}>
                 <i className="mail icon"></i>
                 <div className="content">
-                <a href="mail://{this.props.item.epost}">{this.props.item.epost}</a>
+                <a href={'mail://'+this.props.item.epost}>{this.props.item.epost}</a>
 
                 </div>
               </div>                
@@ -118,7 +118,7 @@ Article = React.createClass({
               <div className={webbsidaClass}>
                 <i className="linkify icon"></i>
                 <div className="content">
-                <a href="{this.props.item.webbsida}">{this.props.item.webbsida}</a>
+                <a href={this.props.item.webbsida}>{this.props.item.webbsida}</a>
 
                 </div>
             </div>
@@ -126,7 +126,7 @@ Article = React.createClass({
               <div className={linkClass}>
                 <i className="bookmark icon"></i>
                 <div className="content">
-                <a href="{this.props.item.link}">{this.props.item.link}</a>
+                <a href={this.props.item.link}>{this.props.item.link}</a>
                 </div>
             </div>
 
