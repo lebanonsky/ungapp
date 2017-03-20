@@ -58,7 +58,8 @@ Article = React.createClass({
         oppetClass = this.props.item.oppet ? "item" : "item hidden"
         webbsidaClass = this.props.item.webbsida ? "item" : "item hidden"
         linkClass = this.props.item.link ? "item" : "item hidden"
-        
+        telLink = this.props.item.tel.replace(/ |\.|\-|\(|\)/g,'')//.replace(/-/g,'').replace(/\./g,'').replace(/\(/g,'').replace(/\)/g,'')
+
     return (
 
           <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
@@ -95,7 +96,7 @@ Article = React.createClass({
               <div className={telClass}>
                 <i className="phone icon"></i>
                 <div className="content">
-                <a href="tel://{this.props.item.tel}">{this.props.item.tel}</a>
+                <a href={'tel://'+telLink}>{this.props.item.tel}</a>
 
                 </div>
               </div>
@@ -103,7 +104,7 @@ Article = React.createClass({
               <div className={epostClass}>
                 <i className="mail icon"></i>
                 <div className="content">
-                <a href="mail://{this.props.item.epost}">{this.props.item.epost}</a>
+                <a href={'mail://'+this.props.item.epost}>{this.props.item.epost}</a>
 
                 </div>
               </div>                
