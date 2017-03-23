@@ -83,6 +83,10 @@ App = React.createClass({
     return <DataItems _id={this.props._id} data={this.data}  slug={this.props.slug} />
   },
 
+  closeUngdomsakademin() {
+    $('div.modal.ungdomsakademin').hide();
+  },
+
   openChat() {
     $('.ui.sidebar').sidebar('hide')  
     $('div#iframe-target').slideToggle();
@@ -177,16 +181,30 @@ App = React.createClass({
 
 
   render() {
-    
 
     return (
       <div className={this.props.slug}>
+
         <div className="ui fixed menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
             <a href="/info" onClick={this.openOmoss}>
             <img src="/img/unginfo_logo.png" className="right" id="top_logo"/>
             </a>
         </div>
+      <div className="ui modal ungdomsakademin" >
+        <div className="image content">
+          <a href="http://ungdomsakademin.fi">
+            <img src="/img/klicka_har_ungdomsakademin.png" /><br />
+            </a>
+        </div>
+        <div className="actions">
+          <div className="ui positive right labeled icon button" onClick={this.closeUngdomsakademin}>
+            Nej tack
+            <i claclassNamess="checkmark icon"></i>
+          </div>
+        </div>
+      </div>
+
         <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">
           <img src="/img/hjalp_logo.png" className="ui_logo" id="ui_logo" />
