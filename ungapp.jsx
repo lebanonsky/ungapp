@@ -38,8 +38,9 @@ TjanstIndex = new EasySearch.Index({
     } else {
       if(response.statusCode == 200) {
         let regs = JSON.parse(response.content);
+
         for(let i=0; i<regs.length; i++) {
-          
+
           Region.insert({ 
             _parent: regs[i]['parent'],
             title: regs[i]['name'],
@@ -121,8 +122,8 @@ TjanstIndex = new EasySearch.Index({
                 var ortlist = new Array();
                 for(let l=0; l < tjanst[i]['tjanst_meta']['ort'].length; l++) {
                   if(tjanst[i]['tjanst_meta']['ort'][l]) {
-                    ort.push(tjanst[i]['tjanst_meta']['ort'][l].slug);
-                    ortlist.push(tjanst[i]['tjanst_meta']['ort'][l].name+' ');
+                    ort.push(tjanst[i]['tjanst_meta']['ort'][l].name.toLowerCase());
+                    ortlist.push(tjanst[i]['tjanst_meta']['ort'][l].name.toLowerCase()+' ');
                   }
                 }
               }
@@ -278,10 +279,11 @@ Meteor.startup(function() {
             if(Session.get('userRegion')) {
                 console.log("previous region found saved", Session.get('userRegion'));
             }
+              console.log("found match from regions, setting: "+component.long_name);
 
-            console.log("found match from regions, setting");
+              Session.set('userRegion', component.long_name);
+    
 
-            Session.set('userRegion', component.long_name);
           }
         }
 
