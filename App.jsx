@@ -198,9 +198,9 @@ App = React.createClass({
             </a>
         </div>
         <div className="actions">
-          <div className="ui positive right labeled icon button" onClick={this.closeUngdomsakademin}>
+          <div className="ui positive left labeled icon button" onClick={this.closeUngdomsakademin}>
             Nej tack
-            <i claclassNamess="checkmark icon"></i>
+            <i className="checkmark icon"></i>
           </div>
         </div>
       </div>
