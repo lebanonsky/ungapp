@@ -13,21 +13,21 @@ ContentFrame = React.createClass({
 		     <div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://dev.unginfo.fi/appinfo/" ></iframe></div>)
+        <iframe src="https://dev.unginfo.fi/appinfo/" ></iframe></div>)
 
 		} else if(this.props.slug == 'omoss') {
 			 return (<div>
 			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://dev.unginfo.fi/om-oss" ></iframe></div>)
+        <iframe src="https://dev.unginfo.fi/om-oss" ></iframe></div>)
 
 		} else if(this.props.slug == 'fraga') {
 			 return (<div>
 			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://fraga.luckan.fi/usp_form/fraga/" ></iframe></div>)
+        <iframe src="https://fraga.luckan.fi/usp_form/fraga/" ></iframe></div>)
 		} else if(this.props.slug == 'chat') {
 			return (<div>	  		
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
@@ -40,7 +40,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
        		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
-	        <iframe src="http://dev.unginfo.fi/ovriga-tjanster" ></iframe></div>)
+	        <iframe src="https://dev.unginfo.fi/ovriga-tjanster" ></iframe></div>)
 
 	    } else if(this.props.slug == 'cal') {
 
@@ -48,7 +48,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
        		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
-	        <iframe src="http://dev.unginfo.fi/evenemang/" ></iframe></div>)
+	        <iframe src="https://dev.unginfo.fi/evenemang/" ></iframe></div>)
 
 		} else {
 			return (
