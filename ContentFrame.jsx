@@ -27,7 +27,7 @@ ContentFrame = React.createClass({
 			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://fraga.luckan.fi/usp_form/fraga/" ></iframe></div>)
+        <iframe src="http://ungdomsakademin.fi/stall-fraga/" ></iframe></div>)
 		} else if(this.props.slug == 'chat') {
 			return (<div>	  		
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
