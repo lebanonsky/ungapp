@@ -9,14 +9,11 @@ meteor add semantic:ui
 meteor add flemay:less-autoprefixer
 meteor add jquery
 meteor add http
-
 meteor add easysearch:core
-
 meteor add dburles:google-maps
-
 meteor add praneybehl:reactjs-hammerjs
-
 meteor add ls3271:meteor-linkify
+meteor add session
 
 meteor –> wait –> ctrl-C
 rm client/.custom.semantic.json
