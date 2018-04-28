@@ -11,7 +11,12 @@ Article = React.createClass({
     jQuery('.ui .accordion').accordion();
 
   },
+  openLink(event) {
 
+    event.preventDefault();
+    let to = event.currentTarget.textContent;
+    window.open(to, '_system');
+  },
   handleClick() {
 
     this.props.active = true;
@@ -59,6 +64,26 @@ Article = React.createClass({
         webbsidaClass = this.props.item.webbsida ? "item" : "item hidden"
         linkClass = this.props.item.link ? "item" : "item hidden"
         telLink = this.props.item.tel.replace(/ |\.|\-|\(|\)/g,'')//.replace(/-/g,'').replace(/\./g,'').replace(/\(/g,'').replace(/\)/g,'')
+
+    const outsideLink = Meteor.isCordova ? (
+        <div className={webbsidaClass}>
+                <i className="linkify icon"></i>
+                <div className="content">
+                <a onClick={this.openLink} href="#">{this.props.item.webbsida}</a>
+
+                </div>
+            </div>
+    ) : (
+        <div className={webbsidaClass}>
+                <i className="linkify icon"></i>
+                <div className="content">
+                <a href={this.props.item.webbsida}>{this.props.item.webbsida}</a>
+
+                </div>
+            </div>
+    );
+
+
 
     return (
 
@@ -116,13 +141,7 @@ Article = React.createClass({
                 </div>
             </div>
 
-              <div className={webbsidaClass}>
-                <i className="linkify icon"></i>
-                <div className="content">
-                <a href={this.props.item.webbsida}>{this.props.item.webbsida}</a>
-
-                </div>
-            </div>
+              {outsideLink}
 
               <div className={linkClass}>
                 <i className="bookmark icon"></i>

@@ -14,7 +14,12 @@ App.setPreference('android-minSdkVersion', '17');
 App.setPreference("BackupWebStorage", "local");
 App.accessRule('*');
 App.accessRule('*', { type: 'navigation' } );
-
+App.accessRule('*://maps.googleapis.com/*');
+App.appendToConfig(`
+  <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+    <string>My app needs access to your location for navigation purposes</string>
+  </edit-config>
+`);
 App.icons({
   "iphone_2x": "resources/icons/iphone_2x.png", // 120x120
   "iphone_3x": "resources/icons/iphone_3x.png", // 180x180

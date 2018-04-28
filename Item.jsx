@@ -1,5 +1,6 @@
 // single item from JSON
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Hammer = require('react-hammerjs');
 
 Item = React.createClass({
     propTypes: {
@@ -34,14 +35,12 @@ Item = React.createClass({
 
         if(this.props.item.link == "back") {
             return (
-                <Hammer onTap={this.handleSwipe} onSwipe={this.handleSwipe} >
                           <ReactCSSTransitionGroup component="div" className="animation-container" transitionName="pageSlider" transitionEnterTimeout={500} transitionAppear={true} transitionAppearTimeout={500} transitionLeaveTimeout={1}>
  
                     <div className={currentName} onClick={this.handleClick} >
                         <h4><img src='/img/back.png' />{this.props.item.text}</h4>
                     </div>
           </ReactCSSTransitionGroup>
-                </Hammer>
             );
         } else if (this.props.item.slug == 'direkt') {
             return (
