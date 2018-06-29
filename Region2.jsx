@@ -13,9 +13,9 @@ Region2 = React.createClass({
   
       } else if( this.props.item.slug == 'aaa'){
         Session.set('userRegion', null);
-        console.log('userRegion set '+ Session.get('userRegion') )
       } else {
         Session.set('userRegion', this.props.item.title);
+        console.log('userRegion set '+ Session.get('userRegion') )
         //redirect to home page
       }
         jQuery('#TjanstMap').hide();
@@ -30,11 +30,11 @@ Region2 = React.createClass({
         currentName = "ui segment raised " + this.props.item.slug
 
         return (
-                                                      <ReactCSSTransitionGroup component="div" className="animation-container" transitionName="pageSlider" transitionEnterTimeout={500} transitionAppear={true} transitionAppearTimeout={500} transitionLeaveTimeout={1}>
+        <ReactCSSTransitionGroup component="div" className="animation-container" transitionName="pageSlider" transitionEnterTimeout={500} transitionAppear={true} transitionAppearTimeout={500} transitionLeaveTimeout={1}>
 
           <div className={currentName} onClick={this.handleClick} >
-         <h3>{this.props.item.title}</h3></div>
-                                   </ReactCSSTransitionGroup>
+           <h3>{this.props.item.title}</h3></div>
+        </ReactCSSTransitionGroup>
 
        );
     }

@@ -30,6 +30,7 @@ Article = React.createClass({
           streetViewControl:false
         }
       });
+      GoogleMaps.load({ v: '3', key: 'AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y'});
       GoogleMaps.ready(this.props.item.id, function(map) {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng( parseFloat(self.props.item.lat),  parseFloat(self.props.item.lon)),
@@ -119,7 +120,7 @@ Article = React.createClass({
               <div className={webbsidaClass}>
                 <i className="linkify icon"></i>
                 <div className="content">
-                <a href="{this.props.item.webbsida}">{this.props.item.webbsida}</a>
+                <a href={this.props.item.webbsida}>{this.props.item.webbsida}</a>
 
                 </div>
             </div>
@@ -127,7 +128,7 @@ Article = React.createClass({
               <div className={linkClass}>
                 <i className="bookmark icon"></i>
                 <div className="content">
-                <a href="{this.props.item.link}">{this.props.item.link}</a>
+                <a href={this.props.item.link}>{this.props.item.link}</a>
                 </div>
             </div>
 
