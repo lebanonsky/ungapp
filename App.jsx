@@ -191,19 +191,6 @@ App = React.createClass({
             <img src="/img/unginfo_logo.png" className="right" id="top_logo"/>
             </a>
         </div>
-      <div className="ui modal ungdomsakademin" >
-        <div className="image content">
-          <a href="http://ungdomsakademin.fi">
-            <img src="/img/klicka_har_ungdomsakademin.png" /><br />
-            </a>
-        </div>
-        <div className="actions">
-          <div className="ui positive left labeled icon button" onClick={this.closeUngdomsakademin}>
-            Nej tack
-            <i className="checkmark icon"></i>
-          </div>
-        </div>
-      </div>
 
         <div className="ui image header ungapp">
         <div onClick={this.goHome} className="content">
