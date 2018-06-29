@@ -20,13 +20,12 @@ App = React.createClass({
         initialLoad: false
     }
   },
-  // allows us to get data with getMeteorData
+  // allows us to get data uth getMeteorData
   mixins: [ReactMeteorData],
 
   getMeteorData() {
 
     if(Session.get('userRegion')) {
-      console.log(Tjanst.find( { region: Session.get('userRegion').toLowerCase()},{sort: {'title':1}}  ).fetch())
       return {
         items: Cats.find({},{sort:{'title':1}}).fetch(),
         lokaltjanst: Tjanst.find( { region: Session.get('userRegion').toLowerCase()},{sort: {'title':1}}  ).fetch(),

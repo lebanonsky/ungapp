@@ -225,10 +225,9 @@ TjanstIndex = new EasySearch.Index({
 
 Meteor.startup(function() {
     getItems();
+    GoogleMaps.load({key: "AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y"});
 
-    GoogleMaps.load();  
-
-    if(window.cordova) {
+    if(Meteor.isCordova) {
       document.addEventListener("deviceready", loadLocation, false);
     } else {
       $(document).ready(function(){ 
@@ -247,7 +246,6 @@ Meteor.startup(function() {
                   'Heading: '           + position.coords.heading           + '\n' +
                   'Speed: '             + position.coords.speed             + '\n' +
                   'Timestamp: '         + position.timestamp                + '\n');
-
 
     HTTP.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&key=AIzaSyAcuhBx6pL0vDEKp-bFgN8w7k2NxNq35_Y&language=sv", {timeout:35000},function( error, results ) {
 

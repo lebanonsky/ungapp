@@ -12,16 +12,30 @@ $(document).ready(function() {
 $(window).scroll(function(){
   var header = $('.header.ungapp'),
       scroll = $(window).scrollTop();
-  if (scroll >= 70) { 
+  if(header.hasClass("sticky")) {
+  if (scroll >= 5) { 
     //header.sticky('refresh');
     header.addClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_vertical.png')
-  } 
-  else {
+  }  else {
     header.removeClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_logo.png')
 
   }
+} else {
+
+  if (scroll >= 70) { 
+    //header.sticky('refresh');
+    header.addClass('fixed sticky top');
+    $('#ui_logo').attr('src','/img/hjalp_vertical.png')
+  }  else {
+    header.removeClass('fixed sticky top');
+    $('#ui_logo').attr('src','/img/hjalp_logo.png')
+
+  }
+
+
+}
 });
 
 

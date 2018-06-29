@@ -16,7 +16,7 @@ DataItems = React.createClass({
         userRegion = Region.findOne({title:Session.get('userRegion') })
         if(userRegion) {
           userRegion.title = 'Vald region: ' + userRegion.title
-          renderedObjects.push(<Region2 key="12345" item={userRegion} />);
+          renderedObjects.push(<Region2 key="selectedregion" item={userRegion} />);
         }
       }
 
@@ -48,12 +48,12 @@ DataItems = React.createClass({
       })
 
       if(this.props._id != 0 ) { // no items were loaded
-        renderedObjects.push(<Item item={{
-          text: "",
+        renderedObjects.unshift(<Item key="1x" item={{
+          text: " Tillbaka",
           link: "back",
           _parent: this.props._id,
           id: 0,
-          slug: this.props.slug
+          slug: "back"
         }} />)
 
       } else if(renderCount < 1) {
