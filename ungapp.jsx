@@ -297,10 +297,10 @@ Meteor.startup(function() {
         };
     
         function onError(error) {
-            alert('code: '    + error.code    + '\n' +
+            console.log('code: '    + error.code    + '\n' +
                   'message: ' + error.message + '\n');
         }
-        navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true });
+        navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true, timeout:3000 });
     }
 
     const loadedStates = ['complete', 'loaded', 'interactive'];
