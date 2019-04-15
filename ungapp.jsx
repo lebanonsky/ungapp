@@ -38,6 +38,7 @@ TjanstIndex = new EasySearch.Index({
     } else {
       if(response.statusCode == 200) {
         let regs = JSON.parse(response.content);
+
         for(let i=0; i<regs.length; i++) {
           Region.insert({ 
             _parent: regs[i]['parent'],
@@ -277,10 +278,11 @@ Meteor.startup(function() {
             if(Session.get('userRegion')) {
                 console.log("previous region found saved", Session.get('userRegion'));
             }
+              console.log("found match from regions, setting: "+component.long_name);
 
-            console.log("found match from regions, setting");
+              Session.set('userRegion', component.long_name);
+    
 
-            Session.set('userRegion', component.long_name);
           }
         }
 
