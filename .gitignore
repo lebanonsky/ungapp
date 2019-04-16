@@ -1,6 +1,2 @@
-*.swp
-.DS_Store
-.meteor
-packages/*
-node_modules/*
 node_modules/
+client/

@@ -8,7 +8,8 @@ Evenemang = new Mongo.Collection(null);
 
 // var linkify = require('linkifyjs');
 // var linkifyHtml = require('linkifyjs/html');
-
+ga('create', 'UA-68485038-3', 'auto');
+ga('send', 'pageview');
 
 TjanstIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo({
@@ -29,7 +30,6 @@ TjanstIndex = new EasySearch.Index({
 
 
 
-
   getItems  = function () {
     
     let regdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/ort?per_page=100', {timeout:35000},function( error, response ) {
@@ -40,7 +40,6 @@ TjanstIndex = new EasySearch.Index({
         let regs = JSON.parse(response.content);
 
         for(let i=0; i<regs.length; i++) {
-
           Region.insert({ 
             _parent: regs[i]['parent'],
             title: regs[i]['name'],

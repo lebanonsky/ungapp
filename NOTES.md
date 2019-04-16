@@ -13,6 +13,7 @@ meteor add easysearch:core
 meteor add dburles:google-maps
 meteor add praneybehl:reactjs-hammerjs
 meteor add ls3271:meteor-linkify
+meteor add fuww:google-analytics
 meteor add session
 
 meteor –> wait –> ctrl-C

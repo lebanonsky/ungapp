@@ -20,14 +20,15 @@ ContentFrame = React.createClass({
 			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://dev.unginfo.fi/om-oss" ></iframe></div>)
+        <iframe src="https://dev.unginfo.fi/om-oss" ></iframe></div>)
 
 		} else if(this.props.slug == 'fraga') {
 			 return (<div>
 			 	<div className="ui fixed menu white right" onClick={this.closeFrame}>
 		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         </div>
-        <iframe src="http://ungdomsakademin.fi/fraga/" ></iframe></div>)
+        <iframe src="http://ungdomsakademin.fi/stall-fraga/" ></iframe></div>)
+
 		} else if(this.props.slug == 'chat') {
 			return (<div>	  		
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
@@ -40,7 +41,7 @@ ContentFrame = React.createClass({
 				<div className="ui fixed menu white right" onClick={this.closeFrame}>
        		     <i className="chevron left icon" > </i> <div>Tillbaka</div>
         		</div>
-	        <iframe src="http://dev.unginfo.fi/ovriga-tjanster" ></iframe></div>)
+	        <iframe src="https://dev.unginfo.fi/ovriga-tjanster" ></iframe></div>)
 
 	    } else if(this.props.slug == 'cal') {
 
