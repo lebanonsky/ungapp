@@ -15,10 +15,10 @@ $(window).scroll(function(){
   if(header.hasClass("sticky")) {
   if (scroll >= 5) { 
     //header.sticky('refresh');
-    header.addClass('fixed sticky top');
+    // header.addClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_vertical.png')
   }  else {
-    header.removeClass('fixed sticky top');
+    // header.removeClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_logo.png')
 
   }
@@ -26,14 +26,13 @@ $(window).scroll(function(){
 
   if (scroll >= 70) { 
     //header.sticky('refresh');
-    header.addClass('fixed sticky top');
+    // header.addClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_vertical.png')
   }  else {
-    header.removeClass('fixed sticky top');
+    // header.removeClass('fixed sticky top');
     $('#ui_logo').attr('src','/img/hjalp_logo.png')
 
   }
-
 
 }
 });

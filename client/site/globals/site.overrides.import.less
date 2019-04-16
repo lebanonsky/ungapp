@@ -6,6 +6,10 @@ html.ios {
 
 }
 
+#splash {
+	width: auto !important;
+}
+
 div.modal.ungdomsakademin {
 	display: block;
 	position:fixed;
@@ -44,7 +48,7 @@ div#sidebar-target.ui.left.sidebar.uncover.visible {
 }
 
 div#iframe-target {
-	display: none;
+	display: block;
 }
 
 div#iframe-target iframe {
@@ -55,11 +59,12 @@ div#iframe-target iframe {
 	margin:6px 12px;
 }
 
-div.ui.fixed.menu.left {
+div.ui.menu.left {
 	background: transparent;
 	box-shadow: none;
-	border-bottom: 0px;
-	color: #e75b22 !important
+	border: 0px;
+	color: #e75b22 !important;
+	margin-bottom: 0;
 
 }
 
@@ -110,13 +115,13 @@ img.ui_logo {
 	margin: 0 auto;
 }
 
-.ui.fixed.menu {
+.ui.menu {
 	background: url('/img/transpBlack50.png');
 	color: #fff;
 	z-index: 999 !important;
 }
 
-.ui.fixed.menu #top_logo {
+.ui.menu #top_logo {
 	height:35px;
 	position:absolute;
 	right:0;
@@ -129,13 +134,15 @@ img.ui_logo {
 	margin-top: -10px;
 	margin-bottom: 0px;
 	background: transparent !important;
+	border: 0px !important;
+	box-shadow: none !important;
+	border-radius: 0px !important; 
 }
 
-.ui.image.header.ungapp.fixed {
+.ui.image.header.ungapp {
 	border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 	box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
 	border-radius: 0.28571429rem;
-	background:#fff !important;
 }
 
 .ui.content.segments.ungapp {
