@@ -71,7 +71,8 @@ App = React.createClass({
   },
   
   toggleSidebar() {
-    $('.ui.sidebar').sidebar('toggle')  
+    $('.ui.sidebar').sidebar('toggle');
+    $('div#iframe-target').hide();
 
   },
 
@@ -184,12 +185,11 @@ App = React.createClass({
 
     return (
       <div className={this.props.slug}>
-
-        <div className="ui fixed menu white left">
+        <div className="ui menu white left">
             <i  onClick={this.toggleSidebar} className="sidebar white icon big"></i>
-            <a href="/info" onClick={this.openOmoss}>
+{/*            <a href="/info" onClick={this.openOmoss}>
             <img src="/img/unginfo_logo.png" className="right" id="top_logo"/>
-            </a>
+            </a>*/}
         </div>
 
         <div className="ui image header ungapp">
