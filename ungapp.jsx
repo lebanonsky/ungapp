@@ -87,7 +87,7 @@ TjanstIndex = new EasySearch.Index({
      
 
 
-        let tjdata = HTTP.get("https://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=999", {timeout: 35000}, function( error, response ) {
+        let tjdata = HTTP.get("https://dev.unginfo.fi/wp-json/wp/v2/tjanst?per_page=99", {timeout: 35000}, function( error, response ) {
         if ( error ) {
           console.log( error );
         } else {
@@ -159,7 +159,7 @@ TjanstIndex = new EasySearch.Index({
 
 
 
-    let eventdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=999', {timeout:35000}, function( error, response ) {
+    let eventdata = HTTP.get('https://dev.unginfo.fi/wp-json/wp/v2/tribe_events?per_page=99', {timeout:35000}, function( error, response ) {
   if ( error ) {
     console.log( error );
   } else {
